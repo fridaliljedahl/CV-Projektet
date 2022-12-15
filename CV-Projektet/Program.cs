@@ -42,4 +42,3 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
-int hej = 1;
