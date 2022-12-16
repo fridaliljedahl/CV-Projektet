@@ -6,7 +6,7 @@ namespace CV_Projektet.Models
     {
         [Key]
         public int ProjectID { get; set; }
-        public string ProjectName { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public List<User> Collaborators { get; set; }
         
