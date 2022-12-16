@@ -1,8 +1,7 @@
 using CV_Projektet.Data;
+using CV_Projektet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
-// Hej jag heter Viktor //
 
 var builder = WebApplication.CreateBuilder(args);
 
