@@ -7,12 +7,15 @@ namespace CV_Projektet.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProjectID { get; set; }
+        public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
-        public string Test { get; set; }
+        [Required]
+        public string ProjectLeader { get; set; }
 
         //public List<User> Collaborators { get; set; }
-        
+
     }
 }

@@ -3,11 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CV_Projektet.Models
 {
-    public class CV
+    public class Address
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        //public int TimesViewed { get; set; }
+        [Required]
+        public string Street { get; set; }
+        [Required]
+        public int PostalCode { get; set; }
+        [Required]
+        public string City { get; set; }
     }
 }

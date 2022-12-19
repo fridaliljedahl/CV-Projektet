@@ -21,17 +21,15 @@ namespace CV_Projektet.Data
             modelBuilder.Entity<Project>().HasData(
                 new Project
                 {
-                    ProjectID = 1,
+                    ID = 1,
                     Name = "TestProject",
-                    Description = "TestProject1Desc",
-                    Test = "hej"
+                    Description = "TestProject1Desc"
                 },
                 new Project
                 {
-                    ProjectID = 2,
+                    ID = 2,
                     Name = "TestProject2",
-                    Description = "TestProject1Desc",
-                    Test = "hej"
+                    Description = "TestProject1Desc"
                 });
 
             modelBuilder.Entity<User>().HasData(
@@ -43,9 +41,9 @@ namespace CV_Projektet.Data
             modelBuilder.Entity<Message>().HasData(
                 new Message
                 {
-                    Id = 1,
-                    Sender = 1,
-                    Receiver = 2,
+                    ID = 1,
+                    Sender = "user1",
+                    Receiver = "user2",
                     Text = "hejsan",
                     Date = DateTime.Now,
                     Read = false
