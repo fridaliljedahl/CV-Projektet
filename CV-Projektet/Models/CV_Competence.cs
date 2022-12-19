@@ -2,15 +2,16 @@
 
 namespace CV_Projektet.Models
 {
-    public class ProjectsInCV
+    public class CV_Competence
     {
-        public int ProjectID { get; set; }
         public int CVID { get; set; }
+        public int CompetenceID { get; set; }
 
-        [ForeignKey(nameof(ProjectID))]
-        public Project Project { get; set; }
 
         [ForeignKey(nameof(CVID))]
         public CV CV { get; set; }
+
+        [ForeignKey(nameof(CompetenceID))]
+        public Competence Competence { get; set; }
     }
 }

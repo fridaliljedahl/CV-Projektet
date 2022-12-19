@@ -16,5 +16,8 @@ namespace CV_Projektet.Models
 
         [ForeignKey(nameof(AdressID))]
         public virtual Address Address { get; set; }
+
+        public virtual IEnumerable<Message> SentMessages { get; set; } = new List<Message>();
+        public virtual IEnumerable<Message> ReceivedMessages { get; set; } = new List<Message>();
     }
 }

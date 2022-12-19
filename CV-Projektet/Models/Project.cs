@@ -15,7 +15,7 @@ namespace CV_Projektet.Models
         [Required]
         public string ProjectLeader { get; set; }
 
-        public virtual IEnumerable<ProjectsInCV> ProjectsInCVs { get; set; } = new List<ProjectsInCV>();
+        public virtual IEnumerable<CV_Project> CV_Project { get; set; } = new List<CV_Project>();
 
     }
 }

@@ -4,6 +4,7 @@ using CV_Projektet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CV_Projektet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221219134711_123890546")]
+    partial class _123890546
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,9 +203,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Lund",
                             Description = "pratade i telefon",
-                            EndDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4944),
+                            EndDate = new DateTime(2022, 12, 19, 14, 47, 11, 603, DateTimeKind.Local).AddTicks(6759),
                             Place = "ICA",
-                            StartDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4936),
+                            StartDate = new DateTime(2022, 12, 19, 14, 47, 11, 603, DateTimeKind.Local).AddTicks(6751),
                             Title = "Kundtjänst",
                             Type = "Work"
                         },
@@ -213,9 +215,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Örebro",
                             Description = "Java",
-                            EndDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4958),
+                            EndDate = new DateTime(2022, 12, 19, 14, 47, 11, 603, DateTimeKind.Local).AddTicks(6774),
                             Place = "Örebro Universitet",
-                            StartDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4956),
+                            StartDate = new DateTime(2022, 12, 19, 14, 47, 11, 603, DateTimeKind.Local).AddTicks(6772),
                             Title = "Systemvetenskap",
                             Type = "Education"
                         },
@@ -225,9 +227,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Göteborg",
                             Description = "HLR-utbildning",
-                            EndDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4994),
+                            EndDate = new DateTime(2022, 12, 19, 14, 47, 11, 603, DateTimeKind.Local).AddTicks(6786),
                             Place = "Företag1",
-                            StartDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4992),
+                            StartDate = new DateTime(2022, 12, 19, 14, 47, 11, 603, DateTimeKind.Local).AddTicks(6784),
                             Title = "HLR",
                             Type = "Course"
                         });
@@ -247,11 +249,13 @@ namespace CV_Projektet.Migrations
                     b.Property<bool>("Read")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Receiver")
-                        .HasColumnType("int");
+                    b.Property<string>("Receiver")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Sender")
-                        .HasColumnType("int");
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -275,10 +279,10 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 1,
-                            Date = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(2765),
+                            Date = new DateTime(2022, 12, 19, 14, 47, 11, 603, DateTimeKind.Local).AddTicks(4671),
                             Read = false,
-                            Receiver = 2,
-                            Sender = 1,
+                            Receiver = "user2",
+                            Sender = "user1",
                             Text = "hejsan"
                         });
                 });

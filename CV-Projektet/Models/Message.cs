@@ -8,16 +8,18 @@ namespace CV_Projektet.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        [Required]
         public string Sender { get; set; }
-        [Required]
         public string Receiver { get; set; }
-        [Required]
         public DateTime Date { get; set; }
-        [Required]
         public bool Read { get; set; }
-        [Required]
         public string Text { get; set; }
+
+
+        [ForeignKey(nameof(Sender))]
+        public virtual User UserSender { get; set; }
+
+        [ForeignKey(nameof(Receiver))]
+        public virtual User UserReceiver { get; set; }
 
         public Message(string sender, string receiver, string text)
         {

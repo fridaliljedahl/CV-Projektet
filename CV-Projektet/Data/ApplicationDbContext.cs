@@ -13,17 +13,18 @@ namespace CV_Projektet.Data
 
         public DbSet<Address> Addresses { get; set; }
         public DbSet<CV> CVs { get; set; }
-        //public DbSet<Education> Educations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<User> Users { get; set; }
-        //public DbSet<Work> Works { get; set; }
+        public DbSet<Competence> Competences { get; set; }
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Message>()
 
             modelBuilder.Entity<Address>().HasData(
                new Address
@@ -61,46 +62,71 @@ namespace CV_Projektet.Data
                     LastName = "Liljedahl",
                     AdressID = 1
                 });
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    FirstName = "hej",
+                    LastName = "hejsan",
+                    AdressID = 1
+                });
             modelBuilder.Entity<Message>().HasData(
                 new Message
                 {
                     ID = 1,
-                    Sender = "user1",
-                    Receiver = "user2",
+                    Sender = "lkjdhfs",
+                    Receiver = "liksdf",
                     Text = "hejsan",
                     Date = DateTime.Now,
                     Read = false
                 });
-            modelBuilder.Entity<ProjectsInCV>()
+            modelBuilder.Entity<CV_Project>()
                 .HasKey(pc => new { pc.ProjectID, pc.CVID });
-               
-            modelBuilder.Entity<ProjectsInCV>().HasData(
-               new ProjectsInCV
+
+            modelBuilder.Entity<CV_Competence>()
+                .HasKey(cc => new { cc.CVID, cc.CompetenceID });
+
+            modelBuilder.Entity<Competence>().HasData(
+                new Competence
+                {
+                    ID = 1,
+                    Name = "C#"
+                });
+            modelBuilder.Entity<CV_Competence>().HasData(
+                new CV_Competence
+                {
+                    CVID = 1,
+                    CompetenceID = 1
+                });
+
+            modelBuilder.Entity<CV_Project>().HasData(
+               new CV_Project
                {
                    ProjectID = 2,
                    CVID = 1
                });
-            modelBuilder.Entity<Work>().HasData(
-               new Work
+            modelBuilder.Entity<Experience>().HasData(
+               new Experience
                {
                    ID = 1,
-                   RoleName = "Kundtjänst",
+                   Title = "Kundtjänst",
+                   Type = "Work",
                    StartDate = DateTime.Now,
                    EndDate = DateTime.Now,
                    City = "Lund",
-                   LocationName = "ICA",
+                   Place = "ICA",
                    Description = "pratade i telefon",
                    CVID = 1
                });
-            modelBuilder.Entity<Education>().HasData(
-               new Education
+            modelBuilder.Entity<Experience>().HasData(
+               new Experience
                {
                    ID = 2,
-                   Name = "Systemvetenskap",
+                   Title = "Systemvetenskap",
+                   Type = "Education",
                    StartDate = DateTime.Now,
                    EndDate = DateTime.Now,
                    City = "Örebro",
-                   LocationName = "Örebro Universitet",
+                   Place = "Örebro Universitet",
                    Description = "Java",
                    CVID = 1
                });
@@ -108,10 +134,12 @@ namespace CV_Projektet.Data
                new Experience
                {
                    ID = 3,
+                   Title = "HLR",
+                   Type = "Course",
                    StartDate = DateTime.Now,
                    EndDate = DateTime.Now,
                    City = "Göteborg",
-                   LocationName = "Företaget",
+                   Place = "Företag1",
                    Description = "HLR-utbildning",
                    CVID = 1
                });
