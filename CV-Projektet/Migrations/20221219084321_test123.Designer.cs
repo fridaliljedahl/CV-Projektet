@@ -4,6 +4,7 @@ using CV_Projektet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CV_Projektet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221219084321_test123")]
+    partial class test123
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,46 +23,6 @@ namespace CV_Projektet.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("CV_Projektet.Models.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Read")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Receiver")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Sender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Message");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Date = new DateTime(2022, 12, 19, 10, 35, 18, 825, DateTimeKind.Local).AddTicks(3904),
-                            Read = false,
-                            Receiver = 2,
-                            Sender = 1,
-                            Text = "hejsan"
-                        });
-                });
 
             modelBuilder.Entity("CV_Projektet.Models.Project", b =>
                 {
@@ -328,13 +290,13 @@ namespace CV_Projektet.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8ac76e0b-f48a-4982-8730-fde78f10b7ba",
+                            Id = "14d27041-703b-48c8-89d1-ba025321a4c1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "da00d4a5-d2d7-410e-8c51-7933f1940550",
+                            ConcurrencyStamp = "fc6fb881-d5e0-4689-b7f6-6ee8fa5af5cc",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d573fdc1-7bde-4eb9-a37e-55313fd66e9e",
+                            SecurityStamp = "ac5a1ab4-d53c-4f95-9f2f-a331af9e1d48",
                             TwoFactorEnabled = false,
                             FirstName = "Frida",
                             LastName = "Liljedahl"

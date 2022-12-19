@@ -4,6 +4,7 @@ using CV_Projektet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CV_Projektet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221219081329_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,46 +23,6 @@ namespace CV_Projektet.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("CV_Projektet.Models.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Read")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Receiver")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Sender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Message");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Date = new DateTime(2022, 12, 19, 10, 35, 18, 825, DateTimeKind.Local).AddTicks(3904),
-                            Read = false,
-                            Receiver = 2,
-                            Sender = 1,
-                            Text = "hejsan"
-                        });
-                });
 
             modelBuilder.Entity("CV_Projektet.Models.Project", b =>
                 {
@@ -78,10 +40,6 @@ namespace CV_Projektet.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Test")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ProjectID");
 
                     b.ToTable("Projects");
@@ -91,15 +49,13 @@ namespace CV_Projektet.Migrations
                         {
                             ProjectID = 1,
                             Description = "TestProject1Desc",
-                            Name = "TestProject",
-                            Test = "hej"
+                            Name = "TestProject"
                         },
                         new
                         {
                             ProjectID = 2,
                             Description = "TestProject1Desc",
-                            Name = "TestProject2",
-                            Test = "hej"
+                            Name = "TestProject2"
                         });
                 });
 
@@ -323,18 +279,23 @@ namespace CV_Projektet.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProjectID")
+                        .HasColumnType("int");
+
+                    b.HasIndex("ProjectID");
+
                     b.HasDiscriminator().HasValue("User");
 
                     b.HasData(
                         new
                         {
-                            Id = "8ac76e0b-f48a-4982-8730-fde78f10b7ba",
+                            Id = "d350c30a-ebd8-4550-b496-ffecb6a7a7da",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "da00d4a5-d2d7-410e-8c51-7933f1940550",
+                            ConcurrencyStamp = "de254d3f-b137-4ba0-bb4f-a60443f419a3",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d573fdc1-7bde-4eb9-a37e-55313fd66e9e",
+                            SecurityStamp = "e24741eb-cb62-4987-8ab2-2231db71fd31",
                             TwoFactorEnabled = false,
                             FirstName = "Frida",
                             LastName = "Liljedahl"
@@ -390,6 +351,18 @@ namespace CV_Projektet.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CV_Projektet.Models.User", b =>
+                {
+                    b.HasOne("CV_Projektet.Models.Project", null)
+                        .WithMany("Collaborators")
+                        .HasForeignKey("ProjectID");
+                });
+
+            modelBuilder.Entity("CV_Projektet.Models.Project", b =>
+                {
+                    b.Navigation("Collaborators");
                 });
 #pragma warning restore 612, 618
         }

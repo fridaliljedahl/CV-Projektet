@@ -23,21 +23,32 @@ namespace CV_Projektet.Data
                 {
                     ProjectID = 1,
                     Name = "TestProject",
-                    Description = "TestProject1Desc"
+                    Description = "TestProject1Desc",
+                    Test = "hej"
                 },
                 new Project
                 {
                     ProjectID = 2,
                     Name = "TestProject2",
-                    Description = "TestProject1Desc"
+                    Description = "TestProject1Desc",
+                    Test = "hej"
                 });
 
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-                    Id = "1",
                     FirstName = "Frida",
                     LastName = "Liljedahl"
+                });
+            modelBuilder.Entity<Message>().HasData(
+                new Message
+                {
+                    Id = 1,
+                    Sender = 1,
+                    Receiver = 2,
+                    Text = "hejsan",
+                    Date = DateTime.Now,
+                    Read = false
                 });
         }
     }
