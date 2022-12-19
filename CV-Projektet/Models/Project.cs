@@ -15,7 +15,7 @@ namespace CV_Projektet.Models
         [Required]
         public string ProjectLeader { get; set; }
 
-        //public List<User> Collaborators { get; set; }
+        public virtual IEnumerable<ProjectsInCV> ProjectsInCVs { get; set; } = new List<ProjectsInCV>();
 
     }
 }

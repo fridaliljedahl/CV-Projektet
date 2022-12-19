@@ -8,15 +8,15 @@ namespace CV_Projektet.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        [Required]
         public DateTime StartDate { get; set; }
-        [Required]
         public DateTime EndDate { get; set; }
         public string City { get; set; }
         public string LocationName { get; set; }
         public string Description { get; set; }
-        [Required]
-        public int CV { get; set; } //FK
+        public int CVID { get; set; }
+
+        [ForeignKey(nameof(CVID))]
+        public virtual CV CV { get; set; }
 
         public Experience()
         {

@@ -8,6 +8,9 @@ namespace CV_Projektet.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        //public int TimesViewed { get; set; }
+        public int TimesViewed { get; set; }
+
+        public virtual IEnumerable<ProjectsInCV> ProjectsInCVs { get; set; } = new List<ProjectsInCV>();
+        public virtual IEnumerable<Experience> Experiences { get; set; } = new List<Experience>();
     }
 }

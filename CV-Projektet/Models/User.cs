@@ -11,7 +11,10 @@ namespace CV_Projektet.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        public string ProfilePicture { get; set; }
-        public int Adress { get; set; } //FK
+        public string? ProfilePicture { get; set; }
+        public int AdressID { get; set; }
+
+        [ForeignKey(nameof(AdressID))]
+        public virtual Address Address { get; set; }
     }
 }

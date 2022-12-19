@@ -14,5 +14,6 @@ namespace CV_Projektet.Models
         public int PostalCode { get; set; }
         [Required]
         public string City { get; set; }
+        public virtual IEnumerable<User> Users { get; set; } = new List<User>();
     }
 }
