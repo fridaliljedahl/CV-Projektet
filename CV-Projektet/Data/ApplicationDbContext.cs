@@ -24,8 +24,6 @@ namespace CV_Projektet.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Message>()
-
             modelBuilder.Entity<Address>().HasData(
                new Address
                {
@@ -58,6 +56,7 @@ namespace CV_Projektet.Data
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
+                    UserName = "Friday",
                     FirstName = "Frida",
                     LastName = "Liljedahl",
                     AdressID = 1
@@ -65,6 +64,7 @@ namespace CV_Projektet.Data
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
+                    UserName = "hej",
                     FirstName = "hej",
                     LastName = "hejsan",
                     AdressID = 1
@@ -73,8 +73,8 @@ namespace CV_Projektet.Data
                 new Message
                 {
                     ID = 1,
-                    Sender = "lkjdhfs",
-                    Receiver = "liksdf",
+                    Sender = "Friday",
+                    Receiver = "hej",
                     Text = "hejsan",
                     Date = DateTime.Now,
                     Read = false
