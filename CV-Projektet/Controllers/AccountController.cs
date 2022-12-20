@@ -21,5 +21,12 @@ namespace CV_Projektet.Controllers
             LoginViewModel logInViewModel = new LoginViewModel();
             return View(logInViewModel);
         }
+
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }

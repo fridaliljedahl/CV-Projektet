@@ -1,5 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model UserRegistrationViewModel
+
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post" asp-action="Registrera">
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Användarnamn: </label>
+        </div>
+        <div class="col-sm-4">
+            <input asp-for="UserName" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Lösenord: </label>
+        </div>
+        <div class="col-sm-4">
+            <input asp-for="Password" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Bekräfta lösenord: </label>
+        </div>
+        <div class="col-sm-4">
+            <input asp-for="PasswordConfirmed" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-2 col-sm-4">
+            <button type="submit" class="btn btn-primary">Registrera</button>
+        </div>
+    </div>
+</form>
