@@ -2,7 +2,7 @@
 
 namespace CV_Projektet.Models
 {
-    public class CV_Project
+    public class CV_Projects
     {
         public int ProjectID { get; set; }
         public int CVID { get; set; }

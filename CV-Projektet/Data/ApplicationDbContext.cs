@@ -89,10 +89,10 @@ namespace CV_Projektet.Data
                     Date = DateTime.Now,
                     Read = false
                 });
-            modelBuilder.Entity<CV_Project>()
+            modelBuilder.Entity<CV_Projects>()
                 .HasKey(pc => new { pc.ProjectID, pc.CVID });
 
-            modelBuilder.Entity<CV_Competence>()
+            modelBuilder.Entity<CV_Competences>()
                 .HasKey(cc => new { cc.CVID, cc.CompetenceID });
 
             modelBuilder.Entity<Competence>().HasData(
@@ -101,15 +101,15 @@ namespace CV_Projektet.Data
                     ID = 1,
                     Name = "C#"
                 });
-            modelBuilder.Entity<CV_Competence>().HasData(
-                new CV_Competence
+            modelBuilder.Entity<CV_Competences>().HasData(
+                new CV_Competences
                 {
                     CVID = 1,
                     CompetenceID = 1
                 });
 
-            modelBuilder.Entity<CV_Project>().HasData(
-               new CV_Project
+            modelBuilder.Entity<CV_Projects>().HasData(
+               new CV_Projects
                {
                    ProjectID = 2,
                    CVID = 1

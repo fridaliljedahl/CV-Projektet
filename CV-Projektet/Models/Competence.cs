@@ -6,6 +6,6 @@
         public string Name { get; set; }
 
 
-        public virtual IEnumerable<CV_Competence> CV_Competence { get; set; } = new List<CV_Competence>();
+        public virtual IEnumerable<CV_Competences> CV_Competences { get; set; } = new List<CV_Competences>();
     }
 }

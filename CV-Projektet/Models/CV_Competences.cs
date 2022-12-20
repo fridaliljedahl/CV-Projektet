@@ -2,7 +2,7 @@
 
 namespace CV_Projektet.Models
 {
-    public class CV_Competence
+    public class CV_Competences
     {
         public int CVID { get; set; }
         public int CompetenceID { get; set; }
