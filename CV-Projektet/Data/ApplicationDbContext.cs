@@ -24,6 +24,16 @@ namespace CV_Projektet.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.UserSender)
+                .WithMany(s => s.SentMessages)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.UserReceiver)
+                .WithMany(s => s.ReceivedMessages)
+                .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<Address>().HasData(
                new Address
                {
@@ -56,26 +66,26 @@ namespace CV_Projektet.Data
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-                    UserName = "Friday",
-                    FirstName = "Frida",
-                    LastName = "Liljedahl",
+                    Id = "användare1id",
+                    FirstName = "Inga",
+                    LastName = "Karlsson",
                     AdressID = 1
                 });
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-                    UserName = "hej",
-                    FirstName = "hej",
-                    LastName = "hejsan",
+                    Id = "användare2id",
+                    FirstName = "Gunvor",
+                    LastName = "Nilsson",
                     AdressID = 1
                 });
             modelBuilder.Entity<Message>().HasData(
                 new Message
                 {
                     ID = 1,
-                    Sender = "Friday",
-                    Receiver = "hej",
-                    Text = "hejsan",
+                    Sender = "användare1id",
+                    Receiver = "användare2id",
+                    Text = "hejsan hoppsan",
                     Date = DateTime.Now,
                     Read = false
                 });

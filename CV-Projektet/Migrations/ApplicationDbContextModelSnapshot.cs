@@ -87,15 +87,10 @@ namespace CV_Projektet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int?>("CompetenceID")
-                        .HasColumnType("int");
-
                     b.Property<int>("TimesViewed")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CompetenceID");
 
                     b.ToTable("CVs");
 
@@ -201,9 +196,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Lund",
                             Description = "pratade i telefon",
-                            EndDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4944),
+                            EndDate = new DateTime(2022, 12, 20, 8, 29, 55, 209, DateTimeKind.Local).AddTicks(6327),
                             Place = "ICA",
-                            StartDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4936),
+                            StartDate = new DateTime(2022, 12, 20, 8, 29, 55, 209, DateTimeKind.Local).AddTicks(6319),
                             Title = "Kundtjänst",
                             Type = "Work"
                         },
@@ -213,9 +208,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Örebro",
                             Description = "Java",
-                            EndDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4958),
+                            EndDate = new DateTime(2022, 12, 20, 8, 29, 55, 209, DateTimeKind.Local).AddTicks(6342),
                             Place = "Örebro Universitet",
-                            StartDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4956),
+                            StartDate = new DateTime(2022, 12, 20, 8, 29, 55, 209, DateTimeKind.Local).AddTicks(6340),
                             Title = "Systemvetenskap",
                             Type = "Education"
                         },
@@ -225,9 +220,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Göteborg",
                             Description = "HLR-utbildning",
-                            EndDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4994),
+                            EndDate = new DateTime(2022, 12, 20, 8, 29, 55, 209, DateTimeKind.Local).AddTicks(6354),
                             Place = "Företag1",
-                            StartDate = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(4992),
+                            StartDate = new DateTime(2022, 12, 20, 8, 29, 55, 209, DateTimeKind.Local).AddTicks(6352),
                             Title = "HLR",
                             Type = "Course"
                         });
@@ -247,27 +242,23 @@ namespace CV_Projektet.Migrations
                     b.Property<bool>("Read")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Receiver")
-                        .HasColumnType("int");
+                    b.Property<string>("Receiver")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Sender")
-                        .HasColumnType("int");
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserID1")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("Receiver");
 
-                    b.HasIndex("UserID1");
+                    b.HasIndex("Sender");
 
                     b.ToTable("Messages");
 
@@ -275,11 +266,11 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 1,
-                            Date = new DateTime(2022, 12, 19, 14, 48, 14, 126, DateTimeKind.Local).AddTicks(2765),
+                            Date = new DateTime(2022, 12, 20, 8, 29, 55, 209, DateTimeKind.Local).AddTicks(4135),
                             Read = false,
-                            Receiver = 2,
-                            Sender = 1,
-                            Text = "hejsan"
+                            Receiver = "användare2id",
+                            Sender = "användare1id",
+                            Text = "hejsan hoppsan"
                         });
                 });
 
@@ -321,51 +312,6 @@ namespace CV_Projektet.Migrations
                             Description = "TestProject1Desc",
                             Name = "TestProject2",
                             ProjectLeader = "dsdsfdassadfddfs"
-                        });
-                });
-
-            modelBuilder.Entity("CV_Projektet.Models.User", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int>("AdressID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProfilePicture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AdressID");
-
-                    b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            AdressID = 1,
-                            FirstName = "Frida",
-                            LastName = "Liljedahl"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            AdressID = 1,
-                            FirstName = "hej",
-                            LastName = "hejsan"
                         });
                 });
 
@@ -433,6 +379,10 @@ namespace CV_Projektet.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -484,6 +434,8 @@ namespace CV_Projektet.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -571,11 +523,57 @@ namespace CV_Projektet.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CV_Projektet.Models.CV", b =>
+            modelBuilder.Entity("CV_Projektet.Models.User", b =>
                 {
-                    b.HasOne("CV_Projektet.Models.Competence", null)
-                        .WithMany("CVs")
-                        .HasForeignKey("CompetenceID");
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<int>("AdressID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("AdressID");
+
+                    b.HasDiscriminator().HasValue("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "användare1id",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e79aa5f3-2c9f-475f-89e9-f19eb0c03bc8",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7f4f13f4-b5cf-474b-8b3e-7ac2d44bf0cc",
+                            TwoFactorEnabled = false,
+                            AdressID = 1,
+                            FirstName = "Inga",
+                            LastName = "Karlsson"
+                        },
+                        new
+                        {
+                            Id = "användare2id",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ddaff308-68fb-4de2-85ed-e6706bbf052e",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "95586270-bb33-4369-9491-59fd3a28704f",
+                            TwoFactorEnabled = false,
+                            AdressID = 1,
+                            FirstName = "Gunvor",
+                            LastName = "Nilsson"
+                        });
                 });
 
             modelBuilder.Entity("CV_Projektet.Models.CV_Competence", b =>
@@ -587,7 +585,7 @@ namespace CV_Projektet.Migrations
                         .IsRequired();
 
                     b.HasOne("CV_Projektet.Models.Competence", "Competence")
-                        .WithMany()
+                        .WithMany("CV_Competence")
                         .HasForeignKey("CompetenceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -629,24 +627,21 @@ namespace CV_Projektet.Migrations
 
             modelBuilder.Entity("CV_Projektet.Models.Message", b =>
                 {
-                    b.HasOne("CV_Projektet.Models.User", null)
+                    b.HasOne("CV_Projektet.Models.User", "UserReceiver")
                         .WithMany("ReceivedMessages")
-                        .HasForeignKey("UserID");
-
-                    b.HasOne("CV_Projektet.Models.User", null)
-                        .WithMany("SentMessages")
-                        .HasForeignKey("UserID1");
-                });
-
-            modelBuilder.Entity("CV_Projektet.Models.User", b =>
-                {
-                    b.HasOne("CV_Projektet.Models.Address", "Address")
-                        .WithMany("Users")
-                        .HasForeignKey("AdressID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Receiver")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Address");
+                    b.HasOne("CV_Projektet.Models.User", "UserSender")
+                        .WithMany("SentMessages")
+                        .HasForeignKey("Sender")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("UserReceiver");
+
+                    b.Navigation("UserSender");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -700,6 +695,17 @@ namespace CV_Projektet.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("CV_Projektet.Models.User", b =>
+                {
+                    b.HasOne("CV_Projektet.Models.Address", "Address")
+                        .WithMany("Users")
+                        .HasForeignKey("AdressID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
             modelBuilder.Entity("CV_Projektet.Models.Address", b =>
                 {
                     b.Navigation("Users");
@@ -707,7 +713,7 @@ namespace CV_Projektet.Migrations
 
             modelBuilder.Entity("CV_Projektet.Models.Competence", b =>
                 {
-                    b.Navigation("CVs");
+                    b.Navigation("CV_Competence");
                 });
 
             modelBuilder.Entity("CV_Projektet.Models.CV", b =>
