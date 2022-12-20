@@ -1,4 +1,9 @@
 /*Misc*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
 html {
     font-size: 14px;
     background-color: #727D66;
@@ -12,9 +17,14 @@ body {
     background-color: #727D66;
     color: #FFFEF6;
 }
-
+.content {
+    padding-top: 5em;
+}
 /*Header*/
 header {
+    z-index: 1;
+    width: 100%;
+    position: fixed;
     background-color: #727D66;
     color: #FFFEF6;
     box-shadow: 0px 2px #494f41;
@@ -39,6 +49,44 @@ footer {
     margin: 0em 1em;
 }
 
+/*CV*/
+.gridCV {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.CVright {
+    background-color: #FFFEF6;
+}
+.CVleft {
+    background-color: #ACB7A0;
+}
+.circle {
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
+    background-color: #FFFEF6;
+}
+.fa:hover {
+    opacity: 0.7;
+}
+.fa-twitter {
+    padding: 0.5em;
+    border-radius: 50%;
+    background: #55ACEE;
+    color: white;
+}
+.fa-linkedin {
+    padding: 0.5em;
+    border-radius: 50%;
+    background: #007bb5;
+    color: white;
+}
+.fa-instagram {
+    padding: 0.5em;
+    border-radius: 50%;
+    background: #125688;
+    color: white;
+}
 
 @media (min-width: 768px) {
     html {
