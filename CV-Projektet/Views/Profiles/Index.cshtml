@@ -1,5 +1,21 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<User>
 @{
+	ViewData["Title"] = "Profiler";
 }
+
+<form asp-controller="Profiles" asp-action="Index">
+	<input type="text" name="searchstring_firstname" />
+	<input type="text" name="searchstring_lastname"/>
+@*	<input type="text" name="searchstring_competence" />*@
+	<input type="submit" value="Sök" />
+</form>
+
+<h1>Profiler</h1>
+<div class="profileContainer">
+	@foreach (var user in Model)
+	{
+		<div class="profileCard">
+			<h2>@user.FirstName @user.LastName</h2>
+		</div>
+	}
+</div>

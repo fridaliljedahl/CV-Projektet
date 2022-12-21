@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CV_Projektet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221220072709_1234")]
-    partial class _1234
+    [Migration("20221221125335_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,15 +89,17 @@ namespace CV_Projektet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int?>("CompetenceID")
-                        .HasColumnType("int");
-
                     b.Property<int>("TimesViewed")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
 
-                    b.HasIndex("CompetenceID");
+                    b.HasIndex("UserID")
+                        .IsUnique();
 
                     b.ToTable("CVs");
 
@@ -105,11 +107,12 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 1,
-                            TimesViewed = 0
+                            TimesViewed = 0,
+                            UserID = "användare1id"
                         });
                 });
 
-            modelBuilder.Entity("CV_Projektet.Models.CV_Competence", b =>
+            modelBuilder.Entity("CV_Projektet.Models.CV_Competences", b =>
                 {
                     b.Property<int>("CVID")
                         .HasColumnType("int");
@@ -121,7 +124,7 @@ namespace CV_Projektet.Migrations
 
                     b.HasIndex("CompetenceID");
 
-                    b.ToTable("CV_Competence");
+                    b.ToTable("CV_Competences");
 
                     b.HasData(
                         new
@@ -131,7 +134,7 @@ namespace CV_Projektet.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CV_Projektet.Models.CV_Project", b =>
+            modelBuilder.Entity("CV_Projektet.Models.CV_Projects", b =>
                 {
                     b.Property<int>("ProjectID")
                         .HasColumnType("int");
@@ -143,7 +146,7 @@ namespace CV_Projektet.Migrations
 
                     b.HasIndex("CVID");
 
-                    b.ToTable("CV_Project");
+                    b.ToTable("CV_Projects");
 
                     b.HasData(
                         new
@@ -203,9 +206,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Lund",
                             Description = "pratade i telefon",
-                            EndDate = new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7199),
+                            EndDate = new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4027),
                             Place = "ICA",
-                            StartDate = new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7191),
+                            StartDate = new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4019),
                             Title = "Kundtjänst",
                             Type = "Work"
                         },
@@ -215,9 +218,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Örebro",
                             Description = "Java",
-                            EndDate = new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7212),
+                            EndDate = new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4043),
                             Place = "Örebro Universitet",
-                            StartDate = new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7210),
+                            StartDate = new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4041),
                             Title = "Systemvetenskap",
                             Type = "Education"
                         },
@@ -227,9 +230,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Göteborg",
                             Description = "HLR-utbildning",
-                            EndDate = new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7223),
+                            EndDate = new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4055),
                             Place = "Företag1",
-                            StartDate = new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7221),
+                            StartDate = new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4053),
                             Title = "HLR",
                             Type = "Course"
                         });
@@ -273,7 +276,7 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 1,
-                            Date = new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(4999),
+                            Date = new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(2163),
                             Read = false,
                             Receiver = "användare2id",
                             Sender = "användare1id",
@@ -537,6 +540,10 @@ namespace CV_Projektet.Migrations
                     b.Property<int>("AdressID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -557,13 +564,14 @@ namespace CV_Projektet.Migrations
                         {
                             Id = "användare1id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0e48067c-b8ab-41b7-8d21-eece8738ca41",
+                            ConcurrencyStamp = "2debd6c1-7f75-468f-84e3-c7bd9efae82c",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f49b7fa4-7514-493b-8deb-f9cebfaa0d6c",
+                            SecurityStamp = "269c7ce7-23ce-4db6-a104-733d9d5531af",
                             TwoFactorEnabled = false,
                             AdressID = 1,
+                            Description = "Hejaaa",
                             FirstName = "Inga",
                             LastName = "Karlsson"
                         },
@@ -571,13 +579,14 @@ namespace CV_Projektet.Migrations
                         {
                             Id = "användare2id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f9c6bd57-e53c-49b7-8f80-2ea5b26a97db",
+                            ConcurrencyStamp = "228881e7-6496-49d4-aae5-76a9b36d455f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "437d7718-cf6c-4a44-a9ab-fa4cdfbcf3e9",
+                            SecurityStamp = "3b57c024-2469-450f-8ece-0c4bf142557b",
                             TwoFactorEnabled = false,
                             AdressID = 1,
+                            Description = "Halloj",
                             FirstName = "Gunvor",
                             LastName = "Nilsson"
                         });
@@ -585,21 +594,25 @@ namespace CV_Projektet.Migrations
 
             modelBuilder.Entity("CV_Projektet.Models.CV", b =>
                 {
-                    b.HasOne("CV_Projektet.Models.Competence", null)
-                        .WithMany("CVs")
-                        .HasForeignKey("CompetenceID");
+                    b.HasOne("CV_Projektet.Models.User", "user")
+                        .WithOne("CV")
+                        .HasForeignKey("CV_Projektet.Models.CV", "UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
-            modelBuilder.Entity("CV_Projektet.Models.CV_Competence", b =>
+            modelBuilder.Entity("CV_Projektet.Models.CV_Competences", b =>
                 {
                     b.HasOne("CV_Projektet.Models.CV", "CV")
-                        .WithMany("CV_Competence")
+                        .WithMany("CV_Competences")
                         .HasForeignKey("CVID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CV_Projektet.Models.Competence", "Competence")
-                        .WithMany()
+                        .WithMany("CV_Competences")
                         .HasForeignKey("CompetenceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -609,7 +622,7 @@ namespace CV_Projektet.Migrations
                     b.Navigation("Competence");
                 });
 
-            modelBuilder.Entity("CV_Projektet.Models.CV_Project", b =>
+            modelBuilder.Entity("CV_Projektet.Models.CV_Projects", b =>
                 {
                     b.HasOne("CV_Projektet.Models.CV", "CV")
                         .WithMany("CV_Project")
@@ -727,12 +740,12 @@ namespace CV_Projektet.Migrations
 
             modelBuilder.Entity("CV_Projektet.Models.Competence", b =>
                 {
-                    b.Navigation("CVs");
+                    b.Navigation("CV_Competences");
                 });
 
             modelBuilder.Entity("CV_Projektet.Models.CV", b =>
                 {
-                    b.Navigation("CV_Competence");
+                    b.Navigation("CV_Competences");
 
                     b.Navigation("CV_Project");
 
@@ -746,6 +759,9 @@ namespace CV_Projektet.Migrations
 
             modelBuilder.Entity("CV_Projektet.Models.User", b =>
                 {
+                    b.Navigation("CV")
+                        .IsRequired();
+
                     b.Navigation("ReceivedMessages");
 
                     b.Navigation("SentMessages");

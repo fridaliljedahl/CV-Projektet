@@ -17,9 +17,11 @@ namespace CV_Projektet.Controllers
 		[HttpGet]
 		public IActionResult Index()
 		{
-			CV cv = context.CVs.Where(c => c.ID == 1).SingleOrDefault();
-			List<CV_Projects> projectsList = context.CV_Projects.ToList();
+			User ?user = context.Users.Where(u => u.Id == "användare1id").SingleOrDefault(); ;
 
+            CV ?cv = context.CVs.Where(c => c.UserID == user.Id).SingleOrDefault();
+
+			List<CV_Projects> projectsList = context.CV_Projects.ToList();
 			List<int> projectIDList = new List<int>();
 			foreach (var item in projectsList)
 			{
@@ -30,18 +32,33 @@ namespace CV_Projektet.Controllers
 			}
 			IEnumerable<Project> projects = context.Projects.Where(p => projectIDList.Contains(p.ID));
 
+			List<CV_Competences> competencesList = context.CV_Competences.ToList();
+			List<int> competencesIDList = new List<int>();
+            foreach (var item in competencesList)
+            {
+                if (item.CVID == cv.ID)
+                {
+                    competencesIDList.Add(item.CompetenceID);
+                }
+            }
+            IEnumerable<Competence> competences = context.Competences.Where(c => competencesIDList.Contains(c.ID));
+
+			IEnumerable<Experience> experiences = context.Experiences.Where(e => e.CVID == cv.ID);
+
+			Address ?address = context.Addresses.Where(a => a.ID == user.AdressID).SingleOrDefault();
+
 			var view = new CVDetails
 			{
-				ID = cv.ID,
-				TimesViewed = cv.TimesViewed,
-				ProjectList = projects.ToList()
+				CV = cv,
+				User = user,
+				Address = address,
+				ProjectList = projects.ToList(),
+				CompetenceList = competences.ToList(),
+				ExperienceList = experiences.ToList()
 			};
-
 
 			return View(view);
 		}
-		//public ActionResult Details(int? id)
-		//{
-		//	if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
 		}
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CV_Projektet.Migrations
 {
-    public partial class _1234 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -75,6 +75,7 @@ namespace CV_Projektet.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     AdressID = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -121,25 +122,6 @@ namespace CV_Projektet.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CVs",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TimesViewed = table.Column<int>(type: "int", nullable: false),
-                    CompetenceID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CVs", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_CVs_Competences_CompetenceID",
-                        column: x => x.CompetenceID,
-                        principalTable: "Competences",
-                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -228,6 +210,26 @@ namespace CV_Projektet.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CVs",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TimesViewed = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CVs", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CVs_AspNetUsers_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Messages",
                 columns: table => new
                 {
@@ -255,7 +257,7 @@ namespace CV_Projektet.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CV_Competence",
+                name: "CV_Competences",
                 columns: table => new
                 {
                     CVID = table.Column<int>(type: "int", nullable: false),
@@ -263,15 +265,15 @@ namespace CV_Projektet.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CV_Competence", x => new { x.CVID, x.CompetenceID });
+                    table.PrimaryKey("PK_CV_Competences", x => new { x.CVID, x.CompetenceID });
                     table.ForeignKey(
-                        name: "FK_CV_Competence_Competences_CompetenceID",
+                        name: "FK_CV_Competences_Competences_CompetenceID",
                         column: x => x.CompetenceID,
                         principalTable: "Competences",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CV_Competence_CVs_CVID",
+                        name: "FK_CV_Competences_CVs_CVID",
                         column: x => x.CVID,
                         principalTable: "CVs",
                         principalColumn: "ID",
@@ -279,7 +281,7 @@ namespace CV_Projektet.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CV_Project",
+                name: "CV_Projects",
                 columns: table => new
                 {
                     ProjectID = table.Column<int>(type: "int", nullable: false),
@@ -287,15 +289,15 @@ namespace CV_Projektet.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CV_Project", x => new { x.ProjectID, x.CVID });
+                    table.PrimaryKey("PK_CV_Projects", x => new { x.ProjectID, x.CVID });
                     table.ForeignKey(
-                        name: "FK_CV_Project_CVs_CVID",
+                        name: "FK_CV_Projects_CVs_CVID",
                         column: x => x.CVID,
                         principalTable: "CVs",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CV_Project_Projects_ProjectID",
+                        name: "FK_CV_Projects_Projects_ProjectID",
                         column: x => x.ProjectID,
                         principalTable: "Projects",
                         principalColumn: "ID",
@@ -334,11 +336,6 @@ namespace CV_Projektet.Migrations
                 values: new object[] { 1, "Örebro", 12345, "Storgatan 1" });
 
             migrationBuilder.InsertData(
-                table: "CVs",
-                columns: new[] { "ID", "CompetenceID", "TimesViewed" },
-                values: new object[] { 1, null, 0 });
-
-            migrationBuilder.InsertData(
                 table: "Competences",
                 columns: new[] { "ID", "Name" },
                 values: new object[] { 1, "C#" });
@@ -354,20 +351,31 @@ namespace CV_Projektet.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[,]
-                {
-                    { "användare1id", 0, 1, "0e48067c-b8ab-41b7-8d21-eece8738ca41", "User", null, false, "Inga", "Karlsson", false, null, null, null, null, null, false, null, "f49b7fa4-7514-493b-8deb-f9cebfaa0d6c", false, null },
-                    { "användare2id", 0, 1, "f9c6bd57-e53c-49b7-8f80-2ea5b26a97db", "User", null, false, "Gunvor", "Nilsson", false, null, null, null, null, null, false, null, "437d7718-cf6c-4a44-a9ab-fa4cdfbcf3e9", false, null }
-                });
+                columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "användare1id", 0, 1, "2debd6c1-7f75-468f-84e3-c7bd9efae82c", "Hejaaa", "User", null, false, "Inga", "Karlsson", false, null, null, null, null, null, false, null, "269c7ce7-23ce-4db6-a104-733d9d5531af", false, null });
 
             migrationBuilder.InsertData(
-                table: "CV_Competence",
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "användare2id", 0, 1, "228881e7-6496-49d4-aae5-76a9b36d455f", "Halloj", "User", null, false, "Gunvor", "Nilsson", false, null, null, null, null, null, false, null, "3b57c024-2469-450f-8ece-0c4bf142557b", false, null });
+
+            migrationBuilder.InsertData(
+                table: "CVs",
+                columns: new[] { "ID", "TimesViewed", "UserID" },
+                values: new object[] { 1, 0, "användare1id" });
+
+            migrationBuilder.InsertData(
+                table: "Messages",
+                columns: new[] { "ID", "Date", "Read", "Receiver", "Sender", "Text" },
+                values: new object[] { 1, new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(2163), false, "användare2id", "användare1id", "hejsan hoppsan" });
+
+            migrationBuilder.InsertData(
+                table: "CV_Competences",
                 columns: new[] { "CVID", "CompetenceID" },
                 values: new object[] { 1, 1 });
 
             migrationBuilder.InsertData(
-                table: "CV_Project",
+                table: "CV_Projects",
                 columns: new[] { "CVID", "ProjectID" },
                 values: new object[] { 1, 2 });
 
@@ -376,15 +384,10 @@ namespace CV_Projektet.Migrations
                 columns: new[] { "ID", "CVID", "City", "Description", "EndDate", "Place", "StartDate", "Title", "Type" },
                 values: new object[,]
                 {
-                    { 1, 1, "Lund", "pratade i telefon", new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7199), "ICA", new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7191), "Kundtjänst", "Work" },
-                    { 2, 1, "Örebro", "Java", new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7212), "Örebro Universitet", new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7210), "Systemvetenskap", "Education" },
-                    { 3, 1, "Göteborg", "HLR-utbildning", new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7223), "Företag1", new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(7221), "HLR", "Course" }
+                    { 1, 1, "Lund", "pratade i telefon", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4027), "ICA", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4019), "Kundtjänst", "Work" },
+                    { 2, 1, "Örebro", "Java", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4043), "Örebro Universitet", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4041), "Systemvetenskap", "Education" },
+                    { 3, 1, "Göteborg", "HLR-utbildning", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4055), "Företag1", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4053), "HLR", "Course" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Messages",
-                columns: new[] { "ID", "Date", "Read", "Receiver", "Sender", "Text" },
-                values: new object[] { 1, new DateTime(2022, 12, 20, 8, 27, 8, 941, DateTimeKind.Local).AddTicks(4999), false, "användare2id", "användare1id", "hejsan hoppsan" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -431,19 +434,20 @@ namespace CV_Projektet.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CV_Competence_CompetenceID",
-                table: "CV_Competence",
+                name: "IX_CV_Competences_CompetenceID",
+                table: "CV_Competences",
                 column: "CompetenceID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CV_Project_CVID",
-                table: "CV_Project",
+                name: "IX_CV_Projects_CVID",
+                table: "CV_Projects",
                 column: "CVID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CVs_CompetenceID",
+                name: "IX_CVs_UserID",
                 table: "CVs",
-                column: "CompetenceID");
+                column: "UserID",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Experiences_CVID",
@@ -479,10 +483,10 @@ namespace CV_Projektet.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CV_Competence");
+                name: "CV_Competences");
 
             migrationBuilder.DropTable(
-                name: "CV_Project");
+                name: "CV_Projects");
 
             migrationBuilder.DropTable(
                 name: "Experiences");
@@ -494,6 +498,9 @@ namespace CV_Projektet.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Competences");
+
+            migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
@@ -501,9 +508,6 @@ namespace CV_Projektet.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Competences");
 
             migrationBuilder.DropTable(
                 name: "Addresses");

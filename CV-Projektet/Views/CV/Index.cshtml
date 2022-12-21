@@ -8,36 +8,76 @@
 	<div class="CVleft">
 		<div class="leftText"></div>
 		<div class="circle"></div>
-		<h1 class="">Inga Karlsson</h1>
+		<h1>@Model.User.FirstName @Model.User.LastName</h1>
 		<div class="leftText">
-			<p>070-501 65 11</p>
-			<p>lskdjflk@bla.com</p>
+			<p>@Model.User.PhoneNumber</p>
+			<p>@Model.User.Email</p>
 		</div>
 		<div class="leftText">
-			<p>Stenvägen 13</p>
-			<p>702 12, Örebro</p>
+			<p>@Model.Address.Street</p>
+			<p>@Model.Address.PostalCode, @Model.Address.City</p>
 		</div>
-		<a href="#" class="fa fa-twitter"></a>
-		<a href="#" class="fa fa-linkedin"></a>
-		<a href="#" class="fa fa-instagram"></a>
-		<div class="leftText">
-			<p>Jag är en glad och sprallig tjej ...... öasdflköl askld sdklsd adölask dds dskgf söl aöldks aö jfkd fdksdjfl dsfjksdf fdf aasd skjf dkfj fdskijsdf ff</p>
+		<div class="cvSocialLinks">
+			<a href="#" class="fa fa-twitter"></a>
+			<a href="#" class="fa fa-linkedin"></a>
+			<a href="#" class="fa fa-instagram"></a>
 		</div>
+		<p>@Model.User.Description</p>
 	</div>
 	<div class="CVright">
-		<h2 class="competence"></h2>
 
-		<h2 class="education">
-			<p></p>
-		</h2>
-		<h2 class="experience">
-			<p></p>
-		</h2>
-		<h2 class="project">Projekt</h2>
-			@foreach (var project in Model.ProjectList)
+		<h2 class="competence">Kompetenser</h2>
+		<ul>
+			@foreach (var item in Model.CompetenceList)
 			{
-				<h3>@project.Name</h3>
-				<p>@project.Description</p>
+				<li>@item.Name</li>
 			}
+		</ul>
+
+		<h2 class="education">Utbildningar</h2>
+		@foreach (var item in Model.ExperienceList)
+		{
+			if (item.Type.Equals("Education"))
+			{
+				<h3>@item.Title</h3>
+				<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+				<p>@item.Place , @item.City</p>
+				<p>@item.Description</p>
+			}
+		}
+
+		<h2 class="work">Arbetslivserfarenhet</h2>
+		@foreach (var item in Model.ExperienceList)
+		{
+			if (item.Type.Equals("Work"))
+			{
+				<h3>@item.Title</h3>
+				<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+				<p>@item.Place , @item.City</p>
+				<p>@item.Description</p>
+			}
+		}
+
+		<h2 class="coure">Kurser</h2>
+		@foreach (var item in Model.ExperienceList)
+		{
+			if (item.Type.Equals("Course"))
+			{
+				<h3>@item.Title</h3>
+				<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+				<p>@item.Place , @item.City</p>
+				<p>@item.Description</p>
+			}
+		}
+
+		<h2 class="misc">Övrigt</h2>
+		<p></p>
+
+		<h2 class="project">Projekt</h2>
+		@foreach (var project in Model.ProjectList)
+		{
+			<h3>@project.Name</h3>
+			<p>@project.Description</p>
+		}
 	</div>
 </div>

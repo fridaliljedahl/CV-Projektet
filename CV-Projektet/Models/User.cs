@@ -14,6 +14,10 @@ namespace CV_Projektet.Models
         [Required]
         public string LastName { get; set; }
         public string? ProfilePicture { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        [MaxLength]
+        public string Description { get; set; }
         public int AdressID { get; set; }
 
         [ForeignKey(nameof(AdressID))]

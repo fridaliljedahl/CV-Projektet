@@ -72,7 +72,10 @@ namespace CV_Projektet.Data
                     Id = "användare1id",
                     FirstName = "Inga",
                     LastName = "Karlsson",
-                    AdressID = 1
+                    AdressID = 1,
+                    Description = "Hejaaa",
+                    Email = "inga@hotmail.com",
+                    PhoneNumber = "073-111 11 11"
                 });
             modelBuilder.Entity<User>().HasData(
                 new User
@@ -80,7 +83,10 @@ namespace CV_Projektet.Data
                     Id = "användare2id",
                     FirstName = "Gunvor",
                     LastName = "Nilsson",
-                    AdressID = 1
+                    AdressID = 1,
+                    Description = "Halloj",
+                    Email = "gunvor@hotmail.se",
+                    PhoneNumber = "073-222 22 22"
                 });
             modelBuilder.Entity<Message>().HasData(
                 new Message

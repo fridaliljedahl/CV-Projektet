@@ -1,10 +1,12 @@
-﻿namespace CV_Projektet.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CV_Projektet.Models
 {
     public class CVDetails 
     {
-        public int ID { get; set; }
-        public int TimesViewed { get; set; }
-
+        public CV CV { get; set; }
+        public User User { get; set; }
+        public Address Address { get; set; }
         public IEnumerable<Competence> CompetenceList { get; set; }
         public IEnumerable<Experience> ExperienceList { get; set; }
         public IEnumerable<Project> ProjectList { get; set; } = new List<Project>();
