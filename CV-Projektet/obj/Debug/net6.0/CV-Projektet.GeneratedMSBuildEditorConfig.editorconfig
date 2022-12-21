@@ -11,7 +11,7 @@ build_property.RootNamespace = CV_Projektet
 build_property.ProjectDir = C:\Users\gewe_\OneDrive\Dokument\GitHub\CV-Projektet\CV-Projektet\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\gewe_\OneDrive\Dokument\GitHub\CV-Projektet\CV-Projektet
 build_property._RazorSourceGeneratorDebug = 
 
@@ -39,8 +39,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Register/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcSW5kZXguY3NodG1s
+[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Register/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcaW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Shared/Error.cshtml]

@@ -8,5 +8,7 @@ namespace CV_Projektet.Controllers
 		{
 			return View();
 		}
+
+
 	}
 }
