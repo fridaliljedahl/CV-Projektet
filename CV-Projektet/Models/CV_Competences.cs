@@ -9,9 +9,9 @@ namespace CV_Projektet.Models
 
 
         [ForeignKey(nameof(CVID))]
-        public CV CV { get; set; }
+        public virtual CV CV { get; set; }
 
         [ForeignKey(nameof(CompetenceID))]
-        public Competence Competence { get; set; }
+        public virtual Competence Competence { get; set; }
     }
 }

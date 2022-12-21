@@ -8,9 +8,9 @@ namespace CV_Projektet.Models
         public int CVID { get; set; }
 
         [ForeignKey(nameof(ProjectID))]
-        public Project Project { get; set; }
+        public virtual Project Project { get; set; }
 
         [ForeignKey(nameof(CVID))]
-        public CV CV { get; set; }
+        public virtual CV CV { get; set; }
     }
 }

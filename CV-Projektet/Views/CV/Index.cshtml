@@ -1,48 +1,43 @@
-﻿@model List<CV>
+﻿@model CVDetails
 @{
 	ViewData["Title"] = "Home Page";
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="gridCV">
-<div class="CVleft">
-	<div class="leftText"></div>
-	<div class="circle"></div>
-	<h1 class="">Inga Karlsson</h1>
-	<div class="leftText">
-		<p>070-501 65 11</p>
-		<p>lskdjflk@bla.com</p>
-	</div>
-	<div class="leftText">
-		<p>Stenvägen 13</p>
-		<p>702 12, Örebro</p>
-	</div>
-	<a href="#" class="fa fa-twitter"></a>
-	<a href="#" class="fa fa-linkedin"></a> 
-	<a href="#" class="fa fa-instagram"></a>
-	<div class="leftText">
+	<div class="CVleft">
+		<div class="leftText"></div>
+		<div class="circle"></div>
+		<h1 class="">Inga Karlsson</h1>
+		<div class="leftText">
+			<p>070-501 65 11</p>
+			<p>lskdjflk@bla.com</p>
+		</div>
+		<div class="leftText">
+			<p>Stenvägen 13</p>
+			<p>702 12, Örebro</p>
+		</div>
+		<a href="#" class="fa fa-twitter"></a>
+		<a href="#" class="fa fa-linkedin"></a>
+		<a href="#" class="fa fa-instagram"></a>
+		<div class="leftText">
 			<p>Jag är en glad och sprallig tjej ...... öasdflköl askld sdklsd adölask dds dskgf söl aöldks aö jfkd fdksdjfl dsfjksdf fdf aasd skjf dkfj fdskijsdf ff</p>
+		</div>
 	</div>
-</div>
-<div class="CVright">
-	<h2 class="competence"></h2>
-		@foreach (var cv in Model)
-		{
-		<ul>
-			<li>@var.id</li>
-		</ul>
-		}
+	<div class="CVright">
+		<h2 class="competence"></h2>
+
 		<h2 class="education">
 			<p></p>
 		</h2>
 		<h2 class="experience">
 			<p></p>
 		</h2>
-		<h2 class="project">
-			<p></p>
-		</h2>
-		
-
-
-</div>
+		<h2 class="project">Projekt</h2>
+			@foreach (var project in Model.ProjectList)
+			{
+				<h3>@project.Name</h3>
+				<p>@project.Description</p>
+			}
+	</div>
 </div>

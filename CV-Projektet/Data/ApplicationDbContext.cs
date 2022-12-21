@@ -18,9 +18,11 @@ namespace CV_Projektet.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Competence> Competences { get; set; }
-        
+		public DbSet<CV_Competences> CV_Competences { get; set; }
+		public DbSet<CV_Projects> CV_Projects{ get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -61,8 +63,9 @@ namespace CV_Projektet.Data
                 new CV
                 {
                     ID = 1,
-                    TimesViewed = 0
-                });
+                    TimesViewed = 0,
+                    UserID = "användare1id"
+				});
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
