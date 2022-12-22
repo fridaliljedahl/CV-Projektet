@@ -22,17 +22,18 @@ namespace CV_Projektet.Controllers
             if (user != null)
             {
                 view.User = user;
+
                 CV? cv = context.CVs.Where(c => c.UserID == user.Id).SingleOrDefault();
 
                 if (cv != null)
                 {
                     view.CV = cv;
 
-                    List<CV_Projects> projectsList = context.CV_Projects.ToList();
+                    List<User_Projects> projectsList = context.User_Projects.ToList();
                     List<int> projectIDList = new List<int>();
                     foreach (var item in projectsList)
                     {
-                        if (item.CVID == cv.ID)
+                        if (item.UserID == user.Id)
                         {
                             projectIDList.Add(item.ProjectID);
                         }
@@ -51,8 +52,6 @@ namespace CV_Projektet.Controllers
                     view.CompetenceList = context.Competences.Where(c => competencesIDList.Contains(c.ID));
 
                     view.ExperienceList = context.Experiences.Where(e => e.CVID == cv.ID);
-
-                    view.Address = context.Addresses.Where(a => a.ID == user.AdressID).SingleOrDefault();
                 }
                 else
                 {
@@ -60,7 +59,6 @@ namespace CV_Projektet.Controllers
                     view.ProjectList = new List<Project>();
                     view.CompetenceList = new List<Competence>();
                     view.ExperienceList = new List<Experience>();
-                    view.Address = new Address();
                 }
             }
             return View(view);

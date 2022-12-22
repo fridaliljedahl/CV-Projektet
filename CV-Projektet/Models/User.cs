@@ -7,8 +7,6 @@ namespace CV_Projektet.Models
 {
     public class User:IdentityUser
     {
-        [Key]
-        public override string UserName { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -24,7 +22,9 @@ namespace CV_Projektet.Models
         public virtual Address Address { get; set; }
         public virtual CV CV { get; set; }
 
+        public virtual IEnumerable<Project> LeadProjects { get; set; } = new List<Project>();
         public virtual IEnumerable<Message> SentMessages { get; set; } = new List<Message>();
         public virtual IEnumerable<Message> ReceivedMessages { get; set; } = new List<Message>();
+        public virtual IEnumerable<User_Projects> UsersAndProjects { get; set; } = new List<User_Projects>();
     }
 }

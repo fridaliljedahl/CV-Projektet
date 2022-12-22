@@ -2,15 +2,16 @@
 
 namespace CV_Projektet.Models
 {
-    public class CV_Projects
+    public class User_Projects
     {
+        public string UserID { get; set; }
         public int ProjectID { get; set; }
-        public int CVID { get; set; }
 
+        [ForeignKey(nameof(UserID))]
+        public virtual User User { get; set; }
         [ForeignKey(nameof(ProjectID))]
         public virtual Project Project { get; set; }
 
-        [ForeignKey(nameof(CVID))]
-        public virtual CV CV { get; set; }
+
     }
 }

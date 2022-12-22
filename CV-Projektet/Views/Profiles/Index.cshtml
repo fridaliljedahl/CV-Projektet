@@ -25,10 +25,38 @@
 <div class="profileContainer">
 	@foreach (var user in Model)
 	{
-		
-		<div class="profileCard">
+		<a class="profileCard" href="@Url.Action("Index","CV", new { userID = user.Id})">
 			<h2>@user.FirstName @user.LastName</h2>
-			@Html.ActionLink("Gå till profil","Index","CV", new { userID = user.Id}, null)
-		</div>
+			@try
+			{
+				if (user.CV.CV_Competences.Any())
+				{
+					<h3>Kompetenser</h3>
+					<ul>
+						@foreach (var item in user.CV.CV_Competences)
+						{
+							<li>@item.Competence.Name</li>
+						}
+					</ul>
+				}
+			}
+			catch (Exception ex)
+			{
+			}
+			@try
+			{
+				@if (user.CV.Experiences.Any())
+				{
+					<h3>Erfarenheter</h3>
+					@foreach (var item in user.CV.Experiences)
+					{
+						<p>@item.Title</p>
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+			}
+		</a>
 	}
 </div>

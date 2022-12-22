@@ -13,9 +13,8 @@ namespace CV_Projektet.Models
         public string UserID { get; set; }
 
 		[ForeignKey(nameof(UserID))]
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
 
-		public virtual IEnumerable<CV_Projects> CV_Project { get; set; } = new List<CV_Projects>();
         public virtual IEnumerable<Experience> Experiences { get; set; } = new List<Experience>();
         public virtual IEnumerable<CV_Competences> CV_Competences { get; set; } = new List<CV_Competences>();
     }

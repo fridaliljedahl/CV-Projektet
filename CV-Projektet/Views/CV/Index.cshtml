@@ -14,8 +14,8 @@
 			<p>@Model.User.Email</p>
 		</div>
 		<div class="leftText">
-			<p>@Model.Address.Street</p>
-			<p>@Model.Address.PostalCode, @Model.Address.City</p>
+			<p>@Model.User.Address.Street</p>
+			<p>@Model.User.Address.PostalCode, @Model.User.Address.City</p>
 		</div>
 		<div class="cvSocialLinks">
 			<a href="#" class="fa fa-twitter"></a>
@@ -26,58 +26,77 @@
 	</div>
 	<div class="CVright">
 
-		<h2 class="competence">Kompetenser</h2>
-		<ul>
-			@foreach (var item in Model.CompetenceList)
-			{
-				<li>@item.Name</li>
-			}
-		</ul>
-
-		<h2 class="education">Utbildningar</h2>
-		@foreach (var item in Model.ExperienceList)
+		@if (Model.CompetenceList.Any())
 		{
-			if (item.Type.Equals("Education"))
-			{
-				<h3>@item.Title</h3>
-				<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-				<p>@item.Place , @item.City</p>
-				<p>@item.Description</p>
-			}
+			<h2 class="competence">Kompetenser</h2>
+			<ul>
+				@foreach (var item in Model.CompetenceList)
+				{
+					<li>@item.Name</li>
+				}
+			</ul>
 		}
 
-		<h2 class="work">Arbetslivserfarenhet</h2>
-		@foreach (var item in Model.ExperienceList)
+		@if (Model.ExperienceList.Where(e => e.Type.Equals("Education")).Any())
 		{
-			if (item.Type.Equals("Work"))
+			<h2 class="education">Utbildningar</h2>
+			@foreach (var item in Model.ExperienceList)
 			{
-				<h3>@item.Title</h3>
-				<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-				<p>@item.Place , @item.City</p>
-				<p>@item.Description</p>
+				if (item.Type.Equals("Education"))
+				{
+					<h3>@item.Title</h3>
+					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+					<p>@item.Place, @item.City</p>
+					<p>@item.Description</p>
+				}
 			}
 		}
 
-		<h2 class="coure">Kurser</h2>
-		@foreach (var item in Model.ExperienceList)
+		@if (Model.ExperienceList.Where(e => e.Type.Equals("Work")).Any())
 		{
-			if (item.Type.Equals("Course"))
+			<h2 class="work">Arbetslivserfarenhet</h2>
+			@foreach (var item in Model.ExperienceList)
 			{
-				<h3>@item.Title</h3>
-				<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-				<p>@item.Place , @item.City</p>
-				<p>@item.Description</p>
+				if (item.Type.Equals("Work"))
+				{
+					<h3>@item.Title</h3>
+					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+					<p>@item.Place , @item.City</p>
+					<p>@item.Description</p>
+				}
 			}
 		}
 
-		<h2 class="misc">Övrigt</h2>
-		<p></p>
-
-		<h2 class="project">Projekt</h2>
-		@foreach (var project in Model.ProjectList)
+		@if (Model.ExperienceList.Where(e => e.Type.Equals("Course")).Any())
 		{
-			<h3>@project.Name</h3>
-			<p>@project.Description</p>
+			<h2 class="coure">Kurser</h2>
+			@foreach (var item in Model.ExperienceList)
+			{
+				if (item.Type.Equals("Course"))
+				{
+					<h3>@item.Title</h3>
+					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+					<p>@item.Place , @item.City</p>
+					<p>@item.Description</p>
+				}
+			}
 		}
+
+		@if (Model.ExperienceList.Where(e => e.Type.Equals("Misc")).Any())
+		{
+			<h2 class="misc">Övrigt</h2>
+			<p></p>
+		}
+
+		@if (Model.ProjectList.Any())
+		{
+			<h2 class="project">Projekt</h2>
+			@foreach (var project in Model.ProjectList)
+			{
+				<h3>@project.Name</h3>
+				<p>@project.Description</p>
+			}
+		}
+
 	</div>
 </div>

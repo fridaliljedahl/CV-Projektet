@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CV_Projektet.Migrations
 {
-    public partial class initial : Migration
+    public partial class _4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,21 +49,6 @@ namespace CV_Projektet.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Competences", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Projects",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProjectLeader = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Projects", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -257,6 +242,27 @@ namespace CV_Projektet.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Projects",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProjectLeaderID = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Projects", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Projects_AspNetUsers_ProjectLeaderID",
+                        column: x => x.ProjectLeaderID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CV_Competences",
                 columns: table => new
                 {
@@ -276,30 +282,6 @@ namespace CV_Projektet.Migrations
                         name: "FK_CV_Competences_CVs_CVID",
                         column: x => x.CVID,
                         principalTable: "CVs",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CV_Projects",
-                columns: table => new
-                {
-                    ProjectID = table.Column<int>(type: "int", nullable: false),
-                    CVID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CV_Projects", x => new { x.ProjectID, x.CVID });
-                    table.ForeignKey(
-                        name: "FK_CV_Projects_CVs_CVID",
-                        column: x => x.CVID,
-                        principalTable: "CVs",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CV_Projects_Projects_ProjectID",
-                        column: x => x.ProjectID,
-                        principalTable: "Projects",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -330,6 +312,30 @@ namespace CV_Projektet.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "User_Projects",
+                columns: table => new
+                {
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProjectID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User_Projects", x => new { x.UserID, x.ProjectID });
+                    table.ForeignKey(
+                        name: "FK_User_Projects_AspNetUsers_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_User_Projects_Projects_ProjectID",
+                        column: x => x.ProjectID,
+                        principalTable: "Projects",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Addresses",
                 columns: new[] { "ID", "City", "PostalCode", "Street" },
@@ -341,33 +347,42 @@ namespace CV_Projektet.Migrations
                 values: new object[] { 1, "C#" });
 
             migrationBuilder.InsertData(
-                table: "Projects",
-                columns: new[] { "ID", "Description", "Name", "ProjectLeader" },
-                values: new object[,]
-                {
-                    { 1, "TestProject1Desc", "TestProject", "dsdsfsfddfs" },
-                    { 2, "TestProject1Desc", "TestProject2", "dsdsfdassadfddfs" }
-                });
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "användare1id", 0, 1, "c8aef6eb-5774-49e8-a9b8-0d4d582d4c49", "Hejaaa", "User", "inga@hotmail.com", false, "Inga", "Karlsson", false, null, null, null, null, "073-111 11 11", false, null, "abb64fa0-44a8-484a-854b-0738c8c25ee0", false, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "användare1id", 0, 1, "2debd6c1-7f75-468f-84e3-c7bd9efae82c", "Hejaaa", "User", null, false, "Inga", "Karlsson", false, null, null, null, null, null, false, null, "269c7ce7-23ce-4db6-a104-733d9d5531af", false, null });
+                values: new object[] { "användare2id", 0, 1, "951b9556-1a26-40d1-8659-9776f2487366", "Halloj", "User", "gunvor@hotmail.se", false, "Gunvor", "Nilsson", false, null, null, null, null, "073-222 22 22", false, null, "53a3b579-7f98-4cd4-80b2-5d441c795c40", false, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "användare2id", 0, 1, "228881e7-6496-49d4-aae5-76a9b36d455f", "Halloj", "User", null, false, "Gunvor", "Nilsson", false, null, null, null, null, null, false, null, "3b57c024-2469-450f-8ece-0c4bf142557b", false, null });
+                values: new object[] { "användare3id", 0, 1, "6c944a13-0ee0-4923-ad38-71bec1a433da", "dfggdffdgfdgdffdggdf", "User", "Jögge@hotmail.se", false, "Jörgen", "Svensson", false, null, null, null, null, "073-333 33 33", false, null, "3528c4e8-6bb4-4b5c-b88c-6734641ed5da", false, null });
 
             migrationBuilder.InsertData(
                 table: "CVs",
                 columns: new[] { "ID", "TimesViewed", "UserID" },
-                values: new object[] { 1, 0, "användare1id" });
+                values: new object[,]
+                {
+                    { 1, 0, "användare1id" },
+                    { 2, 0, "användare3id" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Messages",
                 columns: new[] { "ID", "Date", "Read", "Receiver", "Sender", "Text" },
-                values: new object[] { 1, new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(2163), false, "användare2id", "användare1id", "hejsan hoppsan" });
+                values: new object[] { 1, new DateTime(2022, 12, 22, 15, 54, 15, 334, DateTimeKind.Local).AddTicks(9389), false, "användare2id", "användare1id", "hejsan hoppsan" });
+
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "ID", "Description", "Name", "ProjectLeaderID" },
+                values: new object[,]
+                {
+                    { 1, "TestProject1Desc", "TestProject", "användare1id" },
+                    { 2, "TestProject1Desc", "TestProject2", "användare2id" }
+                });
 
             migrationBuilder.InsertData(
                 table: "CV_Competences",
@@ -375,18 +390,22 @@ namespace CV_Projektet.Migrations
                 values: new object[] { 1, 1 });
 
             migrationBuilder.InsertData(
-                table: "CV_Projects",
-                columns: new[] { "CVID", "ProjectID" },
-                values: new object[] { 1, 2 });
-
-            migrationBuilder.InsertData(
                 table: "Experiences",
                 columns: new[] { "ID", "CVID", "City", "Description", "EndDate", "Place", "StartDate", "Title", "Type" },
                 values: new object[,]
                 {
-                    { 1, 1, "Lund", "pratade i telefon", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4027), "ICA", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4019), "Kundtjänst", "Work" },
-                    { 2, 1, "Örebro", "Java", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4043), "Örebro Universitet", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4041), "Systemvetenskap", "Education" },
-                    { 3, 1, "Göteborg", "HLR-utbildning", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4055), "Företag1", new DateTime(2022, 12, 21, 13, 53, 35, 329, DateTimeKind.Local).AddTicks(4053), "HLR", "Course" }
+                    { 1, 1, "Lund", "pratade i telefon", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1098), "ICA", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1090), "Kundtjänst", "Work" },
+                    { 2, 1, "Örebro", "Java", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1112), "Örebro Universitet", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1109), "Systemvetenskap", "Education" },
+                    { 3, 1, "Göteborg", "HLR-utbildning", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1123), "Företag1", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1121), "HLR", "Course" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "User_Projects",
+                columns: new[] { "ProjectID", "UserID" },
+                values: new object[,]
+                {
+                    { 1, "användare1id" },
+                    { 2, "användare2id" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -439,11 +458,6 @@ namespace CV_Projektet.Migrations
                 column: "CompetenceID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CV_Projects_CVID",
-                table: "CV_Projects",
-                column: "CVID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CVs_UserID",
                 table: "CVs",
                 column: "UserID",
@@ -463,6 +477,16 @@ namespace CV_Projektet.Migrations
                 name: "IX_Messages_Sender",
                 table: "Messages",
                 column: "Sender");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projects_ProjectLeaderID",
+                table: "Projects",
+                column: "ProjectLeaderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Projects_ProjectID",
+                table: "User_Projects",
+                column: "ProjectID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -486,13 +510,13 @@ namespace CV_Projektet.Migrations
                 name: "CV_Competences");
 
             migrationBuilder.DropTable(
-                name: "CV_Projects");
-
-            migrationBuilder.DropTable(
                 name: "Experiences");
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "User_Projects");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -501,10 +525,10 @@ namespace CV_Projektet.Migrations
                 name: "Competences");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "CVs");
 
             migrationBuilder.DropTable(
-                name: "CVs");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

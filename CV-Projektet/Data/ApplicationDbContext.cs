@@ -19,7 +19,7 @@ namespace CV_Projektet.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Competence> Competences { get; set; }
 		public DbSet<CV_Competences> CV_Competences { get; set; }
-		public DbSet<CV_Projects> CV_Projects{ get; set; }
+		public DbSet<User_Projects> User_Projects{ get; set; }
 
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,6 +36,17 @@ namespace CV_Projektet.Data
                 .WithMany(s => s.ReceivedMessages)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            //modelBuilder.Entity<Project>()
+            //    .HasOne(p => p.ProjectLeader)
+            //    .WithMany(l => l.LeadProjects)
+            //    .OnDelete(DeleteBehavior.NoAction);
+
+            //modelBuilder.Entity<User>()
+            //    .HasMany(u => u.LeadProjects)
+            //    .WithOne(p => p.ProjectLeader)
+            //    .OnDelete(DeleteBehavior.NoAction);
+                
+
             modelBuilder.Entity<Address>().HasData(
                new Address
                {
@@ -50,22 +61,15 @@ namespace CV_Projektet.Data
                     ID = 1,
                     Name = "TestProject",
                     Description = "TestProject1Desc",
-                    ProjectLeader = "dsdsfsfddfs"
+                    ProjectLeaderID = "användare1id"
                 },
                 new Project
                 {
                     ID = 2,
                     Name = "TestProject2",
                     Description = "TestProject1Desc",
-                    ProjectLeader = "dsdsfdassadfddfs"
+                    ProjectLeaderID = "användare2id"
                 });
-            modelBuilder.Entity<CV>().HasData(
-                new CV
-                {
-                    ID = 1,
-                    TimesViewed = 0,
-                    UserID = "användare1id"
-				});
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -88,6 +92,31 @@ namespace CV_Projektet.Data
                     Email = "gunvor@hotmail.se",
                     PhoneNumber = "073-222 22 22"
                 });
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = "användare3id",
+                    FirstName = "Jörgen",
+                    LastName = "Svensson",
+                    AdressID = 1,
+                    Description = "dfggdffdgfdgdffdggdf",
+                    Email = "Jögge@hotmail.se",
+                    PhoneNumber = "073-333 33 33"
+                });
+            modelBuilder.Entity<CV>().HasData(
+                new CV
+                {
+                    ID = 1,
+                    TimesViewed = 0,
+                    UserID = "användare1id"
+                });
+            modelBuilder.Entity<CV>().HasData(
+                new CV
+                {
+                    ID = 2,
+                    TimesViewed = 0,
+                    UserID = "användare3id"
+                });
             modelBuilder.Entity<Message>().HasData(
                 new Message
                 {
@@ -98,8 +127,8 @@ namespace CV_Projektet.Data
                     Date = DateTime.Now,
                     Read = false
                 });
-            modelBuilder.Entity<CV_Projects>()
-                .HasKey(pc => new { pc.ProjectID, pc.CVID });
+            modelBuilder.Entity<User_Projects>()
+                .HasKey(pc => new { pc.UserID, pc.ProjectID });
 
             modelBuilder.Entity<CV_Competences>()
                 .HasKey(cc => new { cc.CVID, cc.CompetenceID });
@@ -117,11 +146,17 @@ namespace CV_Projektet.Data
                     CompetenceID = 1
                 });
 
-            modelBuilder.Entity<CV_Projects>().HasData(
-               new CV_Projects
+            modelBuilder.Entity<User_Projects>().HasData(
+               new User_Projects
                {
-                   ProjectID = 2,
-                   CVID = 1
+                   UserID = "användare1id",
+                   ProjectID = 1
+               });
+            modelBuilder.Entity<User_Projects>().HasData(
+               new User_Projects
+               {
+                   UserID = "användare2id",
+                   ProjectID = 2
                });
             modelBuilder.Entity<Experience>().HasData(
                new Experience

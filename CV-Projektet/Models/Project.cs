@@ -13,9 +13,11 @@ namespace CV_Projektet.Models
         [Required]
         public string Description { get; set; }
         [Required]
-        public string ProjectLeader { get; set; }
+        public string ProjectLeaderID { get; set; }
 
-        public virtual IEnumerable<CV_Projects> CV_Project { get; set; } = new List<CV_Projects>();
+        [ForeignKey(nameof(ProjectLeaderID))]
+        public virtual User ProjectLeader { get; set; }
+        public virtual IEnumerable<User_Projects> User_Project { get; set; } = new List<User_Projects>();
 
     }
 }
