@@ -2,30 +2,50 @@
 using CV_Projektet.Data;
 using CV_Projektet.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace CV_Projektet.Controllers
 {
-	public class ProfilesController : Controller
-	{
-		private ApplicationDbContext context;
-		public ProfilesController(ApplicationDbContext context)
-		{
-			this.context = context;
-		}
-
-        public IActionResult Index()
-		{
-			IEnumerable<User> users = context.Users.ToList();
-			return View(users);
-		}
-        [HttpPost]
-        public IActionResult Index(string firstName, string lastName, string competence, bool notUsed)
+    public class ProfilesController : Controller
+    {
+        private ApplicationDbContext context;
+        public ProfilesController(ApplicationDbContext context)
         {
-            IEnumerable<User> users = context.Users.Where
-				(u => u.FirstName.Equals(firstName) && u.LastName.Equals(lastName)).ToList();
-            return View(users);
+            this.context = context;
         }
 
+        //      public IActionResult Index()
+        //{
+        //	IEnumerable<User> users = context.Users.ToList();
+        //	return View(users);
+        //}
+        //      [HttpPost]
+        public IActionResult Index(string fName, string lName, string comp)
+        {
+            IEnumerable<User> users = context.Users.ToList();
 
+            if (!string.IsNullOrWhiteSpace(fName) && !string.IsNullOrWhiteSpace(lName))
+            {
+                users = context.Users.Where(u => u.FirstName.StartsWith(fName) && u.LastName.StartsWith(lName));
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(fName))
+                {
+                    users = context.Users.Where(u => u.FirstName.StartsWith(fName));
+                }
+                if (!string.IsNullOrWhiteSpace(lName))
+                {
+                    users = context.Users.Where(u => u.LastName.StartsWith(lName));
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(comp))
+            {
+                //VG-krav
+            }
+
+            return View(users.ToList());
+        }
     }
 }

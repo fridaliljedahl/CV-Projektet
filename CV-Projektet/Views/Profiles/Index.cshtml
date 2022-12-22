@@ -3,19 +3,32 @@
 	ViewData["Title"] = "Profiler";
 }
 
-<form asp-controller="Profiles" asp-action="Index">
+@*<form asp-controller="Profiles" asp-action="Index">
 	<input type="text" name="searchstring_firstname" />
 	<input type="text" name="searchstring_lastname"/>
-@*	<input type="text" name="searchstring_competence" />*@
+	<input type="text" name="searchstring_competence" />
 	<input type="submit" value="Sök" />
-</form>
+</form>*@
+
+@using (Html.BeginForm("Index", "Profiles", FormMethod.Get))
+{
+	<lbl>Förnamn</lbl>
+	@Html.TextBox("fName")
+	<lbl>Efternamn</lbl>
+	@Html.TextBox("lName")
+	<lbl>Kompetens</lbl>
+	@Html.TextBox("comp")
+	<input type="submit" value="Sök">
+}
 
 <h1>Profiler</h1>
 <div class="profileContainer">
 	@foreach (var user in Model)
 	{
+		
 		<div class="profileCard">
 			<h2>@user.FirstName @user.LastName</h2>
+			@Html.ActionLink("Gå till profil","Index","CV", new { userID = user.Id}, null)
 		</div>
 	}
 </div>
