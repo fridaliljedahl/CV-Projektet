@@ -45,7 +45,10 @@ namespace CV_Projektet.Data
             //    .HasMany(u => u.LeadProjects)
             //    .WithOne(p => p.ProjectLeader)
             //    .OnDelete(DeleteBehavior.NoAction);
-                
+            
+            //modelBuilder.Entity<User_Projects>()
+            //    .HasMany<Project>()
+            
 
             modelBuilder.Entity<Address>().HasData(
                new Address
