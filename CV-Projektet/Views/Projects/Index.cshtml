@@ -1,6 +1,7 @@
 ﻿@model List<Project>
 
 <div>
+	<img src="C:/Users/Friday/Documents/GitHub/CV-Projektet/CV-Projektet/Views/Projects/jorgen.png" width="100" ,height="250" />
 	@foreach (var item in Model)
 	{
 		<h2>@item.Name</h2>
@@ -14,7 +15,6 @@
 		</div>
 		<h3>Dessa personer ingår i projektet:</h3>
 		<div>
-
 			@foreach (var x in item.User_Project)
 			{
 				<div class="participants">
