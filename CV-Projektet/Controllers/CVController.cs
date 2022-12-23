@@ -30,7 +30,7 @@ namespace CV_Projektet.Controllers
                     view.CV = cv;
 
                     List<User_Projects> projectsList = context.User_Projects.ToList();
-                    List<int> projectIDList = new List<int>();
+                    List<int?> projectIDList = new List<int?>();
                     foreach (var item in projectsList)
                     {
                         if (item.UserID == user.Id)

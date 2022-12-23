@@ -1,11 +1,27 @@
 ﻿@model List<Project>
 
-	<div>
-		@foreach(var item in Model){
-			<h2>@item.Name</h2>
-			<p>@item.Description</p>
-			<h2>Projektledare</h2>
-			<p>@item.ProjectLeader.</p>
-			<h3></h3>
-		}
-	</div>
+<div>
+	@foreach (var item in Model)
+	{
+		<h2>@item.Name</h2>
+		<h3>Projektbeskrivning</h3>
+		<p>@item.Description</p>
+		<h3>Projektledare:</h3>
+		<div class="participants">
+			<a href="@Url.Action("Index", "CV", new { userID = item.ProjectLeaderID})">
+				@item.ProjectLeader.FirstName @item.ProjectLeader.LastName
+			</a>
+		</div>
+		<h3>Dessa personer ingår i projektet:</h3>
+		<div>
+
+			@foreach (var x in item.User_Project)
+			{
+				<div class="participants">
+				<a href="@Url.Action("Index", "CV", new { userID = x.UserID})">
+					@x.User.FirstName @x.User.LastName</a>
+				</div>
+			}
+		</div>
+	}
+</div>

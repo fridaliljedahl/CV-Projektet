@@ -36,19 +36,19 @@ namespace CV_Projektet.Data
                 .WithMany(s => s.ReceivedMessages)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            //modelBuilder.Entity<Project>()
-            //    .HasOne(p => p.ProjectLeader)
-            //    .WithMany(l => l.LeadProjects)
-            //    .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Project>()
+                .HasOne(p => p.ProjectLeader)
+                .WithMany(l => l.LeadProjects)
+                .OnDelete(DeleteBehavior.NoAction);
 
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.LeadProjects)
-            //    .WithOne(p => p.ProjectLeader)
-            //    .OnDelete(DeleteBehavior.NoAction);
-            
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.LeadProjects)
+                .WithOne(p => p.ProjectLeader)
+                .OnDelete(DeleteBehavior.NoAction);
+
             //modelBuilder.Entity<User_Projects>()
             //    .HasMany<Project>()
-            
+
 
             modelBuilder.Entity<Address>().HasData(
                new Address
@@ -82,7 +82,8 @@ namespace CV_Projektet.Data
                     AdressID = 1,
                     Description = "Hejaaa",
                     Email = "inga@hotmail.com",
-                    PhoneNumber = "073-111 11 11"
+                    PhoneNumber = "073-111 11 11",
+                    PasswordHash = "mittnamnäringa"
                 });
             modelBuilder.Entity<User>().HasData(
                 new User
@@ -93,7 +94,8 @@ namespace CV_Projektet.Data
                     AdressID = 1,
                     Description = "Halloj",
                     Email = "gunvor@hotmail.se",
-                    PhoneNumber = "073-222 22 22"
+                    PhoneNumber = "073-222 22 22",
+                    PasswordHash = "mittnamnärgunvor"
                 });
             modelBuilder.Entity<User>().HasData(
                 new User
@@ -104,7 +106,8 @@ namespace CV_Projektet.Data
                     AdressID = 1,
                     Description = "dfggdffdgfdgdffdggdf",
                     Email = "Jögge@hotmail.se",
-                    PhoneNumber = "073-333 33 33"
+                    PhoneNumber = "073-333 33 33",
+                    PasswordHash = "mittnamnärjörgen"
                 });
             modelBuilder.Entity<CV>().HasData(
                 new CV

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CV_Projektet.Migrations
 {
-    public partial class _4 : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -258,8 +258,7 @@ namespace CV_Projektet.Migrations
                         name: "FK_Projects_AspNetUsers_ProjectLeaderID",
                         column: x => x.ProjectLeaderID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -349,17 +348,17 @@ namespace CV_Projektet.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "användare1id", 0, 1, "c8aef6eb-5774-49e8-a9b8-0d4d582d4c49", "Hejaaa", "User", "inga@hotmail.com", false, "Inga", "Karlsson", false, null, null, null, null, "073-111 11 11", false, null, "abb64fa0-44a8-484a-854b-0738c8c25ee0", false, null });
+                values: new object[] { "användare1id", 0, 1, "685a14df-f33d-4113-98ad-9128f1b2c608", "Hejaaa", "User", "inga@hotmail.com", false, "Inga", "Karlsson", false, null, null, null, null, "073-111 11 11", false, null, "d8e02ba9-0586-42d0-abe6-6b9fa5199c5c", false, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "användare2id", 0, 1, "951b9556-1a26-40d1-8659-9776f2487366", "Halloj", "User", "gunvor@hotmail.se", false, "Gunvor", "Nilsson", false, null, null, null, null, "073-222 22 22", false, null, "53a3b579-7f98-4cd4-80b2-5d441c795c40", false, null });
+                values: new object[] { "användare2id", 0, 1, "d0b5ff8a-8131-45b1-8da1-d748a553936f", "Halloj", "User", "gunvor@hotmail.se", false, "Gunvor", "Nilsson", false, null, null, null, null, "073-222 22 22", false, null, "fead0a8c-29b0-4a90-9e75-c13c4d5372f1", false, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "användare3id", 0, 1, "6c944a13-0ee0-4923-ad38-71bec1a433da", "dfggdffdgfdgdffdggdf", "User", "Jögge@hotmail.se", false, "Jörgen", "Svensson", false, null, null, null, null, "073-333 33 33", false, null, "3528c4e8-6bb4-4b5c-b88c-6734641ed5da", false, null });
+                values: new object[] { "användare3id", 0, 1, "621c52fc-dcb7-466f-9666-2fe18ab705c5", "dfggdffdgfdgdffdggdf", "User", "Jögge@hotmail.se", false, "Jörgen", "Svensson", false, null, null, null, null, "073-333 33 33", false, null, "6a256fcb-665a-4078-909a-6f53765ea726", false, null });
 
             migrationBuilder.InsertData(
                 table: "CVs",
@@ -373,7 +372,7 @@ namespace CV_Projektet.Migrations
             migrationBuilder.InsertData(
                 table: "Messages",
                 columns: new[] { "ID", "Date", "Read", "Receiver", "Sender", "Text" },
-                values: new object[] { 1, new DateTime(2022, 12, 22, 15, 54, 15, 334, DateTimeKind.Local).AddTicks(9389), false, "användare2id", "användare1id", "hejsan hoppsan" });
+                values: new object[] { 1, new DateTime(2022, 12, 23, 8, 23, 10, 516, DateTimeKind.Local).AddTicks(4642), false, "användare2id", "användare1id", "hejsan hoppsan" });
 
             migrationBuilder.InsertData(
                 table: "Projects",
@@ -394,9 +393,9 @@ namespace CV_Projektet.Migrations
                 columns: new[] { "ID", "CVID", "City", "Description", "EndDate", "Place", "StartDate", "Title", "Type" },
                 values: new object[,]
                 {
-                    { 1, 1, "Lund", "pratade i telefon", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1098), "ICA", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1090), "Kundtjänst", "Work" },
-                    { 2, 1, "Örebro", "Java", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1112), "Örebro Universitet", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1109), "Systemvetenskap", "Education" },
-                    { 3, 1, "Göteborg", "HLR-utbildning", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1123), "Företag1", new DateTime(2022, 12, 22, 15, 54, 15, 335, DateTimeKind.Local).AddTicks(1121), "HLR", "Course" }
+                    { 1, 1, "Lund", "pratade i telefon", new DateTime(2022, 12, 23, 8, 23, 10, 516, DateTimeKind.Local).AddTicks(6384), "ICA", new DateTime(2022, 12, 23, 8, 23, 10, 516, DateTimeKind.Local).AddTicks(6374), "Kundtjänst", "Work" },
+                    { 2, 1, "Örebro", "Java", new DateTime(2022, 12, 23, 8, 23, 10, 516, DateTimeKind.Local).AddTicks(6400), "Örebro Universitet", new DateTime(2022, 12, 23, 8, 23, 10, 516, DateTimeKind.Local).AddTicks(6397), "Systemvetenskap", "Education" },
+                    { 3, 1, "Göteborg", "HLR-utbildning", new DateTime(2022, 12, 23, 8, 23, 10, 516, DateTimeKind.Local).AddTicks(6415), "Företag1", new DateTime(2022, 12, 23, 8, 23, 10, 516, DateTimeKind.Local).AddTicks(6412), "HLR", "Course" }
                 });
 
             migrationBuilder.InsertData(
