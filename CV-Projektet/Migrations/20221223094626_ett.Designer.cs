@@ -4,6 +4,7 @@ using CV_Projektet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CV_Projektet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221223094626_ett")]
+    partial class ett
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,9 +190,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Lund",
                             Description = "pratade i telefon",
-                            EndDate = new DateTime(2022, 12, 23, 10, 52, 18, 605, DateTimeKind.Local).AddTicks(1788),
+                            EndDate = new DateTime(2022, 12, 23, 10, 46, 25, 359, DateTimeKind.Local).AddTicks(2679),
                             Place = "ICA",
-                            StartDate = new DateTime(2022, 12, 23, 10, 52, 18, 605, DateTimeKind.Local).AddTicks(1772),
+                            StartDate = new DateTime(2022, 12, 23, 10, 46, 25, 359, DateTimeKind.Local).AddTicks(2664),
                             Title = "Kundtjänst",
                             Type = "Work"
                         },
@@ -200,9 +202,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Örebro",
                             Description = "Java",
-                            EndDate = new DateTime(2022, 12, 23, 10, 52, 18, 605, DateTimeKind.Local).AddTicks(1807),
+                            EndDate = new DateTime(2022, 12, 23, 10, 46, 25, 359, DateTimeKind.Local).AddTicks(2702),
                             Place = "Örebro Universitet",
-                            StartDate = new DateTime(2022, 12, 23, 10, 52, 18, 605, DateTimeKind.Local).AddTicks(1804),
+                            StartDate = new DateTime(2022, 12, 23, 10, 46, 25, 359, DateTimeKind.Local).AddTicks(2699),
                             Title = "Systemvetenskap",
                             Type = "Education"
                         },
@@ -212,9 +214,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Göteborg",
                             Description = "HLR-utbildning",
-                            EndDate = new DateTime(2022, 12, 23, 10, 52, 18, 605, DateTimeKind.Local).AddTicks(1822),
+                            EndDate = new DateTime(2022, 12, 23, 10, 46, 25, 359, DateTimeKind.Local).AddTicks(2718),
                             Place = "Företag1",
-                            StartDate = new DateTime(2022, 12, 23, 10, 52, 18, 605, DateTimeKind.Local).AddTicks(1819),
+                            StartDate = new DateTime(2022, 12, 23, 10, 46, 25, 359, DateTimeKind.Local).AddTicks(2715),
                             Title = "HLR",
                             Type = "Course"
                         });
@@ -258,7 +260,7 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 1,
-                            Date = new DateTime(2022, 12, 23, 10, 52, 18, 604, DateTimeKind.Local).AddTicks(8692),
+                            Date = new DateTime(2022, 12, 23, 10, 46, 25, 358, DateTimeKind.Local).AddTicks(9559),
                             Read = false,
                             Receiver = "användare2id",
                             Sender = "användare1id",
@@ -317,7 +319,7 @@ namespace CV_Projektet.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AdressID")
+                    b.Property<int>("AdressID")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -325,6 +327,7 @@ namespace CV_Projektet.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Email")
@@ -335,9 +338,11 @@ namespace CV_Projektet.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -396,7 +401,7 @@ namespace CV_Projektet.Migrations
                             Id = "användare1id",
                             AccessFailedCount = 0,
                             AdressID = 1,
-                            ConcurrencyStamp = "40a9f467-abb3-4d78-a1f1-817c593e8ade",
+                            ConcurrencyStamp = "647e899f-bd87-4280-b0c8-f8e52dcbed3c",
                             Description = "Hejaaa",
                             Email = "inga@hotmail.com",
                             EmailConfirmed = false,
@@ -406,7 +411,7 @@ namespace CV_Projektet.Migrations
                             PasswordHash = "mittnamnäringa",
                             PhoneNumber = "073-111 11 11",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2f66bcb8-0599-469b-9759-da2b055b0cce",
+                            SecurityStamp = "d9c39d97-9403-4787-a584-2782bf24adb1",
                             TwoFactorEnabled = false
                         },
                         new
@@ -414,7 +419,7 @@ namespace CV_Projektet.Migrations
                             Id = "användare2id",
                             AccessFailedCount = 0,
                             AdressID = 1,
-                            ConcurrencyStamp = "f204579f-6426-423c-86f5-c8c253abca08",
+                            ConcurrencyStamp = "0c6a5c08-b92a-4198-8efc-ca38f2bc6283",
                             Description = "Halloj",
                             Email = "gunvor@hotmail.se",
                             EmailConfirmed = false,
@@ -424,7 +429,7 @@ namespace CV_Projektet.Migrations
                             PasswordHash = "mittnamnärgunvor",
                             PhoneNumber = "073-222 22 22",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7c8f03e7-2f6c-4b94-9a98-50fc6dd6f56f",
+                            SecurityStamp = "570194eb-2b15-4faa-94dd-d4cb2c301300",
                             TwoFactorEnabled = false
                         },
                         new
@@ -432,7 +437,7 @@ namespace CV_Projektet.Migrations
                             Id = "användare3id",
                             AccessFailedCount = 0,
                             AdressID = 1,
-                            ConcurrencyStamp = "0604e39d-2da0-43f9-ac5a-58f751de95e8",
+                            ConcurrencyStamp = "25482926-0aa9-4d6b-8bd0-7d7489ddc029",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "Jögge@hotmail.se",
                             EmailConfirmed = false,
@@ -442,7 +447,7 @@ namespace CV_Projektet.Migrations
                             PasswordHash = "mittnamnärjörgen",
                             PhoneNumber = "073-333 33 33",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "acb0e3f2-b7c2-49bd-8b48-fe65b3d72f69",
+                            SecurityStamp = "bb880c09-cab0-494c-a8c6-333a2bc22c65",
                             TwoFactorEnabled = false
                         });
                 });
@@ -682,7 +687,9 @@ namespace CV_Projektet.Migrations
                 {
                     b.HasOne("CV_Projektet.Models.Address", "Address")
                         .WithMany("Users")
-                        .HasForeignKey("AdressID");
+                        .HasForeignKey("AdressID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
                 });
@@ -781,7 +788,8 @@ namespace CV_Projektet.Migrations
 
             modelBuilder.Entity("CV_Projektet.Models.User", b =>
                 {
-                    b.Navigation("CV");
+                    b.Navigation("CV")
+                        .IsRequired();
 
                     b.Navigation("LeadProjects");
 

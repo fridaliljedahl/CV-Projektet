@@ -30,11 +30,36 @@ namespace CV_Projektet.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Register(UserRegistrationViewModel userRegistrationViewmodel)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = new User();
+                user.UserName= userRegistrationViewmodel.UserName;
+              
+                var result = await userManager.CreateAsync(user, userRegistrationViewmodel.Password);
+                if (result.Succeeded)
+                {
+                    await signInManager.SignInAsync(user, isPersistent: true);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+			return View(userRegistrationViewmodel);
+		}
 
-        [HttpGet]
+		[HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Loggaut()
+		{
+			await signInManager.SignOutAsync();
+			return RedirectToAction("Index", "Home");
+		}
+	}
+
 }
