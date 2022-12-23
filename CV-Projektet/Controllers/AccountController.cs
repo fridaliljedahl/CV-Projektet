@@ -48,6 +48,23 @@ namespace CV_Projektet.Controllers
 			return View(userRegistrationViewmodel);
 		}
 
+		[HttpPost]
+		public async Task<IActionResult> LogIn(LoginViewModel loginViewModel)
+		{
+			if (ModelState.IsValid)
+			{
+				var result = await signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password,
+					isPersistent: loginViewModel.RememberMe, lockoutOnFailure: false);
+
+				if (result.Succeeded)
+				{
+					return RedirectToAction("Index", "Home");
+				}
+
+			}
+			return View(loginViewModel);
+		}
+
 		[HttpGet]
         public IActionResult Index()
         {
