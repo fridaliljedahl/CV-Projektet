@@ -72,7 +72,7 @@ namespace CV_Projektet.Controllers
         }
 
 		[HttpPost]
-		public async Task<IActionResult> Loggaut()
+		public async Task<IActionResult> LogOut()
 		{
 			await signInManager.SignOutAsync();
 			return RedirectToAction("Index", "Home");

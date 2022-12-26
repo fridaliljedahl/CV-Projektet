@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<nav class="navbar">
+	<a class="logo" asp-area="" asp-controller="Home" asp-action="Index">CVGROTTAN</a>
+	<div class="navLinks">
+		<a asp-area="" asp-controller="Projects" asp-action="Index">Sök projekt</a>
+		<a asp-area="" asp-controller="Profiles" asp-action="Index">Sök profil</a>
+		@if (SignInManager.IsSignedIn(User)){<a asp-area="" asp-controller="" asp-action="">Mina meddelanden</a>}
+	</div>
+
+@if (SignInManager.IsSignedIn(User))
+{
+		<form method="post" asp-controller="Account" asp-action="LogOut">
+			<AuthorizeView>
+				<Authorized>
+					<h2>Du är loggad in som @User.Identity.Name</h2>
+					<input type="submit" value="Logga ut" />
+				</Authorized>
+			</AuthorizeView>
+		</form>
+}
+else
+{
+	<div class="loginOptions">
+		<a asp-area="" asp-controller="Account" asp-action="LogIn">Logga in</a>
+		<a asp-area="" asp-controller="Account" asp-action="Register">Registrera</a>
+	</div>
+}
+</nav>
