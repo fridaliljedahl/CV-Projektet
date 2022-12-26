@@ -85,7 +85,7 @@ namespace CV_Projektet.Data
                     PhoneNumber = "073-111 11 11",
                     PasswordHash = "mittnamnäringa",
                     IsActive = true,
-                    IsPrivate = true
+                    IsPrivate = false
                 });
             modelBuilder.Entity<User>().HasData(
                 new User
