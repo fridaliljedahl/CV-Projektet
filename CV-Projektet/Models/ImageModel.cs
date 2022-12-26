@@ -7,7 +7,6 @@ namespace CV_Projektet.Models
 	public class ImageModel
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int ID { get; set; }
 		[DisplayName("Titel")]
 		public string Title { get; set; }

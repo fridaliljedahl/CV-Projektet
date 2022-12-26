@@ -1,5 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<ImageModel>
 @{
 }
+
+<table class="table-bordered">
+	<thead>
+		<tr>
+			<td>Titel</td>
+			<td>Finamn</td>
+			<td>Bild</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Title</td>
+				<td>@item.Name</td>
+				<td>
+					<img src="@("~/image/"+item.Name)" asp-append-version="true" width="250px" height="250" />
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.ID">Uppdatera</a>
+				</td>
+				<td>
+					<a asp-action="Delete" asp-route-id="@item.ID">Radera</a>
+				</td>
+
+			</tr>
+		}
+	</tbody>
+</table>
+<hr />
+<a asp-action="Add">Lägg till en ny bild</a>
