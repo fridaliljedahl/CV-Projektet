@@ -1,17 +1,14 @@
 ﻿@model LoginViewModel
 
-<div class="dropdown">
-	<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-		Dropdown button
-	</button>
-	<div class="dropdown-menu">
+<h1>Logga in</h1>
+<br />
 		<form method="post" asp-controller="Account" asp-action="LogIn">
 			<div class="mb-3">
-				<label for="" class="form-label">Email address</label>
+				<label for="" class="form-label">Användarnamn</label>
 				<input asp-for="UserName" class="form-control" placeholder="Användarnamn">
 			</div>
 			<div class="mb-3">
-				<label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+				<label for="exampleDropdownFormPassword1" class="form-label">Lösenord</label>
 				<input type="password" asp-for="Password" type="password" class="form-control" placeholder="Lösenord">
 			</div>
 			<div class="mb-3">
@@ -22,9 +19,7 @@
 					</label>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Sign in</button>
+			<button type="submit" class="btn btn-primary">Logga in</button>
 		</form>
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="#">Är du ny här? Registrera dig</a>
-		<a class="dropdown-item" href="#">Glömt lösenord?</a>
-	</div>
