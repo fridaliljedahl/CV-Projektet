@@ -14,13 +14,14 @@ namespace CV_Projektet.Models
         [Column(TypeName = "nvarchar(100)")]
         [MaxLength]
         public string? Description { get; set; }
-        public bool IsPrivate { get; set; }
+        public bool IsPublic { get; set; }
         public bool IsActive { get; set; }
         public int? AdressID { get; set; }
 
         [ForeignKey(nameof(AdressID))]
         public virtual Address? Address { get; set; }
         public virtual CV? CV { get; set; }
+        public DateTime RegistrationDate { get; set; }
 
         public virtual IEnumerable<Project> LeadProjects { get; set; } = new List<Project>();
         public virtual IEnumerable<Message> SentMessages { get; set; } = new List<Message>();
