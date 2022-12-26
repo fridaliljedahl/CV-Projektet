@@ -83,7 +83,9 @@ namespace CV_Projektet.Data
                     Description = "Hejaaa",
                     Email = "inga@hotmail.com",
                     PhoneNumber = "073-111 11 11",
-                    PasswordHash = "mittnamnäringa"
+                    PasswordHash = "mittnamnäringa",
+                    IsActive = true,
+                    IsPrivate = true
                 });
             modelBuilder.Entity<User>().HasData(
                 new User
@@ -95,7 +97,9 @@ namespace CV_Projektet.Data
                     Description = "Halloj",
                     Email = "gunvor@hotmail.se",
                     PhoneNumber = "073-222 22 22",
-                    PasswordHash = "mittnamnärgunvor"
+                    PasswordHash = "mittnamnärgunvor",
+                    IsActive = true,
+                    IsPrivate = true
                 });
             modelBuilder.Entity<User>().HasData(
                 new User
@@ -107,7 +111,9 @@ namespace CV_Projektet.Data
                     Description = "dfggdffdgfdgdffdggdf",
                     Email = "Jögge@hotmail.se",
                     PhoneNumber = "073-333 33 33",
-                    PasswordHash = "mittnamnärjörgen"
+                    PasswordHash = "mittnamnärjörgen",
+                    IsActive = true,
+                    IsPrivate = false
                 });
             modelBuilder.Entity<CV>().HasData(
                 new CV

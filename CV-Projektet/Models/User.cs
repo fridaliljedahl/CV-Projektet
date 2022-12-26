@@ -14,6 +14,8 @@ namespace CV_Projektet.Models
         [Column(TypeName = "nvarchar(100)")]
         [MaxLength]
         public string? Description { get; set; }
+        public bool IsPrivate { get; set; }
+        public bool IsActive { get; set; }
         public int? AdressID { get; set; }
 
         [ForeignKey(nameof(AdressID))]
