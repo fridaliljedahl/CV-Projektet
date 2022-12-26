@@ -57,22 +57,28 @@ namespace CV_Projektet.Data
                    Street = "Storgatan 1",
                    PostalCode = 12345,
                    City = "Örebro"
-               });
-            modelBuilder.Entity<Project>().HasData(
-                new Project
-                {
-                    ID = 1,
-                    Name = "TestProject",
-                    Description = "TestProject1Desc",
-                    ProjectLeaderID = "användare1id"
-                },
-                new Project
-                {
-                    ID = 2,
-                    Name = "TestProject2",
-                    Description = "TestProject1Desc",
-                    ProjectLeaderID = "användare2id"
-                });
+               },
+               new Address
+               {
+                   ID = 2,
+                   Street = "Drottninggatan 12",
+                   PostalCode = 12365,
+                   City = "Ystad"
+               },
+               new Address
+               {
+                   ID = 3,
+                   Street = "Kungsgatan 43",
+                   PostalCode = 16845,
+                   City = "Göteborg"
+               },
+               new Address
+               {
+                   ID = 4,
+                   Street = "Storälven 22",
+                   PostalCode = 16845,
+                   City = "Gnesta"
+               });            
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -85,9 +91,9 @@ namespace CV_Projektet.Data
                     PhoneNumber = "073-111 11 11",
                     PasswordHash = "mittnamnäringa",
                     IsActive = true,
-                    IsPrivate = false
-                });
-            modelBuilder.Entity<User>().HasData(
+                    IsPublic = true,
+                    RegistrationDate = new DateTime(2022, 01, 05)
+                },
                 new User
                 {
                     Id = "användare2id",
@@ -99,9 +105,9 @@ namespace CV_Projektet.Data
                     PhoneNumber = "073-222 22 22",
                     PasswordHash = "mittnamnärgunvor",
                     IsActive = true,
-                    IsPrivate = true
-                });
-            modelBuilder.Entity<User>().HasData(
+                    IsPublic = false,
+                    RegistrationDate = new DateTime(2022, 06, 11)
+                },
                 new User
                 {
                     Id = "användare3id",
@@ -113,7 +119,106 @@ namespace CV_Projektet.Data
                     PhoneNumber = "073-333 33 33",
                     PasswordHash = "mittnamnärjörgen",
                     IsActive = true,
-                    IsPrivate = false
+                    IsPublic = true,
+                    RegistrationDate = new DateTime(2022, 12, 24)
+                },
+                new User
+                {
+                    Id = "användare4id",
+                    FirstName = "Sten",
+                    LastName = "Kallesson",
+                    AdressID = 2,
+                    Description = "dfggdffdgfdgdffdggdf",
+                    Email = "stenis@hotmail.se",
+                    PhoneNumber = "074-444 44 44",
+                    PasswordHash = "mittnamnärsten",
+                    IsActive = true,
+                    IsPublic = false,
+                    RegistrationDate = new DateTime(2022, 12, 26)
+                },
+                new User
+                {
+                    Id = "användare5id",
+                    FirstName = "Kajsa",
+                    LastName = "Stenbäck",
+                    AdressID = 3,
+                    Description = "dfggdffdgfdgdffdggdf",
+                    Email = "kajsa@hotmail.se",
+                    PhoneNumber = "075-123 55 55",
+                    PasswordHash = "mittnamnärkajsa",
+                    IsActive = false,
+                    IsPublic = true,
+                    RegistrationDate = new DateTime(2022, 09, 28)
+                },
+                new User
+                {
+                    Id = "användare6id",
+                    FirstName = "Frida",
+                    LastName = "Liljedahl",
+                    AdressID = 4,
+                    Description = "dfggdffdgfdgdffdggdf",
+                    Email = "frida@hotmail.se",
+                    PhoneNumber = "075-555 55 55",
+                    PasswordHash = "mittnamnärfrida",
+                    IsActive = true,
+                    IsPublic = true,
+                    RegistrationDate = new DateTime(2022, 07, 28)
+                },
+                new User
+                {
+                    Id = "användare7id",
+                    FirstName = "Linda",
+                    LastName = "Nordeman",
+                    AdressID = 2,
+                    Description = "dfggdffdgfdgdffdggdf",
+                    Email = "linda@hotmail.se",
+                    PhoneNumber = "076-666 66 66",
+                    PasswordHash = "mittnamnärlinda",
+                    IsActive = true,
+                    IsPublic = true,
+                    RegistrationDate = new DateTime(2022, 08, 11)
+                },
+                new User
+                {
+                    Id = "användare8id",
+                    FirstName = "Lisa",
+                    LastName = "Kjellgren",
+                    AdressID = 3,
+                    Description = "dfggdffdgfdgdffdggdf",
+                    Email = "lisa@hotmail.se",
+                    PhoneNumber = "077-773 33 33",
+                    PasswordHash = "mittnamnärlisa",
+                    IsActive = true,
+                    IsPublic = true,
+                    RegistrationDate = new DateTime(2022, 08, 26)
+                },
+                new User
+                {
+                    Id = "användare9id",
+                    FirstName = "Viktor",
+                    LastName = "Hemlin Gravander",
+                    AdressID = 2,
+                    Description = "dfggdffdgfdgdffdggdf",
+                    Email = "viktor@hotmail.se",
+                    PhoneNumber = "073-333 33 33",
+                    PasswordHash = "mittnamnärviktor",
+                    IsActive = true,
+                    IsPublic = true,
+                    RegistrationDate = new DateTime(2021, 10, 05)
+                },
+                new User
+                {
+                    Id = "användare10id",
+                    FirstName = "Ulla",
+                    LastName = "Ivarsson",
+                    AdressID = 4,
+                    Description = "dfggdffdgfdgdffdggdf",
+                    Email = "ulla@hotmail.se",
+                    PhoneNumber = "073-888 33 33",
+                    PasswordHash = "mittnamnärulla",
+                    IsActive = false,
+                    IsPublic = false,
+                    RegistrationDate = new DateTime(2020, 10, 05)
                 });
             modelBuilder.Entity<CV>().HasData(
                 new CV
@@ -121,13 +226,24 @@ namespace CV_Projektet.Data
                     ID = 1,
                     TimesViewed = 0,
                     UserID = "användare1id"
-                });
-            modelBuilder.Entity<CV>().HasData(
+                },
                 new CV
                 {
                     ID = 2,
-                    TimesViewed = 0,
+                    TimesViewed = 3,
                     UserID = "användare3id"
+                },
+                new CV
+                {
+                    ID = 3,
+                    TimesViewed = 12,
+                    UserID = "användare2id"
+                },
+                new CV
+                {
+                    ID = 4,
+                    TimesViewed = 55,
+                    UserID = "användare4id"
                 });
             modelBuilder.Entity<Message>().HasData(
                 new Message
@@ -139,8 +255,39 @@ namespace CV_Projektet.Data
                     Date = DateTime.Now,
                     Read = false
                 });
+
             modelBuilder.Entity<User_Projects>()
                 .HasKey(pc => new { pc.UserID, pc.ProjectID });
+
+            modelBuilder.Entity<Project>().HasData(
+                new Project
+                {
+                    ID = 1,
+                    Name = "Planeringsprojektet",
+                    Description = "Projektbeskrivningen blabla",
+                    ProjectLeaderID = "användare1id"
+                },
+                new Project
+                {
+                    ID = 2,
+                    Name = "Yogahemsideprojektet",
+                    Description = "Projektbeskrivningen blabla",
+                    ProjectLeaderID = "användare2id"
+                },
+                new Project
+                {
+                    ID = 3,
+                    Name = "CV-Projektet",
+                    Description = "Projektbeskrivningen blabla",
+                    ProjectLeaderID = "användare3id"
+                },
+                new Project
+                {
+                    ID = 4,
+                    Name = "Mötesprojektet",
+                    Description = "Projektbeskrivningen blabla",
+                    ProjectLeaderID = "användare4id"
+                });
 
             modelBuilder.Entity<CV_Competences>()
                 .HasKey(cc => new { cc.CVID, cc.CompetenceID });
@@ -150,12 +297,67 @@ namespace CV_Projektet.Data
                 {
                     ID = 1,
                     Name = "C#"
+                },
+                new Competence
+                {
+                    ID = 2,
+                    Name = "Java"
+                },
+                new Competence
+                {
+                    ID = 3,
+                    Name = "Kassavana"
+                },
+                new Competence
+                {
+                    ID = 4,
+                    Name = "HLR"
                 });
             modelBuilder.Entity<CV_Competences>().HasData(
                 new CV_Competences
                 {
                     CVID = 1,
                     CompetenceID = 1
+                },
+                new CV_Competences
+                {
+                    CVID = 1,
+                    CompetenceID = 2
+                },
+                new CV_Competences
+                {
+                    CVID = 2,
+                    CompetenceID = 3
+                },
+                new CV_Competences
+                {
+                    CVID = 2,
+                    CompetenceID = 2
+                },
+                new CV_Competences
+                {
+                    CVID = 2,
+                    CompetenceID = 4
+                },
+                new CV_Competences
+                {
+                    CVID = 3,
+                    CompetenceID = 4
+                },
+                new CV_Competences
+                {
+                    CVID = 4,
+                    CompetenceID = 1
+                },
+                new CV_Competences
+                {
+                    CVID = 4,
+                    CompetenceID = 2
+                },
+                new CV_Competences
+                {
+                    CVID = 4,
+                    CompetenceID = 3
                 });
 
             modelBuilder.Entity<User_Projects>().HasData(
@@ -163,11 +365,25 @@ namespace CV_Projektet.Data
                {
                    UserID = "användare1id",
                    ProjectID = 1
-               });
-            modelBuilder.Entity<User_Projects>().HasData(
+               },
+               new User_Projects
+               {
+                   UserID = "användare1id",
+                   ProjectID = 2
+               },
                new User_Projects
                {
                    UserID = "användare2id",
+                   ProjectID = 1
+               },
+               new User_Projects
+               {
+                   UserID = "användare2id",
+                   ProjectID = 3
+               },
+               new User_Projects
+               {
+                   UserID = "användare3id",
                    ProjectID = 2
                });
             modelBuilder.Entity<Experience>().HasData(
@@ -182,8 +398,7 @@ namespace CV_Projektet.Data
                    Place = "ICA",
                    Description = "pratade i telefon",
                    CVID = 1
-               });
-            modelBuilder.Entity<Experience>().HasData(
+               },
                new Experience
                {
                    ID = 2,
@@ -195,8 +410,7 @@ namespace CV_Projektet.Data
                    Place = "Örebro Universitet",
                    Description = "Java",
                    CVID = 1
-               });
-            modelBuilder.Entity<Experience>().HasData(
+               },
                new Experience
                {
                    ID = 3,
@@ -208,7 +422,32 @@ namespace CV_Projektet.Data
                    Place = "Företag1",
                    Description = "HLR-utbildning",
                    CVID = 1
-               });
+               },
+               new Experience
+               {
+                   ID = 4,
+                   Title = "Lärarprogrammet",
+                   Type = "Education",
+                   StartDate = DateTime.Now,
+                   EndDate = DateTime.Now,
+                   City = "Örebro",
+                   Place = "Örebro Universitet",
+                   Description = "Beskrivning blabla",
+                   CVID = 2
+               },
+               new Experience
+               {
+                   ID = 5,
+                   Title = "Systemvetenskap",
+                   Type = "Education",
+                   StartDate = DateTime.Now,
+                   EndDate = DateTime.Now,
+                   City = "Örebro",
+                   Place = "Örebro Universitet",
+                   Description = "Java",
+                   CVID = 1
+               }
+               );
         }
     }
 }
