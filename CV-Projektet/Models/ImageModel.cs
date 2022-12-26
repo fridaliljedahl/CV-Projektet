@@ -15,5 +15,8 @@ namespace CV_Projektet.Models
 		[NotMapped]
 		[DisplayName("Ladda upp bild")]
 		public IFormFile ImageFile { get; set; }
+		public string UserID { get; set; }
+		[ForeignKey(nameof(UserID))]
+		public virtual User user { get; set; }
 	}
 }

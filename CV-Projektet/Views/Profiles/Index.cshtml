@@ -26,6 +26,16 @@
 	@foreach (var user in Model)
 	{
 		<a class="profileCard" href="@Url.Action("Index","CV", new { userID = user.Id})">
+			@try
+			{
+				if (user.imageModel.Name.Any())
+				{
+					<img class="profilepicture" src="@("~/image/" + user.imageModel.Name)" asp-append-version="true" />
+				}
+			}
+			catch (Exception ex)
+			{
+			}
 			<h2>@user.FirstName @user.LastName</h2>
 			@try
 			{

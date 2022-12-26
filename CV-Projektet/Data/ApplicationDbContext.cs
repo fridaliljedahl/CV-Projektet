@@ -245,7 +245,16 @@ namespace CV_Projektet.Data
                     TimesViewed = 55,
                     UserID = "användare4id"
                 });
-            modelBuilder.Entity<Message>().HasData(
+            modelBuilder.Entity<ImageModel>().HasData(
+                new ImageModel
+                {
+                    ID = 4,
+                    Title = "Profilbild",
+                    Name = "image (1)223847664.png",
+                    UserID = "användare1id"
+                });
+
+			modelBuilder.Entity<Message>().HasData(
                 new Message
                 {
                     ID = 1,

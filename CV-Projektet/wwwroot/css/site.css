@@ -68,12 +68,18 @@ footer {
     background-color: #ACB7A0;
     padding-top: 4em;
 }
-.circle {
+/*.circle {
     margin: 1em;
     height: 10em;
     width: 10em;
     border-radius: 50%;
     background-color: #FFFEF6;
+}*/
+.profilepicture {
+    margin: 1em;
+    height: 15em;
+    width: 15em;
+    border-radius: 50%;
 }
 .fa:hover {
     opacity: 0.7;
