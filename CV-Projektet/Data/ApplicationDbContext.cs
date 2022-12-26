@@ -20,9 +20,9 @@ namespace CV_Projektet.Data
         public DbSet<Competence> Competences { get; set; }
 		public DbSet<CV_Competences> CV_Competences { get; set; }
 		public DbSet<User_Projects> User_Projects{ get; set; }
+        public DbSet<ImageModel> Images { get; set; }
 
-
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 

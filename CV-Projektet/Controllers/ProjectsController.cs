@@ -12,7 +12,7 @@ namespace CV_Projektet.Controllers
 		{
 			context = cntx;
 		}
-		public IActionResult Index()
+		public IActionResult Index(LoginViewModel loginViewModel)
 		{
 			List<Project> projectList = context.Projects.ToList();
 			
