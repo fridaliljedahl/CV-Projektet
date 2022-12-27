@@ -145,7 +145,7 @@
 
 						if (involved) 
 						{
-							<a class="involved">&#x2717; Lämna projektet</a>
+							<a class="involved" href="@Url.Action("LeaveProject", "User", new { projectId = item.ID})">&#x2717; Lämna projektet</a>
 						}
 						else
 						{

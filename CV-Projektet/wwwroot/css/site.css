@@ -13,7 +13,7 @@ html {
 
 a {
     text-decoration: none;
-    color: #FFFEF6;
+    color: #000000;
 }
 
 body {
@@ -51,6 +51,7 @@ header {
 
 .logo {
     font-size: 40px;
+    color: white;
 }
 
 footer {
@@ -59,26 +60,30 @@ footer {
 
 .navLinks a {
     margin: 0em 1em;
+    color: white;
 }
-
+.accentWord{
+    color: orange;
+    font-style: normal;
+}
 /*Startsida*/
-.contentHome {
+.contentHome { 
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-.cardContainer {
+.cardContainer { /*Gäller även på projektsidan*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
-.card {
+.card { /*Gäller även på projektsidan*/
     color: #000000;
     margin: 1em;
     padding: 1em;
     border-radius: 3em;
 }
 .headingHome{
-    color: darkorange;
+    color: orange;
     text-align: center;
 }
 .personCard a{

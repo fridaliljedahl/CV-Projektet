@@ -29,9 +29,11 @@ namespace CV_Projektet.Controllers
         }
         public ActionResult LeaveProject(int projectId)
         {
-            User_Projects up = (User_Projects)context.User_Projects.Where
-                (p => p.ProjectID == projectId && p.UserID == userManager.GetUserId(User));
-            return View(); 
+            var up = context.User_Projects.Where
+                (p => p.ProjectID == projectId && p.UserID == userManager.GetUserId(User)).Single();
+            context.User_Projects.Remove(up);
+            context.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
