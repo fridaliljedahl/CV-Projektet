@@ -2,7 +2,6 @@
 using CV_Projektet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.Language;
 
 namespace CV_Projektet.Controllers
 {
@@ -28,8 +27,10 @@ namespace CV_Projektet.Controllers
             context.SaveChanges();
             return RedirectToAction("Index", "Home"); 
         }
-        public ActionResult LeaveProject()
-        { 
+        public ActionResult LeaveProject(int projectId)
+        {
+            User_Projects up = (User_Projects)context.User_Projects.Where
+                (p => p.ProjectID == projectId && p.UserID == userManager.GetUserId(User));
             return View(); 
         }
     }
