@@ -14,8 +14,11 @@
 			<p>@Model.User.Email</p>
 		</div>
 		<div class="leftText">
-			<p>@Model.User.Address.Street</p>
-			<p>@Model.User.Address.PostalCode, @Model.User.Address.City</p>
+			@if (Model.User.Address != null)
+			{
+				<p>@Model.User.Address.Street</p>
+				<p>@Model.User.Address.PostalCode, @Model.User.Address.City</p>
+			}
 		</div>
 		<div class="cvSocialLinks">
 			<a href="#" class="fa fa-twitter"></a>

@@ -103,7 +103,7 @@ namespace CV_Projektet.Data
                     PhoneNumber = "073-222 22 22",
                     PasswordHash = "mittnamnärgunvor",
                     IsActive = true,
-                    IsPublic = false,
+                    IsPublic = true,
                     RegistrationDate = new DateTime(2022, 06, 11)
                 },
                 new User
@@ -131,7 +131,7 @@ namespace CV_Projektet.Data
                     PhoneNumber = "074-444 44 44",
                     PasswordHash = "mittnamnärsten",
                     IsActive = true,
-                    IsPublic = false,
+                    IsPublic = true,
                     RegistrationDate = new DateTime(2022, 12, 26)
                 },
                 new User
@@ -144,7 +144,7 @@ namespace CV_Projektet.Data
                     Email = "kajsa@hotmail.se",
                     PhoneNumber = "075-123 55 55",
                     PasswordHash = "mittnamnärkajsa",
-                    IsActive = false,
+                    IsActive = true,
                     IsPublic = true,
                     RegistrationDate = new DateTime(2022, 09, 28)
                 },
@@ -158,8 +158,8 @@ namespace CV_Projektet.Data
                     Email = "frida@hotmail.se",
                     PhoneNumber = "075-555 55 55",
                     PasswordHash = "mittnamnärfrida",
-                    IsActive = true,
-                    IsPublic = true,
+                    IsActive = false,
+                    IsPublic = false,
                     RegistrationDate = new DateTime(2022, 07, 28)
                 },
                 new User
@@ -173,7 +173,7 @@ namespace CV_Projektet.Data
                     PhoneNumber = "076-666 66 66",
                     PasswordHash = "mittnamnärlinda",
                     IsActive = true,
-                    IsPublic = true,
+                    IsPublic = false,
                     RegistrationDate = new DateTime(2022, 08, 11)
                 },
                 new User
@@ -187,7 +187,7 @@ namespace CV_Projektet.Data
                     PhoneNumber = "077-773 33 33",
                     PasswordHash = "mittnamnärlisa",
                     IsActive = true,
-                    IsPublic = true,
+                    IsPublic = false,
                     RegistrationDate = new DateTime(2022, 08, 26)
                 },
                 new User
@@ -200,8 +200,8 @@ namespace CV_Projektet.Data
                     Email = "viktor@hotmail.se",
                     PhoneNumber = "073-333 33 33",
                     PasswordHash = "mittnamnärviktor",
-                    IsActive = true,
-                    IsPublic = true,
+                    IsActive = false,
+                    IsPublic = false,
                     RegistrationDate = new DateTime(2021, 10, 05)
                 },
                 new User
@@ -215,7 +215,7 @@ namespace CV_Projektet.Data
                     PhoneNumber = "073-888 33 33",
                     PasswordHash = "mittnamnärulla",
                     IsActive = false,
-                    IsPublic = false,
+                    IsPublic = true,
                     RegistrationDate = new DateTime(2020, 10, 05)
                 });
 

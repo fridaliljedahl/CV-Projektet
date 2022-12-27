@@ -24,6 +24,9 @@ body {
 .content {
     padding-top: 7em;
 }
+h1 {
+    text-align: center;
+}
 /*Header*/
 header {
     z-index: 1;
@@ -59,16 +62,31 @@ footer {
 }
 
 /*Startsida*/
-.cardContainer{
+.contentHome {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.cardContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 .card {
     color: #000000;
+    margin: 1em;
+    padding: 1em;
 }
-
+.headingHome{
+    color: darkorange;
+    text-align: center;
+}
+.personCard a{
+    color: black;
+}
+.contentHome li{
+    text-align: start;
+}
 /*CV*/
-
 .CVright {
     color: #000000;
     padding: 0em 2em;

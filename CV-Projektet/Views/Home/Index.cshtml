@@ -3,95 +3,162 @@
 }
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @model HomeViewModel
 
 <h1>Välkommen till CVGrottan</h1>
-
-<h2>Nya medlemmar</h2>
-<div class="cardContainer">
-	@try
-	{
-		@if (SignInManager.IsSignedIn(User))
+<br />
+<br />
+<div class="contentHome">
+	<h2 class="headingHome">Nya medlemmar</h2>
+	<br />
+	<div class="cardContainer">
+		@try
 		{
-			@foreach (var item in Model.AllUsers)
+			@*			IEnumerable<User> hej = Model.AllUsers;
+		IEnumerable<User> hej2 = Model.NonPrivateUsers;
+		IEnumerable<Project> hej3 = Model.Projects;*@
+
+			@if (SignInManager.IsSignedIn(User))
 			{
-				<div class="card">
-					<img src="@item.ProfilePicture">
-					<h3>@item.FirstName @item.LastName</h3>
-					<h4>Kompetenser:</h4>
-					<ul>
-						@foreach (var comp in item.CV.CV_Competences)
+				@foreach (var item in Model.AllUsers)
+				{
+					<a class="card" href="@Url.Action("Index", "CV", new { userID = item.Id})">
+						<img src="@item.ProfilePicture">
+						<h3>@item.FirstName @item.LastName</h3>
+						<br>
+						@if (item.CV != null)
 						{
-							<li>@comp.Competence.Name</li>
+							if (item.CV.CV_Competences.Any())
+							{
+								<h4>Kompetenser:</h4>
+								<ul>
+									@foreach (var comp in item.CV.CV_Competences)
+									{
+										<li>@comp.Competence.Name</li>
+									}
+								</ul>
+							}
+							else
+							{
+								<p>Denna person har inte lagt till några kompetenser i sitt CV ännu</p>
+							}
 						}
-					</ul>
-				</div>
+						else
+						{
+							<p>Denna person har inte skapat något CV ännu</p>
+						}
+					</a>
+				}
+			}
+			else
+			{
+				@foreach (var item in Model.NonPrivateUsers)
+				{
+					<a class="card" href="@Url.Action("Index", "CV", new { userID = item.Id})">
+						<img src="@item.ProfilePicture">
+						<h3>@item.FirstName @item.LastName</h3>
+						<br>
+						@if (item.CV != null)
+						{
+							if (item.CV.CV_Competences.Any())
+							{
+								<h4>Kompetenser:</h4>
+								<ul>
+									@foreach (var comp in item.CV.CV_Competences)
+									{
+										<li>@comp.Competence.Name</li>
+									}
+								</ul>
+							}
+							else
+							{
+								<p>Denna person har inte lagt till några kompetenser i sitt CV ännu</p>
+							}
+						}
+						else
+						{
+							<p>Denna person har inte skapat något CV ännu</p>
+						}
+					</a>
+				}
 			}
 		}
-		else
+		catch (Exception ex) { }
+	</div>
+	<br />
+	<br />
+	<h2 class="headingHome">Nya projekt</h2>
+	<br />
+	<div class="cardContainer">
+		@try
 		{
-			@foreach (var item in Model.NonPrivateUsers)
+			@foreach (var item in Model.Projects)
 			{
 				<div class="card">
-					<img src="@item.ProfilePicture">
-					<h3>@item.FirstName @item.LastName</h3>
-					<h4>Kompetenser:</h4>
-					<ul>
-						@foreach (var comp in item.CV.CV_Competences)
+					<h3>@item.Name</h3>
+					<p>@item.Description</p>
+					<br>
+					<h4>Projektledare</h4>
+					<div class="personCard">
+						<img src="@item.ProjectLeader.ProfilePicture">
+						<a class="" href="@Url.Action("Index", "CV", new { userID = item.ProjectLeader.Id})">@item.ProjectLeader.FirstName @item.ProjectLeader.LastName</a>
+					</div>
+					<br>
+					<h4>Medverkande</h4>
+					<div class="collabContainer">
+						@if (SignInManager.IsSignedIn(User))
 						{
-							<li>@comp.Competence.Name</li>
-						}
-					</ul>
-				</div>
-			}
-		}
-	}
-	catch (Exception ex) { }
-</div>
-
-<br />
-<h2>Nya projekt</h2>
-<br />
-<div class="cardContainer">
-	@try
-	{
-		@foreach (var item in Model.Projects)
-		{
-			<div class="card">
-				<h3>@item.Name</h3>
-				<h4>Projektledare</h4>
-				<div class="personCard">
-					<img src="@item.ProjectLeader.ProfilePicture">
-					<p>@item.ProjectLeader.FirstName @item.ProjectLeader.LastName</p>
-				</div>
-				<h4>Medverkande</h4>
-				<div class="collabContainer">
-					@if (SignInManager.IsSignedIn(User))
-					{
-						@foreach (var col in item.User_Project)
-						{
-							<div class="personCard">
-								<img src="@col.User.ProfilePicture">
-								<p>@col.User.FirstName @col.User.LastName</p>
-							</div>
-						}
-					}
-					else
-					{
-						@foreach (var col in item.User_Project)
-						{
-							if (col.User.IsPublic)
+							@foreach (var col in item.User_Project)
 							{
 								<div class="personCard">
 									<img src="@col.User.ProfilePicture">
-									<p>@col.User.FirstName @col.User.LastName</p>
+									<a class="" href="@Url.Action("Index", "CV", new { userID = col.User.Id})">@col.User.FirstName @col.User.LastName</a>
 								</div>
 							}
 						}
+						else
+						{
+							@foreach (var col in item.User_Project)
+							{
+								if (col.User.IsPublic)
+								{
+									<div class="personCard">
+										<img src="@col.User.ProfilePicture">
+										<a class="" href="@Url.Action("Index", "CV", new { userID = col.User.Id})">@col.User.FirstName @col.User.LastName</a>
+									</div>
+								}
+							}
+						}
+					</div>
+					<br>
+					@if (SignInManager.IsSignedIn(User))
+					{
+						bool involved = false;
+						foreach (var person in item.User_Project)
+						{
+							if (person.UserID.Equals(UserManager.GetUserId(User)))
+							{
+								involved = true;
+							}
+						}
+						if (involved) 
+						{
+							<a>&#x2718; Lämna projekt</a>
+						}
+						else
+						{
+							<a>&#x2714; Gå med i projekt</a>
+						}
+
+
+
 					}
+
 				</div>
-			</div>
+			}
 		}
-	}
-	catch (Exception ex) { }
+		catch (Exception ex)
+		{ }
+	</div>
 </div>
