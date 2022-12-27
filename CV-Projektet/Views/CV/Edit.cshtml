@@ -8,7 +8,7 @@
 <div class="gridCV">
 	<div class="CVleft">
 		<div class="leftText"></div>
-		<a class="edit" href="@Url.Action("Edit","CV", new { userID = User.Identity})">
+		<a class="edit" href="@Url.Action("Index","CV", new { userID = User.Identity})">
 			<span class="material-symbols-outlined">
 				settings
 			</span>
@@ -25,7 +25,11 @@
 			catch (Exception ex)
 			{
 			}
+			<a class="edit" href="@Url.Action("Index","Image", new { userID = User.Identity})"><span class="material-symbols-outlined">
+edit
+</span>Hantera profilbild</a>
 		</div>
+
 		@try
 		{
 			<h1>@Model.User.FirstName @Model.User.LastName</h1>
@@ -133,8 +137,5 @@
 				}
 			}}
 		catch (Exception ex) { }
-
-
-
 	</div>
 </div>

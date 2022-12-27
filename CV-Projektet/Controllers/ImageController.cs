@@ -16,9 +16,14 @@ namespace CV_Projektet.Controllers
 			_hostEnviroment = hostEnviroment;
 		}
 
-		public async Task<IActionResult> Index()
+		//public async Task<IActionResult> Index()
+		//{
+		//	return View(await context.Images.ToListAsync());
+		//}
+
+		public IActionResult Index(string userID)
 		{
-			return View(await context.Images.ToListAsync());
+			return View();
 		}
 
 		public async Task<IActionResult> Details(int? id)
@@ -36,16 +41,15 @@ namespace CV_Projektet.Controllers
 			return View(imageModel);
 		}
 
-		public IActionResult Add()
+		public IActionResult Add(string userID)
 		{
 			return View();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Add([Bind("ID,Title,ImageFile")] ImageModel imageModel)
-		{
-
+		public async Task<IActionResult> Add([Bind("ID,Title,ImageFile")] ImageModel imageModel, string userID)
+		{			
 			string wwwRootPath = _hostEnviroment.WebRootPath;
 			string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
 			string extension = Path.GetExtension(imageModel.ImageFile.FileName);
@@ -55,8 +59,9 @@ namespace CV_Projektet.Controllers
 			{
 				await imageModel.ImageFile.CopyToAsync(fileStream);
 			}
-
+			imageModel.UserID = userID;
 			context.Add(imageModel);
+
 			await context.SaveChangesAsync();
 			return RedirectToAction(nameof(Index));
 		}

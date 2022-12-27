@@ -1,34 +1,39 @@
-﻿@model List<ImageModel>
+﻿@model ImageModel
 @{
 }
+@try
+{
+	
+	@if (@Model.Name.Any())
+	{
+		<table class="table-bordered">
+			<thead>
+				<tr>
+					<td>Titel</td>
+					<td>Filnamn</td>
+					<td>Bild</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@Model.Title</td>
+					<td>@Model.Name</td>
+					<td>
+						<img src="@("~/image/"+Model.Name)" asp-append-version="true" width="250px" height="250" />
+					</td>
+					<td>
+						<a asp-action="Edit" asp-route-id="@Model.ID">Uppdatera</a>
+					</td>
+					<td>
+						<a asp-action="Delete" asp-route-id="@Model.ID">Radera</a>
+					</td>
 
-<table class="table-bordered">
-	<thead>
-		<tr>
-			<td>Titel</td>
-			<td>Filnamn</td>
-			<td>Bild</td>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>@item.Title</td>
-				<td>@item.Name</td>
-				<td>
-					<img src="@("~/image/"+item.Name)" asp-append-version="true" width="250px" height="250" />
-				</td>
-				<td>
-					<a asp-action="Edit" asp-route-id="@item.ID">Uppdatera</a>
-				</td>
-				<td>
-					<a asp-action="Delete" asp-route-id="@item.ID">Radera</a>
-				</td>
+				</tr>
+			</tbody>
+		</table>
+	}}
+catch(Exception ex){}
 
-			</tr>
-		}
-	</tbody>
-</table>
+
 <hr />
-<a asp-action="Add">Lägg till en ny bild</a>
+<a class="edit" href="@Url.Action("Add","Image", new { userID = User.Identity})">Lägg till profilbild</a>
