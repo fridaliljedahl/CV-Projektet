@@ -1,9 +1,161 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@model HomeViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Välkommen till CVGrottan</h1>
+<h1>Välkommen till CVGrottan</h1>
+<br />
+<br />
+<div class="contentHome">
+	<h2 class="headingHome">Nya medlemmar</h2>
+	<br />
+	<div class="cardContainer">
+		@try
+		{
+			@*			IEnumerable<User> hej = Model.AllUsers;
+		IEnumerable<User> hej2 = Model.NonPrivateUsers;
+		IEnumerable<Project> hej3 = Model.Projects;*@
 
-    
+			@if (SignInManager.IsSignedIn(User))
+			{
+				@foreach (var item in Model.AllUsers)
+				{
+					<a class="card" href="@Url.Action("Index", "CV", new { userID = item.Id})">
+						<img src="@item.ProfilePicture">
+						<h3>@item.FirstName @item.LastName</h3>
+						<br>
+						@if (item.CV != null)
+						{
+							if (item.CV.CV_Competences.Any())
+							{
+								<h4>Kompetenser:</h4>
+								<ul>
+									@foreach (var comp in item.CV.CV_Competences)
+									{
+										<li>@comp.Competence.Name</li>
+									}
+								</ul>
+							}
+							else
+							{
+								<p>Denna person har inte lagt till några kompetenser i sitt CV ännu</p>
+							}
+						}
+						else
+						{
+							<p>Denna person har inte skapat något CV ännu</p>
+						}
+					</a>
+				}
+			}
+			else
+			{
+				@foreach (var item in Model.NonPrivateUsers)
+				{
+					<a class="card" href="@Url.Action("Index", "CV", new { userID = item.Id})">
+						<img src="@item.ProfilePicture">
+						<h3>@item.FirstName @item.LastName</h3>
+						<br>
+						@if (item.CV != null)
+						{
+							if (item.CV.CV_Competences.Any())
+							{
+								<h4>Kompetenser:</h4>
+								<ul>
+									@foreach (var comp in item.CV.CV_Competences)
+									{
+										<li>@comp.Competence.Name</li>
+									}
+								</ul>
+							}
+							else
+							{
+								<p>Denna person har inte lagt till några kompetenser i sitt CV ännu</p>
+							}
+						}
+						else
+						{
+							<p>Denna person har inte skapat något CV ännu</p>
+						}
+					</a>
+				}
+			}
+		}
+		catch (Exception ex) { }
+	</div>
+	<br />
+	<br />
+	<h2 class="headingHome">Nya projekt</h2>
+	<br />
+	<div class="cardContainer">
+		@try
+		{
+			@foreach (var item in Model.Projects)
+			{
+				<div class="card">
+					<h3>@item.Name</h3>
+					<p>@item.Description</p>
+					<br>
+					<h4>Projektledare</h4>
+					<div class="personCard">
+						<img src="@item.ProjectLeader.ProfilePicture">
+						<a class="" href="@Url.Action("Index", "CV", new { userID = item.ProjectLeader.Id})">@item.ProjectLeader.FirstName @item.ProjectLeader.LastName</a>
+					</div>
+					<br>
+					<h4>Medverkande</h4>
+					<div class="collabContainer">
+						@if (SignInManager.IsSignedIn(User))
+						{
+							@foreach (var col in item.User_Project)
+							{
+								<div class="personCard">
+									<img src="@col.User.ProfilePicture">
+									<a class="" href="@Url.Action("Index", "CV", new { userID = col.User.Id})">@col.User.FirstName @col.User.LastName</a>
+								</div>
+							}
+						}
+						else
+						{
+							@foreach (var col in item.User_Project)
+							{
+								if (col.User.IsPublic)
+								{
+									<div class="personCard">
+										<img src="@col.User.ProfilePicture">
+										<a class="" href="@Url.Action("Index", "CV", new { userID = col.User.Id})">@col.User.FirstName @col.User.LastName</a>
+									</div>
+								}
+							}
+						}
+					</div>
+					<br>
+					@if (SignInManager.IsSignedIn(User))
+					{
+						bool involved = false;
+						foreach (var person in item.User_Project)
+						{
+							if (person.UserID.Equals(UserManager.GetUserId(User)))
+							{
+								involved = true;
+							}
+						}
+
+						if (involved) 
+						{
+							<a class="involved" href="@Url.Action("LeaveProject", "User", new { projectId = item.ID, caller = "Home"})">&#x2717; Lämna projektet</a>
+						}
+						else
+						{
+							<a class="involved" href="@Url.Action("JoinProject", "User", new { projectId = item.ID, caller = "Home"})">&#x2713; Gå med i projektet</a>
+						}
+					}
+				</div>
+			}
+		}
+		catch (Exception ex)
+		{ }
+	</div>
 </div>

@@ -19,8 +19,10 @@ namespace CV_Projektet.Controllers
         public IActionResult Index()
         {
             var view = new HomeViewModel();
-            view.Users = context.Users.OrderByDescending(u => u);
-            return View();
+            view.AllUsers = context.Users.OrderByDescending(u => u.RegistrationDate).Take(6).ToList();
+            view.NonPrivateUsers = context.Users.OrderByDescending(u => u.RegistrationDate).Where(u => u.IsPublic == true).Take(6).ToList();
+            view.Projects = context.Projects.OrderByDescending(p => p.CreatedDate).Take(6).ToList();
+            return View(view);
         }
 
         public IActionResult Privacy()

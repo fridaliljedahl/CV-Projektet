@@ -276,9 +276,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Lund",
                             Description = "pratade i telefon",
-                            EndDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7247),
+                            EndDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2798),
                             Place = "ICA",
-                            StartDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7233),
+                            StartDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2790),
                             Title = "Kundtjänst",
                             Type = "Work"
                         },
@@ -288,9 +288,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Örebro",
                             Description = "Java",
-                            EndDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7255),
+                            EndDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2803),
                             Place = "Örebro Universitet",
-                            StartDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7253),
+                            StartDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2801),
                             Title = "Systemvetenskap",
                             Type = "Education"
                         },
@@ -300,9 +300,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Göteborg",
                             Description = "HLR-utbildning",
-                            EndDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7260),
+                            EndDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2807),
                             Place = "Företag1",
-                            StartDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7258),
+                            StartDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2805),
                             Title = "HLR",
                             Type = "Course"
                         },
@@ -312,9 +312,9 @@ namespace CV_Projektet.Migrations
                             CVID = 2,
                             City = "Örebro",
                             Description = "Beskrivning blabla",
-                            EndDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7264),
+                            EndDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2810),
                             Place = "Örebro Universitet",
-                            StartDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7262),
+                            StartDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2809),
                             Title = "Lärarprogrammet",
                             Type = "Education"
                         },
@@ -324,9 +324,9 @@ namespace CV_Projektet.Migrations
                             CVID = 1,
                             City = "Örebro",
                             Description = "Java",
-                            EndDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7269),
+                            EndDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2814),
                             Place = "Örebro Universitet",
-                            StartDate = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(7267),
+                            StartDate = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(2813),
                             Title = "Systemvetenskap",
                             Type = "Education"
                         });
@@ -407,7 +407,7 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 1,
-                            Date = new DateTime(2022, 12, 27, 10, 24, 31, 699, DateTimeKind.Local).AddTicks(4504),
+                            Date = new DateTime(2022, 12, 27, 13, 24, 29, 654, DateTimeKind.Local).AddTicks(1070),
                             Read = false,
                             Receiver = "användare2id",
                             Sender = "användare1id",
@@ -422,6 +422,9 @@ namespace CV_Projektet.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -445,6 +448,7 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 1,
+                            CreatedDate = new DateTime(2021, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Projektbeskrivningen blabla",
                             Name = "Planeringsprojektet",
                             ProjectLeaderID = "användare1id"
@@ -452,6 +456,7 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 2,
+                            CreatedDate = new DateTime(2020, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Projektbeskrivningen blabla",
                             Name = "Yogahemsideprojektet",
                             ProjectLeaderID = "användare2id"
@@ -459,6 +464,7 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 3,
+                            CreatedDate = new DateTime(2022, 9, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Projektbeskrivningen blabla",
                             Name = "CV-Projektet",
                             ProjectLeaderID = "användare3id"
@@ -466,6 +472,7 @@ namespace CV_Projektet.Migrations
                         new
                         {
                             ID = 4,
+                            CreatedDate = new DateTime(2022, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Projektbeskrivningen blabla",
                             Name = "Mötesprojektet",
                             ProjectLeaderID = "användare4id"
@@ -568,7 +575,7 @@ namespace CV_Projektet.Migrations
                             Id = "användare1id",
                             AccessFailedCount = 0,
                             AdressID = 1,
-                            ConcurrencyStamp = "a7c6fa81-96f3-4189-b7dd-b7b2d7b6933f",
+                            ConcurrencyStamp = "5a8e6eaf-622f-4fe9-aba6-148baaadd14a",
                             Description = "Hejaaa",
                             Email = "inga@hotmail.com",
                             EmailConfirmed = false,
@@ -581,7 +588,7 @@ namespace CV_Projektet.Migrations
                             PhoneNumber = "073-111 11 11",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2022, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "7ce9d5e1-a017-4492-8c79-6457a0743012",
+                            SecurityStamp = "ae31497d-0c78-4aa7-8097-a0875aed57a0",
                             TwoFactorEnabled = false
                         },
                         new
@@ -589,20 +596,20 @@ namespace CV_Projektet.Migrations
                             Id = "användare2id",
                             AccessFailedCount = 0,
                             AdressID = 1,
-                            ConcurrencyStamp = "f9ed08a6-3f3a-4791-9d63-7b1a74c7b97c",
+                            ConcurrencyStamp = "72b24609-7678-4824-b300-f3f456464510",
                             Description = "Halloj",
                             Email = "gunvor@hotmail.se",
                             EmailConfirmed = false,
                             FirstName = "Gunvor",
                             IsActive = true,
-                            IsPublic = false,
+                            IsPublic = true,
                             LastName = "Nilsson",
                             LockoutEnabled = false,
                             PasswordHash = "mittnamnärgunvor",
                             PhoneNumber = "073-222 22 22",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2022, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "309a9070-2055-400c-b503-32de0e10c2af",
+                            SecurityStamp = "a1180c23-498c-4091-a912-18714775b49b",
                             TwoFactorEnabled = false
                         },
                         new
@@ -610,7 +617,7 @@ namespace CV_Projektet.Migrations
                             Id = "användare3id",
                             AccessFailedCount = 0,
                             AdressID = 1,
-                            ConcurrencyStamp = "53699ef9-875c-4104-bd92-827b2837a3da",
+                            ConcurrencyStamp = "29e321f0-1b57-4bbb-a6ea-fe616879c0ac",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "Jögge@hotmail.se",
                             EmailConfirmed = false,
@@ -623,7 +630,7 @@ namespace CV_Projektet.Migrations
                             PhoneNumber = "073-333 33 33",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2022, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "5b83462b-d79b-463c-bcf0-cfcd042c217b",
+                            SecurityStamp = "ab801e4f-dd1e-43d6-a566-2a05b65f7310",
                             TwoFactorEnabled = false
                         },
                         new
@@ -631,20 +638,20 @@ namespace CV_Projektet.Migrations
                             Id = "användare4id",
                             AccessFailedCount = 0,
                             AdressID = 2,
-                            ConcurrencyStamp = "62cf1ec3-0db4-4a5c-b7a4-d3dc000c1b6a",
+                            ConcurrencyStamp = "ce5fa78b-6b11-42c3-91e6-11160da57867",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "stenis@hotmail.se",
                             EmailConfirmed = false,
                             FirstName = "Sten",
                             IsActive = true,
-                            IsPublic = false,
+                            IsPublic = true,
                             LastName = "Kallesson",
                             LockoutEnabled = false,
                             PasswordHash = "mittnamnärsten",
                             PhoneNumber = "074-444 44 44",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2022, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "ea34742e-dd5d-4063-b551-819cbefb132b",
+                            SecurityStamp = "ccce1c5a-8c57-4757-a4b0-e7f2f5d1c079",
                             TwoFactorEnabled = false
                         },
                         new
@@ -652,12 +659,12 @@ namespace CV_Projektet.Migrations
                             Id = "användare5id",
                             AccessFailedCount = 0,
                             AdressID = 3,
-                            ConcurrencyStamp = "1eced8ca-1733-407f-a089-983a624d8112",
+                            ConcurrencyStamp = "6b9ada02-95fc-43ee-869c-572ee7399c99",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "kajsa@hotmail.se",
                             EmailConfirmed = false,
                             FirstName = "Kajsa",
-                            IsActive = false,
+                            IsActive = true,
                             IsPublic = true,
                             LastName = "Stenbäck",
                             LockoutEnabled = false,
@@ -665,7 +672,7 @@ namespace CV_Projektet.Migrations
                             PhoneNumber = "075-123 55 55",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2022, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "59ae399c-e2aa-4b4e-afc9-4d04002d9dc7",
+                            SecurityStamp = "694389a2-ed0d-427c-9407-d77f31a47f31",
                             TwoFactorEnabled = false
                         },
                         new
@@ -673,20 +680,20 @@ namespace CV_Projektet.Migrations
                             Id = "användare6id",
                             AccessFailedCount = 0,
                             AdressID = 4,
-                            ConcurrencyStamp = "3a48f55a-d7be-4fcc-97f4-480991fa8203",
+                            ConcurrencyStamp = "cf1b1d96-1c86-4f94-b360-f91b3986c03f",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "frida@hotmail.se",
                             EmailConfirmed = false,
                             FirstName = "Frida",
-                            IsActive = true,
-                            IsPublic = true,
+                            IsActive = false,
+                            IsPublic = false,
                             LastName = "Liljedahl",
                             LockoutEnabled = false,
                             PasswordHash = "mittnamnärfrida",
                             PhoneNumber = "075-555 55 55",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2022, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "4d6325be-0323-475f-87d7-2383c6b50f9d",
+                            SecurityStamp = "0d539acf-6e5d-4a0f-b042-6b0a90a5cd2b",
                             TwoFactorEnabled = false
                         },
                         new
@@ -694,20 +701,20 @@ namespace CV_Projektet.Migrations
                             Id = "användare7id",
                             AccessFailedCount = 0,
                             AdressID = 2,
-                            ConcurrencyStamp = "7c3d48e1-82cd-4e80-a5bd-9220de0024fd",
+                            ConcurrencyStamp = "be5ce2d3-d4b0-4d8e-8973-d9dccd89bb59",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "linda@hotmail.se",
                             EmailConfirmed = false,
                             FirstName = "Linda",
                             IsActive = true,
-                            IsPublic = true,
+                            IsPublic = false,
                             LastName = "Nordeman",
                             LockoutEnabled = false,
                             PasswordHash = "mittnamnärlinda",
                             PhoneNumber = "076-666 66 66",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2022, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "b9cf03d0-4d99-44d7-bdd8-76e24e72a5e7",
+                            SecurityStamp = "e73e4472-de75-4c43-a041-d275904cd51f",
                             TwoFactorEnabled = false
                         },
                         new
@@ -715,20 +722,20 @@ namespace CV_Projektet.Migrations
                             Id = "användare8id",
                             AccessFailedCount = 0,
                             AdressID = 3,
-                            ConcurrencyStamp = "4669d382-d9ba-4f8c-bc09-07593d4e39f2",
+                            ConcurrencyStamp = "ec453276-5916-46f7-8f4b-3fb3bf2985b9",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "lisa@hotmail.se",
                             EmailConfirmed = false,
                             FirstName = "Lisa",
                             IsActive = true,
-                            IsPublic = true,
+                            IsPublic = false,
                             LastName = "Kjellgren",
                             LockoutEnabled = false,
                             PasswordHash = "mittnamnärlisa",
                             PhoneNumber = "077-773 33 33",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2022, 8, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "2eba633c-f727-437c-b78f-69e262f9e3ec",
+                            SecurityStamp = "ba71be4a-3747-41c2-bf52-092e1686a66a",
                             TwoFactorEnabled = false
                         },
                         new
@@ -736,20 +743,20 @@ namespace CV_Projektet.Migrations
                             Id = "användare9id",
                             AccessFailedCount = 0,
                             AdressID = 2,
-                            ConcurrencyStamp = "319e350a-84ba-4301-baa9-024159da424d",
+                            ConcurrencyStamp = "762cdf22-57bf-40e1-ae97-f3c839ddb0b5",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "viktor@hotmail.se",
                             EmailConfirmed = false,
                             FirstName = "Viktor",
-                            IsActive = true,
-                            IsPublic = true,
+                            IsActive = false,
+                            IsPublic = false,
                             LastName = "Hemlin Gravander",
                             LockoutEnabled = false,
                             PasswordHash = "mittnamnärviktor",
                             PhoneNumber = "073-333 33 33",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "78fbc375-5cb5-4f29-b5d2-53b96f9e5b92",
+                            SecurityStamp = "22ab3823-0fd6-44ea-b5e9-2966d32b75f2",
                             TwoFactorEnabled = false
                         },
                         new
@@ -757,20 +764,20 @@ namespace CV_Projektet.Migrations
                             Id = "användare10id",
                             AccessFailedCount = 0,
                             AdressID = 4,
-                            ConcurrencyStamp = "5e2aa879-9a69-4b10-b65d-8ea14becad41",
+                            ConcurrencyStamp = "828561df-74fa-4845-9a8c-3bd22edc1bc3",
                             Description = "dfggdffdgfdgdffdggdf",
                             Email = "ulla@hotmail.se",
                             EmailConfirmed = false,
                             FirstName = "Ulla",
                             IsActive = false,
-                            IsPublic = false,
+                            IsPublic = true,
                             LastName = "Ivarsson",
                             LockoutEnabled = false,
                             PasswordHash = "mittnamnärulla",
                             PhoneNumber = "073-888 33 33",
                             PhoneNumberConfirmed = false,
                             RegistrationDate = new DateTime(2020, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "35d9c86b-3849-4e3c-a53e-7e92da19d6c8",
+                            SecurityStamp = "f1d76b4b-afa9-456a-971d-744287f49b85",
                             TwoFactorEnabled = false
                         });
                 });

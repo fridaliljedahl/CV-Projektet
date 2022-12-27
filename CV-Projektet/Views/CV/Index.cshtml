@@ -15,15 +15,21 @@
 		</a>
 
 		<div class="circle">
-			@try
+			@if (Model.User.ProfilePicture != null)
 			{
-				if (@Model.User.imageModel.Name.Any())
-				{
-					<img class="profilepicture" src="@("~/image/" + @Model.User.imageModel.Name)" asp-append-version="true" />
-				}
+				<img class="profilepicture" src="@("~/image/" + @Model.User.imageModel.Name)" asp-append-version="true" />
 			}
-			catch (Exception ex)
+		</div>
+		<h1>@Model.User.FirstName @Model.User.LastName</h1>
+		<div class="leftText">
+			<p>@Model.User.PhoneNumber</p>
+			<p>@Model.User.Email</p>
+		</div>
+		<div class="leftText">
+			@if (Model.User.Address != null)
 			{
+				<p>@Model.User.Address.Street</p>
+				<p>@Model.User.Address.PostalCode, @Model.User.Address.City</p>
 			}
 		</div>
 		@try

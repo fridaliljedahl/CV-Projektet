@@ -16,7 +16,7 @@
 		<form method="post" asp-controller="Account" asp-action="LogOut">
 			<AuthorizeView>
 				<Authorized>
-					<h2>Du är loggad in som @User.Identity.Name</h2>
+					<p>Du är inloggad som <em class="accentWord">@User.Identity.Name</em></p>
 					<input type="submit" value="Logga ut" />
 				</Authorized>
 			</AuthorizeView>

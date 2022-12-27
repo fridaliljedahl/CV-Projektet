@@ -77,6 +77,7 @@ namespace CV_Projektet.Controllers
 			await signInManager.SignOutAsync();
 			return RedirectToAction("Index", "Home");
 		}
+
 	}
 
 }
