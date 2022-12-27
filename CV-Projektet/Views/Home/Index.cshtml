@@ -1,9 +1,97 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@model HomeViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Välkommen till CVGrottan</h1>
+<h1>Välkommen till CVGrottan</h1>
 
-    
+<h2>Nya medlemmar</h2>
+<div class="cardContainer">
+	@try
+	{
+		@if (SignInManager.IsSignedIn(User))
+		{
+			@foreach (var item in Model.AllUsers)
+			{
+				<div class="card">
+					<img src="@item.ProfilePicture">
+					<h3>@item.FirstName @item.LastName</h3>
+					<h4>Kompetenser:</h4>
+					<ul>
+						@foreach (var comp in item.CV.CV_Competences)
+						{
+							<li>@comp.Competence.Name</li>
+						}
+					</ul>
+				</div>
+			}
+		}
+		else
+		{
+			@foreach (var item in Model.NonPrivateUsers)
+			{
+				<div class="card">
+					<img src="@item.ProfilePicture">
+					<h3>@item.FirstName @item.LastName</h3>
+					<h4>Kompetenser:</h4>
+					<ul>
+						@foreach (var comp in item.CV.CV_Competences)
+						{
+							<li>@comp.Competence.Name</li>
+						}
+					</ul>
+				</div>
+			}
+		}
+	}
+	catch (Exception ex) { }
+</div>
+
+<br />
+<h2>Nya projekt</h2>
+<br />
+<div class="cardContainer">
+	@try
+	{
+		@foreach (var item in Model.Projects)
+		{
+			<div class="card">
+				<h3>@item.Name</h3>
+				<h4>Projektledare</h4>
+				<div class="personCard">
+					<img src="@item.ProjectLeader.ProfilePicture">
+					<p>@item.ProjectLeader.FirstName @item.ProjectLeader.LastName</p>
+				</div>
+				<h4>Medverkande</h4>
+				<div class="collabContainer">
+					@if (SignInManager.IsSignedIn(User))
+					{
+						@foreach (var col in item.User_Project)
+						{
+							<div class="personCard">
+								<img src="@col.User.ProfilePicture">
+								<p>@col.User.FirstName @col.User.LastName</p>
+							</div>
+						}
+					}
+					else
+					{
+						@foreach (var col in item.User_Project)
+						{
+							if (col.User.IsPublic)
+							{
+								<div class="personCard">
+									<img src="@col.User.ProfilePicture">
+									<p>@col.User.FirstName @col.User.LastName</p>
+								</div>
+							}
+						}
+					}
+				</div>
+			</div>
+		}
+	}
+	catch (Exception ex) { }
 </div>

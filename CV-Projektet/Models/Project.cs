@@ -13,6 +13,7 @@ namespace CV_Projektet.Models
         [Required]
         public string Description { get; set; }
         [Required]
+        public DateTime CreatedDate { get; set; }
         public string ProjectLeaderID { get; set; }
 
         [ForeignKey(nameof(ProjectLeaderID))]

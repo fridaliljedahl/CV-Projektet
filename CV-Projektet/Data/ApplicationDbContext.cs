@@ -46,9 +46,6 @@ namespace CV_Projektet.Data
                 .WithOne(p => p.ProjectLeader)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            //modelBuilder.Entity<User_Projects>()
-            //    .HasMany<Project>()
-
 
             modelBuilder.Entity<Address>().HasData(
                new Address
@@ -78,7 +75,8 @@ namespace CV_Projektet.Data
                    Street = "Storälven 22",
                    PostalCode = 16845,
                    City = "Gnesta"
-               });            
+               });    
+            
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -220,6 +218,7 @@ namespace CV_Projektet.Data
                     IsPublic = false,
                     RegistrationDate = new DateTime(2020, 10, 05)
                 });
+
             modelBuilder.Entity<CV>().HasData(
                 new CV
                 {
@@ -245,6 +244,7 @@ namespace CV_Projektet.Data
                     TimesViewed = 55,
                     UserID = "användare4id"
                 });
+
             modelBuilder.Entity<Message>().HasData(
                 new Message
                 {
@@ -265,28 +265,32 @@ namespace CV_Projektet.Data
                     ID = 1,
                     Name = "Planeringsprojektet",
                     Description = "Projektbeskrivningen blabla",
-                    ProjectLeaderID = "användare1id"
+                    ProjectLeaderID = "användare1id",
+                    CreatedDate = new DateTime(2021, 05, 12)
                 },
                 new Project
                 {
                     ID = 2,
                     Name = "Yogahemsideprojektet",
                     Description = "Projektbeskrivningen blabla",
-                    ProjectLeaderID = "användare2id"
+                    ProjectLeaderID = "användare2id",
+                    CreatedDate = new DateTime(2020, 08, 12)
                 },
                 new Project
                 {
                     ID = 3,
                     Name = "CV-Projektet",
                     Description = "Projektbeskrivningen blabla",
-                    ProjectLeaderID = "användare3id"
+                    ProjectLeaderID = "användare3id",
+                    CreatedDate = new DateTime(2022, 09, 29)
                 },
                 new Project
                 {
                     ID = 4,
                     Name = "Mötesprojektet",
                     Description = "Projektbeskrivningen blabla",
-                    ProjectLeaderID = "användare4id"
+                    ProjectLeaderID = "användare4id",
+                    CreatedDate = new DateTime(2022, 12, 27)
                 });
 
             modelBuilder.Entity<CV_Competences>()
