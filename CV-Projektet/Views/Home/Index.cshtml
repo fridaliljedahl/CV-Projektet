@@ -145,11 +145,11 @@
 
 						if (involved) 
 						{
-							<a class="involved" href="@Url.Action("LeaveProject", "User", new { projectId = item.ID})">&#x2717; Lämna projektet</a>
+							<a class="involved" href="@Url.Action("LeaveProject", "User", new { projectId = item.ID, caller = "Home"})">&#x2717; Lämna projektet</a>
 						}
 						else
 						{
-							<a class="involved" href="@Url.Action("JoinProject", "User", new { projectId = item.ID})">&#x2713; Gå med i projektet</a>
+							<a class="involved" href="@Url.Action("JoinProject", "User", new { projectId = item.ID, caller = "Home"})">&#x2713; Gå med i projektet</a>
 						}
 					}
 				</div>

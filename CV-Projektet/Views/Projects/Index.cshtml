@@ -1,10 +1,13 @@
 ﻿@model List<Project>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <div class="cardContainer" ">
 	@foreach (var item in Model)
 	{
 	<div class="card">
-		<h2 class ="accentWord">@item.Name</h2>
+		<h2 class="accentWord">@item.Name</h2>
 		<p>@item.Description</p>
 		<br>
 		<h3>Projektledare</h3>
@@ -25,6 +28,26 @@
 			</div>
 			}
 		</div>
+		@if (SignInManager.IsSignedIn(User))
+		{
+		bool involved = false;
+		foreach (var person in item.User_Project)
+		{
+		if (person.UserID.Equals(UserManager.GetUserId(User)))
+		{
+		involved = true;
+		}
+		}
+
+		if (involved)
+		{
+		<a class="involved" href="@Url.Action("LeaveProject", "User", new { projectId = item.ID, caller = "projects"})">&#x2717; Lämna projektet</a>
+		}
+		else
+		{
+		<a class="involved" href="@Url.Action("JoinProject", "User", new { projectId = item.ID, caller = "projects"})">&#x2713; Gå med i projektet</a>
+		}
+		}
 	</div>
 	}
 </div>
