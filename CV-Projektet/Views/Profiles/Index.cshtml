@@ -1,7 +1,10 @@
-﻿@model List<User>
+﻿@model IEnumerable<User>
 @{
 	ViewData["Title"] = "Profiler";
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 @*<form asp-controller="Profiles" asp-action="Index">
 	<input type="text" name="searchstring_firstname" />
@@ -23,50 +26,55 @@
 
 <h1>Profiler</h1>
 <div class="profileContainer">
+
+	@{
+		bool loggedIn = SignInManager.IsSignedIn(User);
+	}
+
 	@foreach (var user in Model)
 	{
-		<a class="profileCard" href="@Url.Action("Index","CV", new { userID = user.Id})">
-			@try
-			{
-				if (user.imageModel.Name.Any())
+		if (!(user.IsPublic == false && loggedIn == false))
+		{
+			<a class="profileCard" href="@Url.Action("Index","CV", new { userID = user.Id})">
+				@try
 				{
-					<img class="profilepicture" src="@("~/image/" + user.imageModel.Name)" asp-append-version="true" />
-				}
-			}
-			catch (Exception ex)
-			{
-			}
-			<h2>@user.FirstName @user.LastName</h2>
-			@try
-			{
-				if (user.CV.CV_Competences.Any())
-				{
-					<h3>Kompetenser</h3>
-					<ul>
-						@foreach (var item in user.CV.CV_Competences)
-						{
-							<li>@item.Competence.Name</li>
-						}
-					</ul>
-				}
-			}
-			catch (Exception ex)
-			{
-			}
-			@try
-			{
-				@if (user.CV.Experiences.Any())
-				{
-					<h3>Erfarenheter</h3>
-					@foreach (var item in user.CV.Experiences)
+					if (user.imageModel.Name.Any())
 					{
-						<p>@item.Title</p>
+						<img class="profilepicture" src="@("~/image/" + user.imageModel.Name)" asp-append-version="true" />
 					}
 				}
-			}
-			catch (Exception ex)
-			{
-			}
-		</a>
+				catch (Exception ex)
+				{
+				}
+				<h2>@user.FirstName @user.LastName</h2>
+				@try
+				{
+					if (user.CV.CV_Competences.Any())
+					{
+						<h3>Kompetenser</h3>
+						<ul>
+							@foreach (var item in user.CV.CV_Competences)
+							{
+								<li>@item.Competence.Name</li>
+							}
+						</ul>
+					}
+				}
+				catch (Exception ex) { }
+				@try
+				{
+					@if (user.CV.Experiences.Any())
+					{
+						<h3>Erfarenheter</h3>
+						@foreach (var item in user.CV.Experiences)
+						{
+							<p>@item.Title</p>
+						}
+					}
+				}
+				catch (Exception ex) { }
+			</a>
+		}
+
 	}
 </div>
