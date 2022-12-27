@@ -78,8 +78,6 @@ namespace CV_Projektet.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-        public Task<User> GetCurrentUser () =>
-            userManager.GetUserAsync(HttpContext.User);
 	}
 
 }

@@ -75,6 +75,7 @@ footer {
     color: #000000;
     margin: 1em;
     padding: 1em;
+    border-radius: 3em;
 }
 .headingHome{
     color: darkorange;
@@ -86,6 +87,10 @@ footer {
 .contentHome li{
     text-align: start;
 }
+.involved{
+    color: orange;
+}
+
 /*CV*/
 .CVright {
     color: #000000;

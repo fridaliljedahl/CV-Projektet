@@ -142,19 +142,16 @@
 								involved = true;
 							}
 						}
+
 						if (involved) 
 						{
-							<a>&#x2718; Lämna projekt</a>
+							<a class="involved">&#x2717; Lämna projektet</a>
 						}
 						else
 						{
-							<a>&#x2714; Gå med i projekt</a>
+							<a class="involved" href="@Url.Action("JoinProject", "User", new { projectId = item.ID})">&#x2713; Gå med i projektet</a>
 						}
-
-
-
 					}
-
 				</div>
 			}
 		}
