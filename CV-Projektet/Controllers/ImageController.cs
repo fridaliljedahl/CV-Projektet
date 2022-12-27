@@ -1,5 +1,6 @@
 ﻿using CV_Projektet.Data;
 using CV_Projektet.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +10,15 @@ namespace CV_Projektet.Controllers
 	{
 		private readonly ApplicationDbContext context;
 		private readonly IWebHostEnvironment _hostEnviroment;
+		private UserManager<User> userManager;
+		private SignInManager<User> signInManager;
 
-		public ImageController(ApplicationDbContext context, IWebHostEnvironment hostEnviroment)
+		public ImageController(ApplicationDbContext context, IWebHostEnvironment hostEnviroment, UserManager<User> userMngr, SignInManager<User> signInMngr)
 		{
 			this.context = context;
 			_hostEnviroment = hostEnviroment;
+			this.userManager = userMngr;
+			this.signInManager = signInMngr;
 		}
 
 		//public async Task<IActionResult> Index()
@@ -48,8 +53,8 @@ namespace CV_Projektet.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Add([Bind("ID,Title,ImageFile")] ImageModel imageModel, string userID)
-		{			
+		public async Task<IActionResult> Add([Bind("ID,Title,ImageFile")] ImageModel imageModel)
+		{	
 			string wwwRootPath = _hostEnviroment.WebRootPath;
 			string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
 			string extension = Path.GetExtension(imageModel.ImageFile.FileName);
@@ -59,7 +64,7 @@ namespace CV_Projektet.Controllers
 			{
 				await imageModel.ImageFile.CopyToAsync(fileStream);
 			}
-			imageModel.UserID = userID;
+			imageModel.UserID = userManager.GetUserId(User);
 			context.Add(imageModel);
 
 			await context.SaveChangesAsync();
