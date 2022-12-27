@@ -7,7 +7,9 @@
 <div class="gridCV">
 	<div class="CVleft">
 		<div class="leftText"></div>
-		<div class="circle"></div>
+		<div class="circle">
+			<img class="profilepicture" src="@("~/image/" + @Model.User.imageModel.Name)" asp-append-version="true" />
+		</div>
 		<h1>@Model.User.FirstName @Model.User.LastName</h1>
 		<div class="leftText">
 			<p>@Model.User.PhoneNumber</p>
