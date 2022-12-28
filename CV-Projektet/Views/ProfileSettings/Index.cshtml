@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@model User
+
+
+<h1>Inställningar</h1>
+
+@{
+	var user = UserManager.GetUserAsync(User);
+}
+
+<form id = "SettingsForm" method="post" asp-controller="" asp-action="">
+
+	 Förnamn:
+	<input class = "SettingBoxes" name ="FirstName" value = "@Model.FirstName"/>
+	<br /> Efternamn:
+	<input class = "SettingBoxes" name ="LastName" value = "@Model.LastName"/>
+	<br /> Användarnamn:
+	<input class = "SettingBoxes" name ="UserName" value = "@Model.UserName"/>
+	<br /> E-mail:
+	<input class = "SettingBoxes" name ="Email" value = "@Model.Email"/>
+	<br /> Telefonnummer:
+	<input class = "SettingBoxes" name ="PhoneNumber" value = "@Model.PhoneNumber"/>
+	<br /> Beskrivning:
+	<input id = "DescriptionBox" rows="10" cols="40" name ="Description" value = "@Model.Description"/>
+
+</form>

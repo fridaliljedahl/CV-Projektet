@@ -1,8 +1,10 @@
-﻿@model CVDetails
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@model CVDetails
 @{
 	ViewData["Title"] = "Home Page";
 }
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="gridCV">
 	<div class="CVleft">
