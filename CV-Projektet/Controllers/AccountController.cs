@@ -55,23 +55,23 @@ namespace CV_Projektet.Controllers
                     {
                         User createdUser = context.Users.Where(u => u.UserName == user.UserName).Single();
 
-                        Address address = new Address();
-                        address.Street = userRegistrationViewmodel.Street;
-                        address.City = userRegistrationViewmodel.City;
-                        address.PostalCode = userRegistrationViewmodel.PostalCode;
+                        Address? enteredAddress = context.Addresses.Where(a =>
+                            a.Street == userRegistrationViewmodel.Street &&
+                            a.PostalCode == userRegistrationViewmodel.PostalCode &&
+                            a.City == userRegistrationViewmodel.City)
+                            .SingleOrDefault();
 
-                        Address addressExists = context.Addresses.Where(a =>
-                            a.Street == address.Street &&
-                            a.PostalCode == address.PostalCode &&
-                            a.City == address.City)
-                            .Single();
+                        if (enteredAddress == null)
+                        {
+                            enteredAddress = new Address();
+                            enteredAddress.Street = userRegistrationViewmodel.Street;
+                            enteredAddress.City = userRegistrationViewmodel.City;
+                            enteredAddress.PostalCode = userRegistrationViewmodel.PostalCode;
+                            context.Add(enteredAddress);
+                            enteredAddress = context.Addresses.OrderByDescending(a => a.ID).First();
+                        }
 
-                        //if (addressExists == null)
-
-                        context.Add(address);
-
-                        Address addedAddres = context.Addresses.OrderByDescending(a => a.ID).First();
-                        createdUser.AdressID = addedAddres.ID;
+                        createdUser.AdressID = enteredAddress.ID;
                         context.Users.Update(createdUser);
 
                         CV cv = new CV();

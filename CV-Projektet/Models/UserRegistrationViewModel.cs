@@ -49,7 +49,6 @@ namespace CV_Projektet.Models
         [RegularExpression("^[0-9]+$", ErrorMessage = "Phone number can only contain digits ")]
         public string PhoneNumber { get; set; }
 
-
         [Required]
         [Display(Name = "Street namn")]
         public string Street { get; set; }
