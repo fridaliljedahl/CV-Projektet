@@ -7,7 +7,8 @@
 	<div class="navLinks">
 		<a asp-area="" asp-controller="Projects" asp-action="Index">Sök projekt</a>
 		<a asp-area="" asp-controller="Profiles" asp-action="Index">Sök profil</a>
-		@if (SignInManager.IsSignedIn(User)){<a asp-area="" asp-controller="" asp-action="">Mina meddelanden</a>}
+		@if (SignInManager.IsSignedIn(User)){<a asp-area="" asp-controller="" asp-action="">Mina meddelanden</a>
+		<a class="CVLink" href="@Url.Action("Index","CV", new { userID = UserManager.GetUserId(User)})">Mitt CV</a>}
 	</div>
 
 @if (SignInManager.IsSignedIn(User))

@@ -75,12 +75,12 @@ footer {
     text-align: center;
 }
 
-.cardContainer { /*Gäller även på projektsidan*/
+.cardContainer { /*Gï¿½ller ï¿½ven pï¿½ projektsidan*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.card { /*Gäller även på projektsidan*/
+.card { /*Gï¿½ller ï¿½ven pï¿½ projektsidan*/
     color: #000000;
     margin: 1em;
     padding: 1em;
@@ -162,13 +162,23 @@ footer {
     background-color: #ACB7A0;
     padding-top: 4em;
 }
-/*.circle {
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 100, 'GRAD' 0, 'opsz' 48
+}
+
+.circle {
     margin: 1em;
     height: 10em;
     width: 10em;
     border-radius: 50%;
     background-color: #FFFEF6;
-}*/
+}
+
 .profilepicture {
     margin: 1em;
     height: 15em;

@@ -1,5 +1,6 @@
 ﻿using CV_Projektet.Data;
 using CV_Projektet.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,16 +10,26 @@ namespace CV_Projektet.Controllers
 	{
 		private readonly ApplicationDbContext context;
 		private readonly IWebHostEnvironment _hostEnviroment;
+		private UserManager<User> userManager;
+		private SignInManager<User> signInManager;
 
-		public ImageController(ApplicationDbContext context, IWebHostEnvironment hostEnviroment)
+		public ImageController(ApplicationDbContext context, IWebHostEnvironment hostEnviroment, UserManager<User> userMngr, SignInManager<User> signInMngr)
 		{
 			this.context = context;
 			_hostEnviroment = hostEnviroment;
+			this.userManager = userMngr;
+			this.signInManager = signInMngr;
 		}
 
-		public async Task<IActionResult> Index()
+		//public async Task<IActionResult> Index()
+		//{
+		//	return View(await context.Images.ToListAsync());
+		//}
+
+		public IActionResult Index(string userID)
 		{
-			return View(await context.Images.ToListAsync());
+			ImageModel? imageModel = context.Images.Where(i => i.UserID == userManager.GetUserId(User)).SingleOrDefault();
+			return View(imageModel);
 		}
 
 		public async Task<IActionResult> Details(int? id)
@@ -36,7 +47,7 @@ namespace CV_Projektet.Controllers
 			return View(imageModel);
 		}
 
-		public IActionResult Add()
+		public IActionResult Add(string userID)
 		{
 			return View();
 		}
@@ -44,8 +55,7 @@ namespace CV_Projektet.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Add([Bind("ID,Title,ImageFile")] ImageModel imageModel)
-		{
-
+		{	
 			string wwwRootPath = _hostEnviroment.WebRootPath;
 			string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
 			string extension = Path.GetExtension(imageModel.ImageFile.FileName);
@@ -55,8 +65,9 @@ namespace CV_Projektet.Controllers
 			{
 				await imageModel.ImageFile.CopyToAsync(fileStream);
 			}
-
+			imageModel.UserID = userManager.GetUserId(User);
 			context.Add(imageModel);
+
 			await context.SaveChangesAsync();
 			return RedirectToAction(nameof(Index));
 		}
@@ -107,7 +118,7 @@ namespace CV_Projektet.Controllers
 
 			context.Images.Remove(imageModel);
 			await context.SaveChangesAsync();
-			return RedirectToAction(nameof(Index));	
+			return RedirectToAction("Index", "Image");	
 		}
 
 		private bool ImageModelExists(int id)
