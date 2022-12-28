@@ -28,7 +28,8 @@ namespace CV_Projektet.Controllers
 
 		public IActionResult Index(string userID)
 		{
-			return View();
+			ImageModel? imageModel = context.Images.Where(i => i.UserID == userManager.GetUserId(User)).SingleOrDefault();
+			return View(imageModel);
 		}
 
 		public async Task<IActionResult> Details(int? id)
@@ -117,7 +118,7 @@ namespace CV_Projektet.Controllers
 
 			context.Images.Remove(imageModel);
 			await context.SaveChangesAsync();
-			return RedirectToAction(nameof(Index));	
+			return RedirectToAction("Index", "Image");	
 		}
 
 		private bool ImageModelExists(int id)

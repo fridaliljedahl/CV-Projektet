@@ -1,12 +1,17 @@
 ﻿@model ImageModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @{
 }
+
+<hr />
 @try
 {
 	
-	@if (@Model.Name.Any())
-	{
-		<table class="table-bordered">
+		<a class="edit" href="@Url.Action("Add","Image", new { userID = User.Identity})">Lägg till profilbild</a>
+	
+	<table class="table-bordered">
 			<thead>
 				<tr>
 					<td>Titel</td>
@@ -31,9 +36,7 @@
 				</tr>
 			</tbody>
 		</table>
-	}}
-catch(Exception ex){}
 
-
-<hr />
-<a class="edit" href="@Url.Action("Add","Image", new { userID = User.Identity})">Lägg till profilbild</a>
+	
+}
+catch (Exception ex) { }
