@@ -20,9 +20,9 @@
 
 		@try
 		{
-			@if (Model.User.imageModel.Name != null)
+			@if (Model.User.ImageModel.Name != null)
 			{
-				<img class="profilepicture" src="@("~/image/" + Model.User.imageModel.Name)" asp-append-version="true" />
+				<img class="profilepicture" src="@("~/image/" + Model.User.ImageModel.Name)" asp-append-version="true" />
 			}
 		}
 		catch (Exception ex)
