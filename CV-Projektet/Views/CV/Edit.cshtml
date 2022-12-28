@@ -17,21 +17,24 @@
 			</span>
 		</a>
 
-		<div class="circle">
+
 			@try
 			{
 				if (@Model.User.ImageModel.Name.Any())
 				{
-					<img class="profilepicture" src="@("~/image/" + @Model.User.ImageModel.Name)" asp-append-version="true" />
-				}
+				<img class="profilepicture" src="@("~/image/" + @Model.User.ImageModel.Name)" asp-append-version="true" />
 			}
-			catch (Exception ex)
-			{
-			}
+		}
+		catch (Exception ex)
+		{
+			<span class="material-symbols-outlined" style="font-size:250px; color: #FFFEF6; ">
+				account_circle
+			</span>
+		}
 			<a class="edit" href="@Url.Action("Index","Image", new { userID = User.Identity})"><span class="material-symbols-outlined">
 edit
 </span>Hantera profilbild</a>
-		</div>
+
 
 		@try
 		{

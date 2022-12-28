@@ -10,13 +10,14 @@
 <div class="gridCV">
 	<div class="CVleft">
 		<div class="leftText"></div>
+		@if (Model.User.Id.Equals(UserManager.GetUserId(User)))
+		{
 		<a class="edit" href="@Url.Action("Edit","CV", new { userID = UserManager.GetUserId(User)})">
 			<span class="material-symbols-outlined">
 				settings
 			</span>
 		</a>
-
-
+		}
 		@try
 		{
 			@if (Model.User.ImageModel.Name != null)
@@ -26,7 +27,9 @@
 		}
 		catch (Exception ex)
 		{
-			<div class="circle"></div>
+			<span class="material-symbols-outlined" style="font-size:250px; color: #FFFEF6; ">
+				account_circle
+			</span>
 		}
 
 		<h1>@Model.User.FirstName @Model.User.LastName</h1>
