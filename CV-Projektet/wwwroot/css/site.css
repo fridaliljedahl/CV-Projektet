@@ -236,3 +236,25 @@ html {
 body {
     margin-bottom: 60px;
 }
+
+/*Profilesettings*/
+#SettingsForm {
+    text-align:center;
+    border: 1px solid black;
+    margin: 1em;
+    padding: 1em;
+}
+
+.SettingBoxes {
+    margin: 0.5em;
+    padding: 0em;
+    
+}
+
+#DescriptionBox {
+    margin: 0.5em;
+    padding: 0em;
+    
+}
+
+

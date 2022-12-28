@@ -1,4 +1,7 @@
-﻿@model IEnumerable<User>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@model IEnumerable<User>
 @{
 	ViewData["Title"] = "Profiler";
 }
@@ -7,8 +10,8 @@
 @inject UserManager<User> UserManager
 
 @*<form asp-controller="Profiles" asp-action="Index">
-	<input type="text" name="searchstring_firstname" />
 	<input type="text" name="searchstring_lastname"/>
+	<input type="text" name="searchstring_firstname" />
 	<input type="text" name="searchstring_competence" />
 	<input type="submit" value="Sök" />
 </form>*@
