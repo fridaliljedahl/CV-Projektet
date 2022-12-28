@@ -47,6 +47,7 @@ namespace CV_Projektet.Controllers
                     user.LastName = userRegistrationViewmodel.LastName;
                     user.Description = userRegistrationViewmodel.Description;
                     user.IsPublic = userRegistrationViewmodel.IsPublic;
+                    user.PhoneNumber = userRegistrationViewmodel.PhoneNumber;
                     user.IsActive = true;
                     user.RegistrationDate = DateTime.Now;
 
@@ -57,7 +58,7 @@ namespace CV_Projektet.Controllers
 
                         Address? enteredAddress = context.Addresses.Where(a =>
                             a.Street == userRegistrationViewmodel.Street &&
-                            a.PostalCode == userRegistrationViewmodel.PostalCode &&
+                            a.PostalCode == int.Parse(userRegistrationViewmodel.PostalCode) &&
                             a.City == userRegistrationViewmodel.City)
                             .SingleOrDefault();
 
@@ -66,13 +67,15 @@ namespace CV_Projektet.Controllers
                             enteredAddress = new Address();
                             enteredAddress.Street = userRegistrationViewmodel.Street;
                             enteredAddress.City = userRegistrationViewmodel.City;
-                            enteredAddress.PostalCode = userRegistrationViewmodel.PostalCode;
+                            enteredAddress.PostalCode = int.Parse(userRegistrationViewmodel.PostalCode);
                             context.Add(enteredAddress);
+                            context.SaveChanges();
                             enteredAddress = context.Addresses.OrderByDescending(a => a.ID).First();
                         }
 
                         createdUser.AdressID = enteredAddress.ID;
                         context.Users.Update(createdUser);
+                        context.SaveChanges();
 
                         CV cv = new CV();
                         cv.UserID = createdUser.Id;

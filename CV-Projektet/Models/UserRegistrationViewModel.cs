@@ -13,7 +13,7 @@ namespace CV_Projektet.Models
         public string UserName { get; set; }
 
         [Required]
-        [RegularExpression("^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{5,}$", ErrorMessage = "Password must contains one uppercase letter, one digit, one special character and be of at least 5 characters in length")]
+        [RegularExpression("^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{5,}$", ErrorMessage = "Password must contain one uppercase letter, one digit, one special character and must be of at least 5 characters in length")]
         [Compare("PasswordConfirmed")]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -24,18 +24,18 @@ namespace CV_Projektet.Models
 
         [Required]
         [Display(Name = "First name")]
-        [RegularExpression("^[a-zA-Z]+$",
+        [RegularExpression("^[a-öA-Ö]+$",
             ErrorMessage = "First name can only contain letters")]
         public string FirstName { get; set; }
 
         [Required]
         [Display(Name = "Last name")]
-        [RegularExpression("^[a-öA-Ö0-9]+$",
+        [RegularExpression("^[a-öA-Ö]+$",
             ErrorMessage = "Last name can only contain letters")]
         public string LastName { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
-        [MaxLength(ErrorMessage = "The description can contains max 100 characters")]
+        [MaxLength(ErrorMessage = "The description can contain max 100 characters")]
         [Display(Name = "Description")]
         public string? Description { get; set; }
 
@@ -53,10 +53,9 @@ namespace CV_Projektet.Models
         [Display(Name = "Street namn")]
         public string Street { get; set; }
 
-        [Required(ErrorMessage = "Postal code is required")]
         [RegularExpression("^[0-9]{5}$", ErrorMessage = "Postal code must consist of 5 digits")]
         [Display(Name = "Postal Code")]
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
         [Required]
         [Display(Name = "City")]
