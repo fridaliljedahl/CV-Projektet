@@ -38,9 +38,9 @@
 			<a class="profileCard" href="@Url.Action("Index","CV", new { userID = user.Id})">
 				@try
 				{
-					if (user.imageModel.Name.Any())
+					if (user.ImageModel.Name.Any())
 					{
-						<img class="profilepicture" src="@("~/image/" + user.imageModel.Name)" asp-append-version="true" />
+						<img class="profilepicture" src="@("~/image/" + user.ImageModel.Name)" asp-append-version="true" />
 					}
 				}
 				catch (Exception ex)

@@ -20,10 +20,5 @@ namespace CV_Projektet.Models
 
         [ForeignKey(nameof(CVID))]
         public virtual CV CV { get; set; }
-
-        public Experience()
-        {
-
-        }
     }
 }

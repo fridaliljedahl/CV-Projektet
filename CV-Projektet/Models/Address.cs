@@ -8,11 +8,14 @@ namespace CV_Projektet.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Ange gatunamn")]
+        [Display(Name = "Gatunamn")]
         public string Street { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Ange postnummer")]
+        [Display(Name = "Postnummer")]
         public int PostalCode { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Ange stad")]
+        [Display(Name = "Stad")]
         public string City { get; set; }
         public virtual IEnumerable<User> Users { get; set; } = new List<User>();
     }

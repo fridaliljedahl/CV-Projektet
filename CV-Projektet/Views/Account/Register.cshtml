@@ -1,36 +1,84 @@
 ﻿@model UserRegistrationViewModel
 
 
-<div asp-validation-summary="All" class="text-danger"></div>
+@*<div asp-validation-summary="All" class="text-danger"></div>*@
+<h1><em class="accentWord">Registrera</em></h1>
+<br />
+<form class="formRegister" method="post" asp-controller="Account" asp-action="Register">
+	<div class="inputRow">
+		<label>Username:</label>
+		<input asp-for="UserName" />
+		@try
+		{
+			@if (string.IsNullOrWhiteSpace(Model.returnedErrorMessage))
+			{
+				<span asp-validation-for="UserName" class="text-danger"></span>
+			}
+			else
+			{
+				<p class="text-danger">@Model.returnedErrorMessage</p>
+			}
+		}
+		catch (Exception ex) { }
+	</div>
+	<div class="inputRow">
+		<label>First name:</label>
+		<input asp-for="FirstName" />
+		<span asp-validation-for="FirstName" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Last name:</label>
+		<input asp-for="LastName" />
+		<span asp-validation-for="LastName" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Describe yourself:</label>
+		<textarea asp-for="Description"></textarea>
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Phone number:</label>
+		<input asp-for="PhoneNumber" />
+		<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Email:</label>
+		<input type="email" asp-for="Email" />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
 
-<form method="post" asp-controller="Account" asp-action="Register">
-    <div class="form-group row">
-        <div class="col-sm-2">
-            <label>Användarnamn: </label>
-        </div>
-        <div class="col-sm-4">
-            <input asp-for="UserName" class="form-control" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-sm-2">
-            <label>Lösenord: </label>
-        </div>
-        <div class="col-sm-4">
-            <input asp-for="Password" class="form-control" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-sm-2">
-            <label>Bekräfta lösenord: </label>
-        </div>
-        <div class="col-sm-4">
-            <input asp-for="PasswordConfirmed" class="form-control" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="offset-2 col-sm-4">
-            <button type="submit" class="btn btn-primary">Registrera</button>
-        </div>
-    </div>
+	<div class="inputRow">
+		<label>Street name:</label>
+		<input asp-for="Street" />
+		<span asp-validation-for="Street" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Postal code:</label>
+		<input type="text" asp-for="PostalCode" />
+		<span asp-validation-for="PostalCode" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>City:</label>
+		<input asp-for="City" />
+		<span asp-validation-for="City" class="text-danger"></span>
+	</div>
+
+	<div class="inputRow">
+		<label>Public profile:</label>
+		<input type="checkbox" class="checkbox" asp-for="IsPublic" />
+	</div>
+	<div class="inputRow">
+		<label>Password: </label>
+		<input type="password" asp-for="Password" />
+		<span asp-validation-for="Password" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Confirm password: </label>
+		<input asp-for="PasswordConfirmed" />
+		<span asp-validation-for="PasswordConfirmed" class="text-danger"></span>
+	</div>
+
+	<button type="submit" class="btnRegister">Register</button>
+
 </form>
+

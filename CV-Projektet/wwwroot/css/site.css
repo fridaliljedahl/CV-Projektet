@@ -24,6 +24,7 @@ body {
 .content {
     padding-top: 7em;
 }
+
 h1 {
     text-align: center;
 }
@@ -62,39 +63,85 @@ footer {
     margin: 0em 1em;
     color: white;
 }
-.accentWord{
+
+.accentWord {
     color: orange;
     font-style: normal;
 }
 /*Startsida*/
-.contentHome { 
+.contentHome {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
+
 .cardContainer { /*Gäller även på projektsidan*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+
 .card { /*Gäller även på projektsidan*/
     color: #000000;
     margin: 1em;
     padding: 1em;
     border-radius: 3em;
 }
-.headingHome{
+
+.headingHome {
     color: orange;
     text-align: center;
 }
-.personCard a{
+
+.personCard a {
     color: black;
 }
-.contentHome li{
+
+.contentHome li {
     text-align: start;
 }
-.involved{
+
+.involved {
     color: orange;
 }
+
+/*Registrera sig*/
+.formRegister {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+    .inputRow input, textarea {
+        padding: 0em 0.5em;
+    }
+
+    .inputRow label {
+        text-align: right;
+        padding-right: 2em;
+        color: orange;
+    }
+
+    .inputRow span {
+        text-align: left;
+        padding-left: 2em;
+    }
+
+.checkbox {
+    text-align: left;
+}
+
+.btnRegister {
+    margin-top: 2em;
+    width: 10em;
+    align-self: center;
+}
+
 
 /*CV*/
 .CVright {

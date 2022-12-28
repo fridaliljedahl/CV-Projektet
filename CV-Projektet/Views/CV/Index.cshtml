@@ -8,9 +8,9 @@
 	<div class="CVleft">
 		<div class="leftText"></div>
 		<div class="circle">
-			@if (Model.User.ProfilePicture != null)
+			@if (Model.User.ImageModel != null)
 			{
-				<img class="profilepicture" src="@("~/image/" + @Model.User.imageModel.Name)" asp-append-version="true" />
+				<img class="profilepicture" src="@("~/image/" + @Model.User.ImageModel.Name)" asp-append-version="true" />
 			}
 		</div>
 		<h1>@Model.User.FirstName @Model.User.LastName</h1>

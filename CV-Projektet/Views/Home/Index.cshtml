@@ -24,7 +24,7 @@
 				@foreach (var item in Model.AllUsers)
 				{
 					<a class="card" href="@Url.Action("Index", "CV", new { userID = item.Id})">
-						<img src="@item.ProfilePicture">
+						@*<img src="@("~/image/" + item.ImageModel.Name)">*@
 						<h3>@item.FirstName @item.LastName</h3>
 						<br>
 						@if (item.CV != null)
@@ -56,7 +56,7 @@
 				@foreach (var item in Model.NonPrivateUsers)
 				{
 					<a class="card" href="@Url.Action("Index", "CV", new { userID = item.Id})">
-						<img src="@item.ProfilePicture">
+						@*<img src="@("~/image/" + item.ImageModel.Name)">*@
 						<h3>@item.FirstName @item.LastName</h3>
 						<br>
 						@if (item.CV != null)
@@ -101,7 +101,7 @@
 					<br>
 					<h4>Projektledare</h4>
 					<div class="personCard">
-						<img src="@item.ProjectLeader.ProfilePicture">
+						@*<img src="@("~/image/" + item.ProjectLeader.ImageModel.Name)">*@
 						<a class="" href="@Url.Action("Index", "CV", new { userID = item.ProjectLeader.Id})">@item.ProjectLeader.FirstName @item.ProjectLeader.LastName</a>
 					</div>
 					<br>
@@ -112,7 +112,7 @@
 							@foreach (var col in item.User_Project)
 							{
 								<div class="personCard">
-									<img src="@col.User.ProfilePicture">
+									@*<img src="(~/image/" + col.ImageModel.Name)">*@
 									<a class="" href="@Url.Action("Index", "CV", new { userID = col.User.Id})">@col.User.FirstName @col.User.LastName</a>
 								</div>
 							}
@@ -124,7 +124,7 @@
 								if (col.User.IsPublic)
 								{
 									<div class="personCard">
-										<img src="@col.User.ProfilePicture">
+										@*<img src="@("~/image/" + col.User.ImageModel.Name)">*@
 										<a class="" href="@Url.Action("Index", "CV", new { userID = col.User.Id})">@col.User.FirstName @col.User.LastName</a>
 									</div>
 								}

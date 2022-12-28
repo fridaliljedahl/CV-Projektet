@@ -6,13 +6,12 @@ namespace CV_Projektet.Models
 
 {
     public class User:IdentityUser
-    {
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? ProfilePicture { get; set; }
-
+    {        
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
         [Column(TypeName = "nvarchar(100)")]
-        [MaxLength]
         public string? Description { get; set; }
         public bool IsPublic { get; set; }
         public bool IsActive { get; set; }
@@ -22,7 +21,7 @@ namespace CV_Projektet.Models
         public virtual Address? Address { get; set; }
         public virtual CV? CV { get; set; }
         public DateTime RegistrationDate { get; set; }
-        public virtual ImageModel? imageModel { get; set; }
+        public virtual ImageModel? ImageModel { get; set; }
 
         public virtual IEnumerable<Project> LeadProjects { get; set; } = new List<Project>();
         public virtual IEnumerable<Message> SentMessages { get; set; } = new List<Message>();
