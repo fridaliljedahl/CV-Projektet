@@ -1,4 +1,7 @@
 ﻿@model CVDetails
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @{
 	ViewData["Title"] = "Home Page";
 }
@@ -8,7 +11,7 @@
 <div class="gridCV">
 	<div class="CVleft">
 		<div class="leftText"></div>
-		<a class="edit" href="@Url.Action("Index","CV", new { userID = User.Identity})">
+		<a class="edit" href="@Url.Action("Index","CV", new { userID = UserManager.GetUserId(User)})">
 			<span class="material-symbols-outlined">
 				settings
 			</span>

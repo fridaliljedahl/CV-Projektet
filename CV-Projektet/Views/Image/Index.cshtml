@@ -8,10 +8,9 @@
 <hr />
 @try
 {
-	
-		<a class="edit" href="@Url.Action("Add","Image", new { userID = User.Identity})">Lägg till profilbild</a>
-	
-	<table class="table-bordered">
+	if (Model.UserID.Any())
+	{
+		<table class="table-bordered">
 			<thead>
 				<tr>
 					<td>Titel</td>
@@ -36,7 +35,10 @@
 				</tr>
 			</tbody>
 		</table>
+	}
 
-	
 }
-catch (Exception ex) { }
+catch (Exception ex)
+{
+	<a class="edit" href="@Url.Action("Add","Image", new { userID = User.Identity})">Lägg till profilbild</a>
+}

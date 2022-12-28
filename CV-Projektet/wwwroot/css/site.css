@@ -24,6 +24,7 @@ body {
 .content {
     padding-top: 7em;
 }
+
 h1 {
     text-align: center;
 }
@@ -62,37 +63,47 @@ footer {
     margin: 0em 1em;
     color: white;
 }
-.accentWord{
+
+.accentWord {
     color: orange;
     font-style: normal;
 }
 /*Startsida*/
-.contentHome { 
+.contentHome {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
+
 .cardContainer { /*Gäller även på projektsidan*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+
 .card { /*Gäller även på projektsidan*/
     color: #000000;
     margin: 1em;
     padding: 1em;
     border-radius: 3em;
 }
-.headingHome{
+
+.material-symbols-outlined .circle {
+}
+
+.headingHome {
     color: orange;
     text-align: center;
 }
-.personCard a{
+
+.personCard a {
     color: black;
 }
-.contentHome li{
+
+.contentHome li {
     text-align: start;
 }
-.involved{
+
+.involved {
     color: orange;
 }
 
@@ -115,9 +126,15 @@ footer {
     background-color: #ACB7A0;
     padding-top: 4em;
 }
+
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 100, 'GRAD' 0, 'opsz' 48
+}
+
 .circle {
     margin: 1em;
     height: 10em;
@@ -125,6 +142,7 @@ footer {
     border-radius: 50%;
     background-color: #FFFEF6;
 }
+
 .profilepicture {
     margin: 1em;
     height: 15em;
