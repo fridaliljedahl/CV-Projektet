@@ -113,6 +113,10 @@ namespace CV_Projektet.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                    loginViewModel.ErrorMessage = "Inloggning misslyckades. Kontrollera användarnamn och lösenord och försök igen.";
+                }
 
             }
             return View(loginViewModel);
