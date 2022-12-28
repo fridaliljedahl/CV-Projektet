@@ -90,7 +90,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnäringa",
                     IsActive = true,
                     IsPublic = true,
-                    RegistrationDate = new DateTime(2022, 01, 05)
+                    RegistrationDate = new DateTime(2022, 01, 05),
+                    UserName = "Ingis"
                 },
                 new User
                 {
@@ -104,7 +105,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärgunvor",
                     IsActive = true,
                     IsPublic = true,
-                    RegistrationDate = new DateTime(2022, 06, 11)
+                    RegistrationDate = new DateTime(2022, 06, 11),
+                    UserName = "Gunnis"
                 },
                 new User
                 {
@@ -118,7 +120,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärjörgen",
                     IsActive = true,
                     IsPublic = true,
-                    RegistrationDate = new DateTime(2022, 12, 24)
+                    RegistrationDate = new DateTime(2022, 12, 24),
+                    UserName = "Jöggis"
                 },
                 new User
                 {
@@ -132,7 +135,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärsten",
                     IsActive = true,
                     IsPublic = true,
-                    RegistrationDate = new DateTime(2022, 12, 26)
+                    RegistrationDate = new DateTime(2022, 12, 26),
+                    UserName = "Stenis"
                 },
                 new User
                 {
@@ -146,7 +150,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärkajsa",
                     IsActive = true,
                     IsPublic = true,
-                    RegistrationDate = new DateTime(2022, 09, 28)
+                    RegistrationDate = new DateTime(2022, 09, 28),
+                    UserName = "Kajsis"
                 },
                 new User
                 {
@@ -160,7 +165,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärfrida",
                     IsActive = false,
                     IsPublic = false,
-                    RegistrationDate = new DateTime(2022, 07, 28)
+                    RegistrationDate = new DateTime(2022, 07, 28),
+                    UserName = "Fridis"
                 },
                 new User
                 {
@@ -174,7 +180,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärlinda",
                     IsActive = true,
                     IsPublic = false,
-                    RegistrationDate = new DateTime(2022, 08, 11)
+                    RegistrationDate = new DateTime(2022, 08, 11),
+                    UserName = "Lindis"
                 },
                 new User
                 {
@@ -188,7 +195,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärlisa",
                     IsActive = true,
                     IsPublic = false,
-                    RegistrationDate = new DateTime(2022, 08, 26)
+                    RegistrationDate = new DateTime(2022, 08, 26),
+                    UserName = "Lisis"
                 },
                 new User
                 {
@@ -202,7 +210,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärviktor",
                     IsActive = false,
                     IsPublic = false,
-                    RegistrationDate = new DateTime(2021, 10, 05)
+                    RegistrationDate = new DateTime(2021, 10, 05),
+                    UserName = "Vickis"
                 },
                 new User
                 {
@@ -216,7 +225,8 @@ namespace CV_Projektet.Data
                     PasswordHash = "mittnamnärulla",
                     IsActive = false,
                     IsPublic = true,
-                    RegistrationDate = new DateTime(2020, 10, 05)
+                    RegistrationDate = new DateTime(2020, 10, 05),
+                    UserName = "Ullis"
                 });
 
             modelBuilder.Entity<CV>().HasData(
@@ -405,8 +415,8 @@ namespace CV_Projektet.Data
                    ID = 1,
                    Title = "Kundtjänst",
                    Type = "Work",
-                   StartDate = DateTime.Now,
-                   EndDate = DateTime.Now,
+                   StartDate = new DateTime(2022, 11, 01),
+                   EndDate = new DateTime(2022, 12, 01),
                    City = "Lund",
                    Place = "ICA",
                    Description = "pratade i telefon",
@@ -417,8 +427,8 @@ namespace CV_Projektet.Data
                    ID = 2,
                    Title = "Systemvetenskap",
                    Type = "Education",
-                   StartDate = DateTime.Now,
-                   EndDate = DateTime.Now,
+                   StartDate = new DateTime(2021, 11, 01),
+                   EndDate = new DateTime(2022, 10, 01),
                    City = "Örebro",
                    Place = "Örebro Universitet",
                    Description = "Java",
@@ -429,8 +439,8 @@ namespace CV_Projektet.Data
                    ID = 3,
                    Title = "HLR",
                    Type = "Course",
-                   StartDate = DateTime.Now,
-                   EndDate = DateTime.Now,
+                   StartDate = new DateTime(2020, 11, 01),
+                   EndDate = new DateTime(2022, 12, 11),
                    City = "Göteborg",
                    Place = "Företag1",
                    Description = "HLR-utbildning",
@@ -441,8 +451,8 @@ namespace CV_Projektet.Data
                    ID = 4,
                    Title = "Lärarprogrammet",
                    Type = "Education",
-                   StartDate = DateTime.Now,
-                   EndDate = DateTime.Now,
+                   StartDate = new DateTime(2019, 11, 01),
+                   EndDate = new DateTime(2020, 09, 01),
                    City = "Örebro",
                    Place = "Örebro Universitet",
                    Description = "Beskrivning blabla",
@@ -453,8 +463,8 @@ namespace CV_Projektet.Data
                    ID = 5,
                    Title = "Systemvetenskap",
                    Type = "Education",
-                   StartDate = DateTime.Now,
-                   EndDate = DateTime.Now,
+                   StartDate = new DateTime(2022, 11, 01),
+                   EndDate = new DateTime(2022, 12, 29),
                    City = "Örebro",
                    Place = "Örebro Universitet",
                    Description = "Java",

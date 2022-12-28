@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CV_Projektet.Migrations
 {
-    public partial class _123445 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,9 +56,8 @@ namespace CV_Projektet.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     IsPublic = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -382,19 +381,19 @@ namespace CV_Projektet.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Email", "EmailConfirmed", "FirstName", "IsActive", "IsPublic", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "RegistrationDate", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "AdressID", "ConcurrencyStamp", "Description", "Email", "EmailConfirmed", "FirstName", "IsActive", "IsPublic", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RegistrationDate", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "användare10id", 0, 4, "349e3014-0acc-4e0b-8ff5-fce62c8cd413", "dfggdffdgfdgdffdggdf", "ulla@hotmail.se", false, "Ulla", false, true, "Ivarsson", false, null, null, null, "mittnamnärulla", "073-888 33 33", false, null, new DateTime(2020, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "ef04631e-d2d6-497d-9943-559954e6beda", false, null },
-                    { "användare1id", 0, 1, "76d6f2f0-8f77-4a0c-ae01-eb903aeac609", "Hejaaa", "inga@hotmail.com", false, "Inga", true, true, "Karlsson", false, null, null, null, "mittnamnäringa", "073-111 11 11", false, null, new DateTime(2022, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "18eb9f47-abac-4a29-875b-3744d768a51d", false, null },
-                    { "användare2id", 0, 1, "816e99fa-cf1f-4c67-9791-db77f0a4a26c", "Halloj", "gunvor@hotmail.se", false, "Gunvor", true, true, "Nilsson", false, null, null, null, "mittnamnärgunvor", "073-222 22 22", false, null, new DateTime(2022, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "7d7dec88-2b53-45ea-83cb-3965dbd5add8", false, null },
-                    { "användare3id", 0, 1, "3c307404-5196-4213-9f12-d7207b2647e2", "dfggdffdgfdgdffdggdf", "Jögge@hotmail.se", false, "Jörgen", true, true, "Svensson", false, null, null, null, "mittnamnärjörgen", "073-333 33 33", false, null, new DateTime(2022, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "8b915993-168d-473d-89d8-b93a20370f2c", false, null },
-                    { "användare4id", 0, 2, "733b2052-ad7b-4b22-8a56-eccf17f7a485", "dfggdffdgfdgdffdggdf", "stenis@hotmail.se", false, "Sten", true, true, "Kallesson", false, null, null, null, "mittnamnärsten", "074-444 44 44", false, null, new DateTime(2022, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "748825a1-c122-4a50-9e73-93864fe0dc8c", false, null },
-                    { "användare5id", 0, 3, "9f1dd831-086a-426b-a0fb-0cd7570d647f", "dfggdffdgfdgdffdggdf", "kajsa@hotmail.se", false, "Kajsa", true, true, "Stenbäck", false, null, null, null, "mittnamnärkajsa", "075-123 55 55", false, null, new DateTime(2022, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "87257380-0e5e-441c-87ae-dfce8bccfeb6", false, null },
-                    { "användare6id", 0, 4, "a3b090f0-8362-491f-8324-b152d6696518", "dfggdffdgfdgdffdggdf", "frida@hotmail.se", false, "Frida", false, false, "Liljedahl", false, null, null, null, "mittnamnärfrida", "075-555 55 55", false, null, new DateTime(2022, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "e9663f52-56fa-48ab-b1ec-a5171ea74b48", false, null },
-                    { "användare7id", 0, 2, "d0b1608d-837b-4e2c-aa59-072e24c1a78d", "dfggdffdgfdgdffdggdf", "linda@hotmail.se", false, "Linda", true, false, "Nordeman", false, null, null, null, "mittnamnärlinda", "076-666 66 66", false, null, new DateTime(2022, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "e5cef988-1571-4cfa-a9b9-ea8f93edda9c", false, null },
-                    { "användare8id", 0, 3, "33b17512-94f3-49f8-a695-7121195ef0ae", "dfggdffdgfdgdffdggdf", "lisa@hotmail.se", false, "Lisa", true, false, "Kjellgren", false, null, null, null, "mittnamnärlisa", "077-773 33 33", false, null, new DateTime(2022, 8, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "148384b5-98fc-418b-9746-54e57c81053c", false, null },
-                    { "användare9id", 0, 2, "6b53304d-37f8-4c3c-904e-df5ab5ddf03d", "dfggdffdgfdgdffdggdf", "viktor@hotmail.se", false, "Viktor", false, false, "Hemlin Gravander", false, null, null, null, "mittnamnärviktor", "073-333 33 33", false, null, new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "5a10859e-8351-40db-b331-c5aa2e1c626b", false, null }
+                    { "användare10id", 0, 4, "2d51cf53-809a-4561-8ac7-66ea83716e05", "dfggdffdgfdgdffdggdf", "ulla@hotmail.se", false, "Ulla", false, true, "Ivarsson", false, null, null, null, "mittnamnärulla", "073-888 33 33", false, new DateTime(2020, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "107adb6c-3b15-4f8b-9d1f-254d4d5c247f", false, "Ullis" },
+                    { "användare1id", 0, 1, "2c7a5470-462e-4185-9d33-bd7d4d6c90ea", "Hejaaa", "inga@hotmail.com", false, "Inga", true, true, "Karlsson", false, null, null, null, "mittnamnäringa", "073-111 11 11", false, new DateTime(2022, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "c4dc09ab-e50f-4c4b-a38c-2483c951a64c", false, "Ingis" },
+                    { "användare2id", 0, 1, "71fea3bf-745a-4e27-b7e0-795c98d2758f", "Halloj", "gunvor@hotmail.se", false, "Gunvor", true, true, "Nilsson", false, null, null, null, "mittnamnärgunvor", "073-222 22 22", false, new DateTime(2022, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "14a8aa26-d2e3-4ec4-b962-e27cb6d3506e", false, "Gunnis" },
+                    { "användare3id", 0, 1, "66576d19-aac3-49bd-bbeb-512974b1e983", "dfggdffdgfdgdffdggdf", "Jögge@hotmail.se", false, "Jörgen", true, true, "Svensson", false, null, null, null, "mittnamnärjörgen", "073-333 33 33", false, new DateTime(2022, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "ac8640ba-451c-4f53-aa54-bbaadb0e31bd", false, "Jöggis" },
+                    { "användare4id", 0, 2, "65c8db7e-c11a-4f6d-b3f0-da2f9672ae7d", "dfggdffdgfdgdffdggdf", "stenis@hotmail.se", false, "Sten", true, true, "Kallesson", false, null, null, null, "mittnamnärsten", "074-444 44 44", false, new DateTime(2022, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "66aa6ac9-ad45-4f2b-88f8-96c0e352858d", false, "Stenis" },
+                    { "användare5id", 0, 3, "526db4be-f070-41c9-9a46-7995523ec4b9", "dfggdffdgfdgdffdggdf", "kajsa@hotmail.se", false, "Kajsa", true, true, "Stenbäck", false, null, null, null, "mittnamnärkajsa", "075-123 55 55", false, new DateTime(2022, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "b1ac829c-2cb8-40ae-a078-cf094c485a8b", false, "Kajsis" },
+                    { "användare6id", 0, 4, "a367a7d5-033a-4cbe-bd04-17dcfe377764", "dfggdffdgfdgdffdggdf", "frida@hotmail.se", false, "Frida", false, false, "Liljedahl", false, null, null, null, "mittnamnärfrida", "075-555 55 55", false, new DateTime(2022, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "433c7db1-99cf-4d51-a8a5-48069c823468", false, "Fridis" },
+                    { "användare7id", 0, 2, "0e7a5342-361b-410c-a752-7823afead603", "dfggdffdgfdgdffdggdf", "linda@hotmail.se", false, "Linda", true, false, "Nordeman", false, null, null, null, "mittnamnärlinda", "076-666 66 66", false, new DateTime(2022, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a56f759-61c9-45fa-b7c3-6e0b27e022e1", false, "Lindis" },
+                    { "användare8id", 0, 3, "7a74bec1-5df0-41af-a955-ece37690e41d", "dfggdffdgfdgdffdggdf", "lisa@hotmail.se", false, "Lisa", true, false, "Kjellgren", false, null, null, null, "mittnamnärlisa", "077-773 33 33", false, new DateTime(2022, 8, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "7c2e5182-ca58-4a22-9a3c-eebb3b17fd90", false, "Lisis" },
+                    { "användare9id", 0, 2, "b815dd32-2df8-4575-b9de-c101f144c614", "dfggdffdgfdgdffdggdf", "viktor@hotmail.se", false, "Viktor", false, false, "Hemlin Gravander", false, null, null, null, "mittnamnärviktor", "073-333 33 33", false, new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "e99cf35e-9c95-4f55-9a28-49ddc6705545", false, "Vickis" }
                 });
 
             migrationBuilder.InsertData(
@@ -416,7 +415,7 @@ namespace CV_Projektet.Migrations
             migrationBuilder.InsertData(
                 table: "Messages",
                 columns: new[] { "ID", "Date", "Read", "Receiver", "Sender", "Text" },
-                values: new object[] { 1, new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(33), false, "användare2id", "användare1id", "hejsan hoppsan" });
+                values: new object[] { 1, new DateTime(2022, 12, 28, 14, 59, 40, 61, DateTimeKind.Local).AddTicks(2444), false, "användare2id", "användare1id", "hejsan hoppsan" });
 
             migrationBuilder.InsertData(
                 table: "Projects",
@@ -450,11 +449,11 @@ namespace CV_Projektet.Migrations
                 columns: new[] { "ID", "CVID", "City", "Description", "EndDate", "Place", "StartDate", "Title", "Type" },
                 values: new object[,]
                 {
-                    { 1, 1, "Lund", "pratade i telefon", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4187), "ICA", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4165), "Kundtjänst", "Work" },
-                    { 2, 1, "Örebro", "Java", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4196), "Örebro Universitet", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4193), "Systemvetenskap", "Education" },
-                    { 3, 1, "Göteborg", "HLR-utbildning", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4203), "Företag1", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4200), "HLR", "Course" },
-                    { 4, 2, "Örebro", "Beskrivning blabla", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4209), "Örebro Universitet", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4207), "Lärarprogrammet", "Education" },
-                    { 5, 1, "Örebro", "Java", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4215), "Örebro Universitet", new DateTime(2022, 12, 27, 15, 34, 10, 491, DateTimeKind.Local).AddTicks(4213), "Systemvetenskap", "Education" }
+                    { 1, 1, "Lund", "pratade i telefon", new DateTime(2022, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ICA", new DateTime(2022, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kundtjänst", "Work" },
+                    { 2, 1, "Örebro", "Java", new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Örebro Universitet", new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Systemvetenskap", "Education" },
+                    { 3, 1, "Göteborg", "HLR-utbildning", new DateTime(2022, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Företag1", new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "HLR", "Course" },
+                    { 4, 2, "Örebro", "Beskrivning blabla", new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Örebro Universitet", new DateTime(2019, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lärarprogrammet", "Education" },
+                    { 5, 1, "Örebro", "Java", new DateTime(2022, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Örebro Universitet", new DateTime(2022, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Systemvetenskap", "Education" }
                 });
 
             migrationBuilder.InsertData(
