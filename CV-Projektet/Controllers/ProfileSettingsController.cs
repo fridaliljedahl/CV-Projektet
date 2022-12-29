@@ -2,6 +2,7 @@
 using CV_Projektet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace CV_Projektet.Controllers
@@ -24,11 +25,42 @@ namespace CV_Projektet.Controllers
 			return View(user);
 		}
 
-		public IActionResult Submit()
+		//public IActionResult Submit()
+		//{
+
+
+		//	return RedirectToAction("Index", "Home");
+  //      }
+
+        [HttpPost]
+        public IActionResult Edit(User userModel)
 		{
+            //var userToUpdate = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
+
+            //context.Entry(userToUpdate).CurrentValues.SetValues(user);
+            try
+            {
+                User user = context.Users.Find(userManager.GetUserId(User));
+                user.UserName = userModel.UserName;
+                user.Email = userModel.Email;
+                user.FirstName = userModel.FirstName;
+                user.LastName = userModel.LastName;
+                user.Description = userModel.Description;
+                user.IsPublic = userModel.IsPublic;
+                user.PhoneNumber = userModel.PhoneNumber;
+                user.IsActive = userModel.IsActive;
+                user.IsPublic = userModel.IsPublic;
+
+                context.Users.Update(user);
+                context.SaveChanges();
 
 
-			return RedirectToAction("Index", "Home");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+            }
+            return RedirectToAction("Index", "Home");
+
         }
-	}
+    }
 }
