@@ -8,6 +8,7 @@ namespace CV_Projektet.Models
 	{
 		[Key]
 		public int ID { get; set; }
+		[StringLength(50, MinimumLength = 3, ErrorMessage = "Name Should be min 3 and max 20 length")]
 		[DisplayName("Titel")]
 		public string Title { get; set; }
 		[DisplayName("Bildnamn")]
