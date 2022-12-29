@@ -8,11 +8,8 @@ namespace CV_Projektet.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string Description { get; set; }
-        [Required]
         public DateTime CreatedDate { get; set; }
         public string ProjectLeaderID { get; set; }
 
