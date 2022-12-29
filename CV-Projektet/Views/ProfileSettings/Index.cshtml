@@ -10,7 +10,7 @@
 	var user = UserManager.GetUserAsync(User);
 }
 
-<form id = "SettingsForm" method="post" asp-controller="" asp-action="">
+<form id = "SettingsForm" method="post" asp-controller="ProfileSettings" asp-action="Submit">
 
 	 Förnamn:
 	<input class = "SettingBoxes" name ="FirstName" value = "@Model.FirstName"/>
@@ -24,5 +24,8 @@
 	<input class = "SettingBoxes" name ="PhoneNumber" value = "@Model.PhoneNumber"/>
 	<br /> Beskrivning:
 	<input id = "DescriptionBox" rows="10" cols="40" name ="Description" value = "@Model.Description"/>
+	<br />
+	<br />
+	<input type="submit" value="Spara">
 
 </form>

@@ -23,5 +23,12 @@ namespace CV_Projektet.Controllers
 			User? user = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
 			return View(user);
 		}
+
+		public IActionResult Submit()
+		{
+
+
+			return RedirectToAction("Index", "Home");
+        }
 	}
 }
