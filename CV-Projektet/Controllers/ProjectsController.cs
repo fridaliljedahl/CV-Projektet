@@ -66,16 +66,17 @@ namespace CV_Projektet.Controllers
             return View(view);
         }
 
-        public IActionResult AddProjectMembers(AddProjectMembersViewModel view) //detta funkar inte
+
+
+        public IActionResult AddProjectMembers(int id, AddProjectMembersViewModel view)
         {
+            Project proj = context.Projects.Find(id);
+            view.Project = proj;
             return View(view);
         }
 
-        //public IActionResult AddProjectMembers(int id)
+        //public IActionResult AddProjectMembers(AddProjectMembersViewModel view) //detta funkar inte
         //{
-        //    Project proj = context.Projects.Find(id);
-        //    AddProjectMembersViewModel view = new AddProjectMembersViewModel();
-        //    view.Project = proj;
         //    return View(view);
         //}
 
