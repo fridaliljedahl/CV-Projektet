@@ -8221,19 +8221,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Friday\\.nuget\\packages\\": {}
+    "C:\\Users\\Lin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Friday\\Documents\\GitHub\\CV-Projektet\\CV-Projektet\\CV-Projektet.csproj",
+      "projectUniqueName": "C:\\Users\\Lin\\Documents\\GitHub\\CV-Projektet\\CV-Projektet\\CV-Projektet.csproj",
       "projectName": "CV-Projektet",
-      "projectPath": "C:\\Users\\Friday\\Documents\\GitHub\\CV-Projektet\\CV-Projektet\\CV-Projektet.csproj",
-      "packagesPath": "C:\\Users\\Friday\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Friday\\Documents\\GitHub\\CV-Projektet\\CV-Projektet\\obj\\",
+      "projectPath": "C:\\Users\\Lin\\Documents\\GitHub\\CV-Projektet\\CV-Projektet\\CV-Projektet.csproj",
+      "packagesPath": "C:\\Users\\Lin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Lin\\Documents\\GitHub\\CV-Projektet\\CV-Projektet\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Friday\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Lin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8307,7 +8307,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -54,7 +54,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Projects}/{action=CreateProject}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 //Tagit bort f�r att kunna k�ra appen.. / Viktor//
 //app.MapRazorPages();

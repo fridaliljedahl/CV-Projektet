@@ -4,3 +4,40 @@
 <h2>Projektet @Model.Project.Name är skapat</h2>
 
 <h2>Lägg till personer som medverkar i projektet:</h2>
+
+@try
+{
+    if (Model.Project.User_Project.Any())
+    {
+        <ul>
+            @foreach (var item in Model.Project.User_Project)
+            {
+                <li>@item.User.FirstName @item.User.LastName</li>
+
+            }
+        </ul>
+    }
+}
+
+catch (Exception ex)
+{
+
+}
+
+<form method="post" class="formRegister">
+    <div class="inputRow">
+        <label>Användarnamn:</label>
+        <input asp-for="UserName" />
+        @try
+        {
+            <span class="text-danger">@Model.ErrorMessage</span>
+        }
+
+        catch(Exception ex) {}
+    </div>
+
+    <button type="submit" class="btnRegister">Lägg till medlem</button>
+
+</form>
+
+<a href="@Url.Action("Index", "Projects")"> Klar </a>
