@@ -22,7 +22,27 @@ namespace CV_Projektet.Controllers
         public IActionResult Index()
 		{
 			User? user = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
-			return View(user);
+            UserRegistrationViewModel viewModel = new UserRegistrationViewModel();
+
+            viewModel.UserName = user.UserName;
+            viewModel.FirstName = user.FirstName;
+            viewModel.Password = user.PasswordHash;
+            viewModel.PasswordConfirmed = user.PasswordHash;
+            viewModel.FirstName = user.FirstName;
+            viewModel.LastName = user.LastName;
+            viewModel.Description = user.FirstName;
+            viewModel.Email = user.Email;
+            viewModel.IsPublic = user.IsPublic;
+            viewModel.PhoneNumber = user.PhoneNumber;
+            
+
+            if (user.Address != null)
+                {
+                    viewModel.Street = user.Address.Street;
+                    viewModel.PostalCode = user.Address.PostalCode.ToString();
+                    viewModel.City = user.Address.City;
+                }
+            return View(viewModel);
 		}
 
 		//public IActionResult Submit()
@@ -33,7 +53,7 @@ namespace CV_Projektet.Controllers
   //      }
 
         [HttpPost]
-        public IActionResult Edit(User userModel)
+        public IActionResult Edit(UserRegistrationViewModel userModel)
 		{
             //var userToUpdate = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
 
@@ -42,14 +62,14 @@ namespace CV_Projektet.Controllers
             {
                 User user = context.Users.Find(userManager.GetUserId(User));
                 user.UserName = userModel.UserName;
+                user.NormalizedUserName = userModel.UserName.ToUpper();
                 user.Email = userModel.Email;
                 user.FirstName = userModel.FirstName;
                 user.LastName = userModel.LastName;
                 user.Description = userModel.Description;
                 user.IsPublic = userModel.IsPublic;
                 user.PhoneNumber = userModel.PhoneNumber;
-                user.IsActive = userModel.IsActive;
-                user.IsPublic = userModel.IsPublic;
+                
 
                 context.Users.Update(user);
                 context.SaveChanges();
