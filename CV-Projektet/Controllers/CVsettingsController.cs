@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Xml.Linq;
 using CV_Projektet.Data;
 using CV_Projektet.Models;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +21,20 @@ namespace CV_Projektet.Controllers
 
 		public IActionResult Competence(CVDetails view)
 		{
+			User? user = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
+			CV? cv = context.CVs.Where(c => c.UserID == user.Id).SingleOrDefault();
+			view.User = user;
+			view.CV = cv;
+			List<CV_Competences> competencesList = context.CV_Competences.ToList();
+			List<int> competencesIDList = new List<int>();
+			foreach (var item in competencesList)
+			{
+				if (item.CVID == cv.ID)
+				{
+					competencesIDList.Add(item.CompetenceID);
+				}
+			}
+			view.CompetenceList = context.Competences.Where(c => competencesIDList.Contains(c.ID));
 			return View(view);
 		}
 
@@ -47,50 +62,70 @@ namespace CV_Projektet.Controllers
 					}
 				}
 				if (!matchDB)
-
 				{
 					competence.Name = name;
 					context.Add(competence);
 					context.SaveChanges();
+					addToList(competence, cv, competenceList, name);
 				}
-			}
-			catch (Exception ex) { }
-			try
-			{
-
-				if (view.CompetenceList.Any())
+				else
 				{
-					bool matchList = false;
-					foreach (var item in view.CompetenceList)
+					List<CV_Competences> competencesList = context.CV_Competences.ToList();
+					List<int> competencesIDList = new List<int>();
+					foreach (var item in competencesList)
 					{
-						if (item.Name.Equals(name))
+						if (item.CVID == cv.ID)
 						{
-							matchList = true;
+							competencesIDList.Add(item.CompetenceID);
+						}
+					}
+					view.CompetenceList = context.Competences.Where(c => competencesIDList.Contains(c.ID));
+
+					bool matchList = false;
+					if (view.CompetenceList.Any())
+					{
+						foreach (var item in view.CompetenceList)
+						{
+							if (item.Name.Equals(name))
+							{
+								matchList = true;
+							}
 						}
 						if (!matchList)
 						{
-							competence = context.Competences.Where(c => c.Name == name).Single();
-							competenceList.CompetenceID = competence.ID;
-							competenceList.CVID = cv.ID;
-							context.CV_Competences.Add(competenceList);
-							context.SaveChanges();
+							addToList(competence, cv, competenceList, name);
 						}
+						else
+						{
+							view.ErrorMessage = name + " finns redan i din lista!";
+						}
+
+					}
+					else
+					{
+						addToList(competence, cv, competenceList, name);
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				competence = context.Competences.Where(c => c.Name == name).Single();
-				competenceList.CompetenceID = competence.ID;
-				competenceList.CVID = cv.ID;
-				context.CV_Competences.Add(competenceList);
-				context.SaveChanges();
+				view.ErrorMessage = name + " finns redan i din lista";
 			}
+
 			return RedirectToAction("Competence", "CVSettings", view);
 		}
 		public IActionResult EditExperience()
 		{
 			return View();
+		}
+
+		public void addToList(Competence competence, CV cv, CV_Competences competenceList, string name)
+		{
+			competence = context.Competences.Where(c => c.Name == name).Single();
+			competenceList.CompetenceID = competence.ID;
+			competenceList.CVID = cv.ID;
+			context.CV_Competences.Add(competenceList);
+			context.SaveChanges();
 		}
 	}
 }

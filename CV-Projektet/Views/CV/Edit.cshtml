@@ -66,69 +66,58 @@
 		@try
 		{
 			<h2 class="competence">Kompetenser</h2>
-			<form id="SettingsCV" method="post" asp-controller="CVController" asp-action="Edit">
+
+			<ul>
 				@foreach (var item in Model.CompetenceList)
 				{
-					<input class="SettingsCV" name="Name" value="@item.Name" />
-					<br />
+					<li>@item.Name</li>
 				}
-				<input class="SettingsCV" name="Name" />
-				<br />
-				<br />
-				<a href="@Url.Action("Competence", "CVSettings", new { userID = UserManager.GetUserId(User)})">Lägg till fler kompetenser</a>
-			
-				<h2 class="education">Utbildningar</h2>
-				@foreach (var item in Model.ExperienceList)
+			</ul>
+			<a href="@Url.Action("Competence", "CVSettings", new { userID = UserManager.GetUserId(User)})"><button class="btn btn-dark">Lägg till fler kompetenser</button></a>
+			<br />
+			<br />
+			<h2 class="education">Utbildningar</h2>
+			@foreach (var item in Model.ExperienceList)
+			{
+				if (item.Type.Equals("Education"))
 				{
-					<input class="SettingsCV" name="Title" value="@item.Title" />
-					<br />
-					<input asp-for="@item.StartDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />
-					<input asp-for="@item.EndDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />
-					<input class="SettingsCV" name="Place" value="@item.Place" />
-					<input class="SettingsCV" name="Description" value="@item.Description" />
+					<h3>@item.Title</h3>
+					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+					<p>@item.Place, @item.City</p>
+					<p>@item.Description</p>
 				}
-				<input class="SettingsCV" name="Name" />
-				<br />
-				<br /´>
-
-				<h2 class="work">Arbetslivserfarenhet</h2>
-				@foreach (var item in Model.ExperienceList)
+			}
+			<a href="@Url.Action("Competence", "CVSettings", new { userID = UserManager.GetUserId(User)})"><button class="btn btn-dark">Lägg till fler utbildningar</button></a>
+			<br />
+			<br />
+			<h2 class="work">Arbetslivserfarenhet</h2>
+			@foreach (var item in Model.ExperienceList)
+			{
+				if (item.Type.Equals("Work"))
 				{
-					if (item.Type.Equals("Work"))
-					{
-						<h3>@item.Title</h3>
-						<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-						<p>@item.Place , @item.City</p>
-						<p>@item.Description</p>
-					}
+					<h3>@item.Title</h3>
+					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+					<p>@item.Place , @item.City</p>
+					<p>@item.Description</p>
 				}
-				<input class="SettingsCV" name="Name" />
-				<br />
-				<br />
-
-				<h2 class="coure">Kurser</h2>
-				@foreach (var item in Model.ExperienceList)
-				{					
-						<input class="SettingsCV" name="Title" value="@item.Title" />
-						<br />
-						<input asp-for="@item.StartDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />
-						<input asp-for="@item.EndDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />
-						<input class="SettingsCV" name="Place" value="@item.Place" />
-						<input class="SettingsCV" name="Description" value="@item.Description" />
-					
-					if (item.Type.Equals("Course"))
-					{
-						<h3>@item.Title</h3>
-						<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-						<p>@item.Place , @item.City</p>
-						<p>@item.Description</p>
-					}
+			}
+			<a href="@Url.Action("Competence", "CVSettings", new { userID = UserManager.GetUserId(User)})"><button class="btn btn-dark">Lägg till fler arbeten</button></a>
+			<br />
+			<br />
+			<h2 class="coure">Kurser</h2>
+			@foreach (var item in Model.ExperienceList)
+			{
+				if (item.Type.Equals("Course"))
+				{
+					<h3>@item.Title</h3>
+					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+					<p>@item.Place , @item.City</p>
+					<p>@item.Description</p>
 				}
-				<input class="SettingsCV" name="Name" />
-				<br />
-				<br />
-			
-
+			}
+			<a href="@Url.Action("Competence", "CVSettings", new { userID = UserManager.GetUserId(User)})"><button class="btn btn-dark">Lägg till fler kurser</button></a>
+			<br />
+			<br />
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Misc")).Any())
 			{
 				<h2 class="misc">Övrigt</h2>
@@ -144,8 +133,6 @@
 					<p>@project.Description</p>
 				}
 			}
-					<input type="submit" value="Spara">
-				</form>
 		}
 		catch (Exception ex) { }
 	</div>

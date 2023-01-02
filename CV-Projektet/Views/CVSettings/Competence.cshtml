@@ -7,14 +7,12 @@
 
 @try
 {
-	<form id="SettingsCV" method="post" asp-controller="CVSettingsController" asp-action="Edit">
+	<ul>
 		@foreach (var item in Model.CompetenceList)
 		{
-			<input class="SettingsCV" name="Name" value="@item.Name" />
-			<br />
+			<li>@item.Name</li>
 		}
-		<input type="submit" value="Spara">
-	</form>
+	</ul>
 }
 catch (Exception ex) { }
 <form id="SettingsCV" method="post" asp-controller="CVSettings" asp-action="AddCompetence">
@@ -24,4 +22,5 @@ catch (Exception ex) { }
 	<br />
 	<input type="submit" value="Spara">
 </form>
+<p>@Model.ErrorMessage</p>
 
