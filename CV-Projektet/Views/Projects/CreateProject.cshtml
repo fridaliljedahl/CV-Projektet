@@ -1,0 +1,28 @@
+﻿@model CreateProjectViewModel
+
+<form method="post" class="formRegister">
+	<div class="inputRow">
+		<label>Projektnamn:</label>
+		<input asp-for="Name" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Projektbeskrivning:</label>
+		<input asp-for="Description" />
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Projektledare:</label>
+		<input asp-for="ProjectLeaderUserName" />		
+			@try
+			{
+				@if (Model.ErrorMessage != null)
+				{
+				<span class="text-danger">@Model.ErrorMessage</span>
+				}
+			}
+			catch (Exception ex) { }		
+	</div>
+	<button type="submit" class="btnRegister">Skapa projekt</button>
+
+</form>
