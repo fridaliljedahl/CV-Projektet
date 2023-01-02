@@ -11,9 +11,9 @@
 			<p class="message">@item.Text</p>
 			<div>
 				@if(item.Read){
-					<a href="@Url.Action("SetReadState", "Account", new { messageId = item.ID})">&#x2717; Markera som oläst</a>
+					<a href="@Url.Action("SetReadState", "Message", new { messageId = item.ID})">&#x2717; Markera som oläst</a>
 				}else{
-					<a href="@Url.Action("SetReadState", "Account", new { messageId = item.ID})">&#x2713; Markera som läst</a>
+					<a href="@Url.Action("SetReadState", "Message", new { messageId = item.ID})">&#x2713; Markera som läst</a>
 				}
 			</div>
 		</div>

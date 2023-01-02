@@ -16,12 +16,33 @@ namespace MessageWebAPI.Controllers
         }
 
         [HttpGet]
-        public List<Message> Get()
+        public List<Message> GetMessages()
         {
-            return context.Messages.ToList();
+            var messages = context.Messages;
+            return messages.ToList();
         }
 
+        [HttpPut]
+        public void SetReadState(int messageId)
+        {
+            Message msg = context.Messages.Find(messageId);
+            msg.Read = !msg.Read;
+            context.Messages.Update(msg);
+            context.SaveChanges();
+        }
 
+        [HttpPost]
+        public void SendMessage(Message msg)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Messages.Add(msg);
+            }
+            //else
+            //{
+            //    return false;
+            //}
+        }
 
     }
 }

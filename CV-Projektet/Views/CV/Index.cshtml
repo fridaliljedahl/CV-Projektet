@@ -12,11 +12,22 @@
 		<div class="leftText"></div>
 		@if (Model.User.Id.Equals(UserManager.GetUserId(User)))
 		{
-		<a class="edit" href="@Url.Action("Edit","CV", new { userID = UserManager.GetUserId(User)})">
-			<span class="material-symbols-outlined">
-				settings
-			</span>
-		</a>
+			<a class="edit" href="@Url.Action("Edit","CV", new { userID = UserManager.GetUserId(User)})">
+				<span class="material-symbols-outlined">
+					settings
+				</span>
+			</a>
+		}
+		else
+		{
+			<a class="" href="@Url.Action("SendMessage","Message", new SendMessageViewModel { 
+					ReceiverId = Model.User.Id, 
+					ReceiverName = $"{Model.User.FirstName} {Model.User.LastName}", 
+					MethodCaller = "Initial" })">
+				<span class="material-symbols-outlined">
+					mail
+				</span>
+			</a>
 		}
 		@try
 		{

@@ -2,22 +2,21 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-@{
-	User user = await UserManager.GetUserAsync(User);
-	int count = user.ReceivedMessages.Where(m => m.Read == false).Count();
-}
 
 <nav class="navbar">
 	<a class="logo" asp-area="" asp-controller="Home" asp-action="Index">CVGROTTAN</a>
 	<div class="navLinks">
 		<a asp-area="" asp-controller="Projects" asp-action="Index">Sök projekt</a>
 		<a asp-area="" asp-controller="Profiles" asp-action="Index">Sök profil</a>
-		
+
 		@if (SignInManager.IsSignedIn(User))
 		{
-			<a asp-area="" asp-controller="Account" asp-action="MyMessages">Mina meddelanden(@count)</a>
+			User user = await UserManager.GetUserAsync(User);
+			int count = user.ReceivedMessages.Where(m => m.Read == false).Count();
+
+			<a asp-area="" asp-controller="Message" asp-action="MyMessages">Mina meddelanden(@count)</a>
 			<a href="@Url.Action("Index", "CV", new { userID = UserManager.GetUserId(User)})">Min profil</a>
-			
+
 			<a asp-area="" asp-controller="ProfileSettings" asp-action="Index"> Inställningar <i class="fa fa-gear"></i></a>
 			<a asp-area="" asp-controller="Projects" asp-action="CreateProject">Skapa projekt</a>
 
@@ -25,7 +24,7 @@
 	</div>
 
 	@if (SignInManager.IsSignedIn(User))
-{
+	{
 		<form method="post" asp-controller="Account" asp-action="LogOut">
 			<AuthorizeView>
 				<Authorized>
@@ -34,12 +33,12 @@
 				</Authorized>
 			</AuthorizeView>
 		</form>
-}
-else
-{
-	<div class="loginOptions">
-		<a asp-area="" asp-controller="Account" asp-action="LogIn">Logga in</a>
-		<a asp-area="" asp-controller="Account" asp-action="Register">Registrera</a>
-	</div>
-}
+	}
+	else
+	{
+		<div class="loginOptions">
+			<a asp-area="" asp-controller="Account" asp-action="LogIn">Logga in</a>
+			<a asp-area="" asp-controller="Account" asp-action="Register">Registrera</a>
+		</div>
+	}
 </nav>

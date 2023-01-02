@@ -145,7 +145,7 @@ footer {
 /*Mina meddelanden*/
 .allMessages{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 .messageContainer {
     display: grid;

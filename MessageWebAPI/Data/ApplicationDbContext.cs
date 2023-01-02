@@ -1,7 +1,6 @@
 ﻿using MessageWebAPI.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime;
 
 namespace MessageWebAPI.Data
 {
@@ -19,8 +18,8 @@ namespace MessageWebAPI.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Competence> Competences { get; set; }
-		public DbSet<CV_Competences> CV_Competences { get; set; }
-		public DbSet<User_Projects> User_Projects{ get; set; }
+        public DbSet<CV_Competences> CV_Competences { get; set; }
+        public DbSet<User_Projects> User_Projects { get; set; }
         public DbSet<ImageModel> Images { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -269,7 +268,7 @@ namespace MessageWebAPI.Data
                     TimesViewed = 55,
                     UserID = "användare4id"
                 });
-                
+
             modelBuilder.Entity<ImageModel>().HasData(
                 new ImageModel
                 {
@@ -279,14 +278,33 @@ namespace MessageWebAPI.Data
                     UserID = "användare1id"
                 });
 
-			modelBuilder.Entity<Message>().HasData(
+            modelBuilder.Entity<Message>().HasData(
                 new Message
                 {
                     ID = 1,
                     Sender = "användare1id",
                     Receiver = "användare2id",
                     Text = "hejsan hoppsan",
-                    Date = DateTime.Now,
+                    Date = new DateTime(2021, 05, 11),
+                    Read = false
+                },
+                new Message
+                {
+                    ID = 2,
+                    Sender = "användare3id",
+                    Receiver = "användare1id",
+                    Text = "halloj hur är det med dig?",
+                    Date = new DateTime(2021, 08, 12),
+                    Read = false
+                },
+                new Message
+                {
+                    ID = 3,
+                    Sender = null,
+                    SenderName = "Kalle NoAccount",
+                    Receiver = "användare3id",
+                    Text = "hejsan hoppsansasasa lalalala",
+                    Date = new DateTime(2021, 05, 12),
                     Read = false
                 });
 

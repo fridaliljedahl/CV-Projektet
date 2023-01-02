@@ -271,7 +271,26 @@ namespace CV_Projektet.Data
                     Sender = "användare1id",
                     Receiver = "användare2id",
                     Text = "hejsan hoppsan",
-                    Date = DateTime.Now,
+                    Date = new DateTime(2021, 05, 11),
+                    Read = false
+                },
+                new Message
+                {
+                    ID = 2,
+                    Sender = "användare3id",
+                    Receiver = "användare1id",
+                    Text = "halloj hur är det med dig?",
+                    Date = new DateTime(2021, 08, 12),
+                    Read = false
+                },
+                new Message
+                {
+                    ID = 3,
+                    Sender = null,
+                    SenderName = "Kalle NoAccount",
+                    Receiver = "användare3id",
+                    Text = "hejsan hoppsansasasa lalalala",
+                    Date = new DateTime(2021, 05, 12),
                     Read = false
                 });
 

@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@model SendMessageViewModel
+
+<h2>Skicka ett meddelande till <em class="accentWord">@Model.ReceiverName</em></h2>
+<form method="post" asp-action="SendMessage">
+	@if (SignInManager.IsSignedIn(User))
+	{
+		<div class="form-group row">
+			@{User user = await UserManager.GetUserAsync(User);}
+			<label>Avsändare:</label>
+			<p>@Model.SenderName</p>
+		</div>
+	}
+	else
+	{
+		<div class="form-group row">
+			<label>Avsändare: </label>
+			<input asp-for="SenderName" class="form-control" />
+		</div>
+	}
+	<div class="form-group row">
+		<label>Meddelande: </label>
+		<textarea asp-for="Text" class="form-control"></textarea>
+	</div>
+	<div class="form-group row">
+		<div class="offset-2 col-sm-4">
+			<button type="submit" class="btn btn-primary">Skicka</button>
+		</div>
+	</div>
+</form>
+
+<input asp-for="SenderId" type="hidden" value="@Model.SenderId" readonly />
+@*<input asp-for="SenderName" type="hidden" value="@Model.SenderName" readonly />*@
+@*<input asp-for="Text" type="hidden" value="@Model.Text" readonly />*@
+<input asp-for="ReceiverId" type="hidden" value="@Model.ReceiverId" readonly />
+<input asp-for="ReceiverName" type="hidden" value="@Model.ReceiverName" readonly />
+<input asp-for="MessageSentMessage" type="hidden" value="@Model.MessageSentMessage" readonly />
+<input asp-for="MethodCaller" type="hidden" value="@Model.MethodCaller" readonly />

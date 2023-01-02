@@ -138,27 +138,5 @@ namespace CV_Projektet.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<IActionResult> MyMessages()
-        {
-            string route = client.BaseAddress + "receiver/" + userManager.GetUserId(User);
-            HttpResponseMessage response = await client.GetAsync(route);
-            string data = await response.Content.ReadAsStringAsync();
-
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-        
-            List<Message>? messages = JsonSerializer.Deserialize<List<Message>>(data, options)
-                .OrderBy(m => m.Date).ToList();
-            return View(messages);
-        }
-
-        public IActionResult SetReadState(int messageId)
-        {
-            Message msg = context.Messages.Find(messageId);
-            msg.Read = !msg.Read;
-            context.Messages.Update(msg);
-            context.SaveChanges();
-            return RedirectToAction("MyMessages", "Account");
-        }
-
     }
 }
