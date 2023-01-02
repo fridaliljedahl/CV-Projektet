@@ -21,26 +21,19 @@ namespace CV_Projektet.Controllers
         }
 
 
-        public IActionResult Index()
-		{
-			return View();
-		}
-
-
         [HttpGet]
-        public IActionResult ChangePassword()
+        public IActionResult Index()
         {
             return View();
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<IActionResult> Index(ChangePasswordViewModel changePasswordViewModel)
         {
             if (ModelState.IsValid)
             {
                 var user = await userManager.GetUserAsync(User);
-                //var user = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
                 if (user == null)
                 {
                     return RedirectToAction("Login");
@@ -48,7 +41,7 @@ namespace CV_Projektet.Controllers
 
                 // ChangePasswordAsync changes the user password
                 var result = await userManager.ChangePasswordAsync(user,
-                    model.CurrentPassword, model.NewPassword);
+                    changePasswordViewModel.CurrentPassword, changePasswordViewModel.NewPassword);
 
                 // The new password did not meet the complexity rules or
                 // the current password is incorrect. Add these errors to
@@ -59,15 +52,22 @@ namespace CV_Projektet.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-                    return View();
+
+
+                }
+                else
+                {
+                    // Upon successfully changing the password refresh sign-in cookie
+                    await signInManager.RefreshSignInAsync(user);
+
+                    changePasswordViewModel.ErrorMessage = "Ditt läsenord har nu ändrats!";
+
                 }
 
-                // Upon successfully changing the password refresh sign-in cookie
-                await signInManager.RefreshSignInAsync(user);
-                return View("ChangePasswordConfirmation");
+
             }
 
-            return View(model);
+            return View(changePasswordViewModel);
         }
 
 

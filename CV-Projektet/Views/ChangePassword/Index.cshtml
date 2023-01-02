@@ -4,8 +4,7 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form method="post" asp-controller="ChangePassword" asp-action="ChangePassword">
-            <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" asp-controller="ChangePassword" asp-action="Index">
             <div class="form-group">
                 <label asp-for="CurrentPassword"></label>
                 <input asp-for="CurrentPassword" class="form-control" />
@@ -24,4 +23,13 @@
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
+    @try{
+            <p>@Model.ErrorMessage</p>
+    }
+    catch(Exception ex)
+    {
+
+    }
+   
+
 </div>
