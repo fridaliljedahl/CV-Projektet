@@ -118,6 +118,7 @@ namespace CV_Projektet.Controllers
 		{
 			var competence = context.Competences.Find(ID);
 			User user = context.Users.Find(userManager.GetUserId(User));
+			CV? cv = context.CVs.Where(c => c.UserID == userManager.GetUserId(User)).SingleOrDefault();
 			List<CV_Competences> competencesList = context.CV_Competences.ToList();
 			List<int> competencesIDList = new List<int>();
 			foreach (var item in competencesList)
@@ -128,9 +129,13 @@ namespace CV_Projektet.Controllers
 				}
 			}
 			view.CompetenceList = context.Competences.Where(c => competencesIDList.Contains(c.ID));
-			var list = context.Competences.
+			CV_Competences competenceList = new CV_Competences();
+			competenceList.CompetenceID = competence.ID;
+			competenceList.CVID = cv.ID;
 			context.Competences.Remove(competence);
-			return View(view);
+			context.CV_Competences.Remove(competenceList);
+			context.SaveChanges();
+			return RedirectToAction("Competence", "CVSettings", view);
 		}
 		public IActionResult EditExperience()
 		{

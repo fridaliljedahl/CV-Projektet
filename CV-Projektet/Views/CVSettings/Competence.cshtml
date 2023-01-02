@@ -12,7 +12,7 @@
 		{
 			<div class="list">
 			<li class="competence">@item.Name</li>
-			<form asp-action="DeleteCompetence">
+			<form asp-controller="CVSettings" asp-action="DeleteCompetence">
 				<input type="hidden" asp-for="@item.ID" name="id" />
 				<input type="submit" value="Radera" class="btn btn-dark" />
 			</form>
