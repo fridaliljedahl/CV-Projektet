@@ -112,5 +112,12 @@ namespace CV_Projektet.Controllers
 			}
 			return View(view);
 		}
+
+        [HttpPost]
+		public IActionResult Edit()
+        {
+
+            return View();
+        }
 	}
 }

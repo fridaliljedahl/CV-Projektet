@@ -5,100 +5,109 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CV_Projektet
 build_property.RootNamespace = CV_Projektet
-build_property.ProjectDir = C:\Users\gewe_\OneDrive\Dokument\GitHub\CV-Projektet\CV-Projektet\
+build_property.ProjectDir = C:\Users\Lisa\Documents\Skola\Systemvetenskap\.NET\CV\CV-Projektet\CV-Projektet\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\gewe_\OneDrive\Dokument\GitHub\CV-Projektet\CV-Projektet
+build_property.MSBuildProjectDirectory = C:\Users\Lisa\Documents\Skola\Systemvetenskap\.NET\CV\CV-Projektet\CV-Projektet
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Account/LogIn.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Account/LogIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dJbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Account/Register.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/CV/Edit.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CVSettings/Competence.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZTZXR0aW5nc1xDb21wZXRlbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CVSettings/Experience.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZTZXR0aW5nc1xFeHBlcmllbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CV/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/CV/Index.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CV/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Home/Index.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Home/Privacy.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Image/Add.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Image/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1hZ2VcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Image/Delete.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Image/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1hZ2VcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Image/Index.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Image/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1hZ2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Profilepage/Index.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Profilepage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZXBhZ2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/ProfileSettings/Index.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/ProfileSettings/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVNldHRpbmdzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Profiles/Index.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Profiles/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Projects/Index.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Projects/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Register/Index.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Register/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Shared/Error.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Shared/_HeaderPartial.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Shared/_HeaderPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXJQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/_ViewImports.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/_ViewStart.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/gewe_/OneDrive/Dokument/GitHub/CV-Projektet/CV-Projektet/Views/Shared/_Layout.cshtml]
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-azlqqoz1m3

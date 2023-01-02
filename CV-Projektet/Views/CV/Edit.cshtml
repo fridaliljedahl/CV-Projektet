@@ -15,13 +15,14 @@
 			<span class="material-symbols-outlined">
 				settings
 			</span>
+			<br />
+			<p>Tillbaka</p>
 		</a>
 
-
-			@try
+		@try
+		{
+			if (@Model.User.ImageModel.Name.Any())
 			{
-				if (@Model.User.ImageModel.Name.Any())
-				{
 				<img class="profilepicture" src="@("~/image/" + @Model.User.ImageModel.Name)" asp-append-version="true" />
 			}
 		}
@@ -31,10 +32,13 @@
 				account_circle
 			</span>
 		}
-			<a class="edit" href="@Url.Action("Index","Image", new { userID = User.Identity})"><span class="material-symbols-outlined">
-edit
-</span>Hantera profilbild</a>
-
+		<a class="edit" href="@Url.Action("Index","Image", new { userID = User.Identity})">
+			<span class="material-symbols-outlined">
+				edit
+			</span>
+			<br />
+			<p>Hantera profilbild</p>
+		</a>
 
 		@try
 		{
@@ -58,47 +62,35 @@ edit
 		</div>
 	</div>
 	<div class="CVright">
-		<div>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-		</div>
-		@try
-		{@if (Model.CompetenceList.Any())
-			{
-				<h2 class="competence">Kompetenser</h2>
-				<ul>
-					@foreach (var item in Model.CompetenceList)
-					{
-						<li>@item.Name</li>
-					}
-				</ul>
-			}
 
-			@if (Model.ExperienceList.Where(e => e.Type.Equals("Education")).Any())
-			{
+		@try
+		{
+			<h2 class="competence">Kompetenser</h2>
+			<form id="SettingsCV" method="post" asp-controller="CVController" asp-action="Edit">
+				@foreach (var item in Model.CompetenceList)
+				{
+					<input class="SettingsCV" name="Name" value="@item.Name" />
+					<br />
+				}
+				<input class="SettingsCV" name="Name" />
+				<br />
+				<br />
+				<a href="@Url.Action("Competence", "CVSettings", new { userID = UserManager.GetUserId(User)})">Lägg till fler kompetenser</a>
+			
 				<h2 class="education">Utbildningar</h2>
 				@foreach (var item in Model.ExperienceList)
 				{
-					if (item.Type.Equals("Education"))
-					{
-						<h3>@item.Title</h3>
-						<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-						<p>@item.Place, @item.City</p>
-						<p>@item.Description</p>
-					}
+					<input class="SettingsCV" name="Title" value="@item.Title" />
+					<br />
+					<input asp-for="@item.StartDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+					<input asp-for="@item.EndDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+					<input class="SettingsCV" name="Place" value="@item.Place" />
+					<input class="SettingsCV" name="Description" value="@item.Description" />
 				}
-			}
+				<input class="SettingsCV" name="Name" />
+				<br />
+				<br /´>
 
-			@if (Model.ExperienceList.Where(e => e.Type.Equals("Work")).Any())
-			{
 				<h2 class="work">Arbetslivserfarenhet</h2>
 				@foreach (var item in Model.ExperienceList)
 				{
@@ -110,13 +102,20 @@ edit
 						<p>@item.Description</p>
 					}
 				}
-			}
+				<input class="SettingsCV" name="Name" />
+				<br />
+				<br />
 
-			@if (Model.ExperienceList.Where(e => e.Type.Equals("Course")).Any())
-			{
 				<h2 class="coure">Kurser</h2>
 				@foreach (var item in Model.ExperienceList)
-				{
+				{					
+						<input class="SettingsCV" name="Title" value="@item.Title" />
+						<br />
+						<input asp-for="@item.StartDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+						<input asp-for="@item.EndDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+						<input class="SettingsCV" name="Place" value="@item.Place" />
+						<input class="SettingsCV" name="Description" value="@item.Description" />
+					
 					if (item.Type.Equals("Course"))
 					{
 						<h3>@item.Title</h3>
@@ -125,7 +124,10 @@ edit
 						<p>@item.Description</p>
 					}
 				}
-			}
+				<input class="SettingsCV" name="Name" />
+				<br />
+				<br />
+			
 
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Misc")).Any())
 			{
@@ -141,7 +143,10 @@ edit
 					<h3>@project.Name</h3>
 					<p>@project.Description</p>
 				}
-			}}
+			}
+					<input type="submit" value="Spara">
+				</form>
+		}
 		catch (Exception ex) { }
 	</div>
 </div>
