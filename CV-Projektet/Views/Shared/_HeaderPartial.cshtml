@@ -10,7 +10,7 @@
 		
 		@if (SignInManager.IsSignedIn(User))
 		{
-			<a asp-area="" asp-controller="" asp-action="">Mina meddelanden</a>
+			<a asp-area="" asp-controller="Account" asp-action="MyMessages">Mina meddelanden</a>
 			<a href="@Url.Action("Index", "CV", new { userID = UserManager.GetUserId(User)})">Min profil</a>
 			
 			<a asp-area="" asp-controller="ProfileSettings" asp-action="Index"> Inställningar <i class="fa fa-gear"></i></a>

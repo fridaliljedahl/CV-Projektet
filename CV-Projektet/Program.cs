@@ -1,3 +1,5 @@
+using System.Net.Http;
+using System.Net.Security;
 using System.Reflection.Emit;
 using CV_Projektet.Data;
 using CV_Projektet.Models;
@@ -29,6 +31,12 @@ builder.Services.AddIdentity<User, IdentityRole>()
                 .AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+HttpClientHandler clientHandler = new HttpClientHandler();
+clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+HttpClient client = new HttpClient(clientHandler);
+client.BaseAddress = new Uri("https://localhost:7033/api/");
+builder.Services.AddSingleton<HttpClient>(client);
 
 var app = builder.Build();
 

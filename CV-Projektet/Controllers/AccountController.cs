@@ -2,7 +2,7 @@
 using CV_Projektet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Text.Json;
 
 namespace CV_Projektet.Controllers
 {
@@ -11,12 +11,14 @@ namespace CV_Projektet.Controllers
         private UserManager<User> userManager;
         private SignInManager<User> signInManager;
         private ApplicationDbContext context;
+        private HttpClient client;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ApplicationDbContext context)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ApplicationDbContext context, HttpClient client)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.context = context;
+            this.client = client;
         }
 
         [HttpGet]
@@ -135,6 +137,17 @@ namespace CV_Projektet.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public async Task<IActionResult> MyMessages()
+        {
+            HttpResponseMessage response = await client.GetAsync("message");
+            string data = await response.Content.ReadAsStringAsync();
+
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        
+            List<Message>? messages = JsonSerializer.Deserialize<List<Message>>(data, options)
+                .OrderBy(m => m.Date).ToList();
+            return View(messages);
+        }
     }
 
 }
