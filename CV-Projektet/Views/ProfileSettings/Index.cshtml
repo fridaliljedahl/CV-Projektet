@@ -114,17 +114,10 @@
 		<label>Public profile:</label>
 		<input type="checkbox" class="checkbox" asp-for="IsPublic" />
 	</div>
-	<div class="inputRow">
-		<label>Password: </label>
-		<input type="password" asp-for="Password" />
-		<span asp-validation-for="Password" class="text-danger"></span>
-	</div>
-	<div class="inputRow">
-		<label>Confirm password: </label>
-		<input asp-for="PasswordConfirmed" />
-		<span asp-validation-for="PasswordConfirmed" class="text-danger"></span>
-	</div>
 
 	<button type="submit" class="btnRegister">Spara</button>
 
 </form>
+
+
+<a asp-area="" asp-controller="ChangePassword" asp-action="Index">Ändra Lösenord</a>

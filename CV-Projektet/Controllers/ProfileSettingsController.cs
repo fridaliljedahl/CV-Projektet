@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.UserSecrets;
 
+
 namespace CV_Projektet.Controllers
 {
 	public class ProfileSettingsController : Controller
@@ -18,6 +19,7 @@ namespace CV_Projektet.Controllers
 			this.context = context;
 			this.userManager = userManager;
 			this.signInManager = signInManager;
+
 		}
         public IActionResult Index()
 		{
@@ -27,7 +29,6 @@ namespace CV_Projektet.Controllers
             viewModel.UserName = user.UserName;
             viewModel.FirstName = user.FirstName;
             viewModel.Password = user.PasswordHash;
-            viewModel.PasswordConfirmed = user.PasswordHash;
             viewModel.FirstName = user.FirstName;
             viewModel.LastName = user.LastName;
             viewModel.Description = user.FirstName;
@@ -64,16 +65,15 @@ namespace CV_Projektet.Controllers
                 user.UserName = userModel.UserName;
                 user.NormalizedUserName = userModel.UserName.ToUpper();
                 user.Email = userModel.Email;
+                user.NormalizedEmail = userModel.Email.ToUpper();
                 user.FirstName = userModel.FirstName;
                 user.LastName = userModel.LastName;
                 user.Description = userModel.Description;
                 user.IsPublic = userModel.IsPublic;
                 user.PhoneNumber = userModel.PhoneNumber;
-                
 
                 context.Users.Update(user);
                 context.SaveChanges();
-
 
             }
             catch (DbUpdateConcurrencyException)
