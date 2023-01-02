@@ -142,6 +142,31 @@ footer {
     align-self: center;
 }
 
+/*Mina meddelanden*/
+.allMessages{
+    display: flex;
+    flex-direction: row;
+}
+.messageContainer {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    width: 100%;
+    margin: 1em 1em;
+    justify-items:center;
+    align-items: center;
+}
+.message{
+    background: white;
+    color: black;
+    text-align: center;
+    padding: 1em;
+    margin: 0.5em;
+    width: 100%;
+}
+.messageContainer a{
+    text-align:center;
+    color: orange;
+}
 
 /*CV*/
 .CVright {

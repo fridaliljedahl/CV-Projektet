@@ -21,17 +21,7 @@ namespace MessageWebAPI.Controllers
             return context.Messages.ToList();
         }
 
-        //[HttpGet("{id}")]
-        //public Message Get(int id)
-        //{
-        //    return context.Messages.Find(id);
-        //}
 
-        [HttpGet("{Id}")]
-        public List<Message> Get(string Id)
-        {
-            var messages = context.Messages.Where(m => m.UserReceiver.Id == Id);
-            return messages.ToList();
-        }
+
     }
 }

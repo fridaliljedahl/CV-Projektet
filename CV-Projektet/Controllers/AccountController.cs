@@ -2,6 +2,7 @@
 using CV_Projektet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using System.Text.Json;
 
 namespace CV_Projektet.Controllers
@@ -139,7 +140,8 @@ namespace CV_Projektet.Controllers
 
         public async Task<IActionResult> MyMessages()
         {
-            HttpResponseMessage response = await client.GetAsync("message");
+            string route = client.BaseAddress + "receiver/" + userManager.GetUserId(User);
+            HttpResponseMessage response = await client.GetAsync(route);
             string data = await response.Content.ReadAsStringAsync();
 
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
@@ -148,6 +150,15 @@ namespace CV_Projektet.Controllers
                 .OrderBy(m => m.Date).ToList();
             return View(messages);
         }
-    }
 
+        public IActionResult SetReadState(int messageId)
+        {
+            Message msg = context.Messages.Find(messageId);
+            msg.Read = !msg.Read;
+            context.Messages.Update(msg);
+            context.SaveChanges();
+            return RedirectToAction("MyMessages", "Account");
+        }
+
+    }
 }

@@ -1,5 +1,21 @@
 ﻿@model List<Message>
 
-@foreach(var item in Model){
-	<p>@item.Text</p>
-}
+<div class="allMessages">
+	@foreach (var item in Model)
+	{
+		<div class="messageContainer">
+			<div class="sender">
+				//lägg in profilbild
+				<p>@item.UserSender.FirstName @item.UserSender.LastName</p>
+			</div>
+			<p class="message">@item.Text</p>
+			<div>
+				@if(item.Read){
+					<a href="@Url.Action("SetReadState", "Account", new { messageId = item.ID})">&#x2717; Markera som oläst</a>
+				}else{
+					<a href="@Url.Action("SetReadState", "Account", new { messageId = item.ID})">&#x2713; Markera som läst</a>
+				}
+			</div>
+		</div>
+	}
+</div>
