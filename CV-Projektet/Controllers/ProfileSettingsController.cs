@@ -29,9 +29,8 @@ namespace CV_Projektet.Controllers
             viewModel.UserName = user.UserName;
             viewModel.FirstName = user.FirstName;
             viewModel.Password = user.PasswordHash;
-            viewModel.FirstName = user.FirstName;
             viewModel.LastName = user.LastName;
-            viewModel.Description = user.FirstName;
+            viewModel.Description = user.Description;
             viewModel.Email = user.Email;
             viewModel.IsPublic = user.IsPublic;
             viewModel.PhoneNumber = user.PhoneNumber;
@@ -59,9 +58,13 @@ namespace CV_Projektet.Controllers
             //var userToUpdate = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
 
             //context.Entry(userToUpdate).CurrentValues.SetValues(user);
+
+            UserRegistrationViewModel viewModel = new UserRegistrationViewModel();
+
             try
             {
                 User user = context.Users.Find(userManager.GetUserId(User));
+                Address address = context.Addresses.Find(user.AdressID);
                 user.UserName = userModel.UserName;
                 user.NormalizedUserName = userModel.UserName.ToUpper();
                 user.Email = userModel.Email;
@@ -71,15 +74,21 @@ namespace CV_Projektet.Controllers
                 user.Description = userModel.Description;
                 user.IsPublic = userModel.IsPublic;
                 user.PhoneNumber = userModel.PhoneNumber;
+                address.Street = userModel.Street;
+                address.PostalCode = int.Parse(userModel.PostalCode);
+                address.City = userModel.City;
 
+
+                context.Addresses.Update(address);
                 context.Users.Update(user);
                 context.SaveChanges();
 
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
+
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "ProfileSettings");
 
         }
     }
