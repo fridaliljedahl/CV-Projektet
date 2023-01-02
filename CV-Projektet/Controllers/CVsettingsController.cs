@@ -31,9 +31,11 @@ namespace CV_Projektet.Controllers
 		[HttpPost]
 		public IActionResult AddCompetence(CVDetails view, string name)
 		{
-			List<CV_Competences> competencesList = context.CV_Competences.ToList();
-			List<int> competencesIDList = new List<int>();
-
+			List<CV_Competences> competences = context.CV_Competences.ToList();
+			//List<int> competencesIDList = new List<int>();
+			Competence competence = new Competence();
+			CV? cv = context.CVs.Where(c => c.UserID == userManager.GetUserId(User)).SingleOrDefault();
+			CV_Competences competenceList = new CV_Competences();
 			try
 			{
 				bool matchDB = false;
@@ -47,20 +49,15 @@ namespace CV_Projektet.Controllers
 				if (!matchDB)
 
 				{
-					Competence competence = new Competence();
 					competence.Name = name;
 					context.Add(competence);
-					//kontrollera om kompetens finns i databasen
-					CV_Competences cb = new CV_Competences();
-					//sambandtabellen behöver ett sambandsobjekt när man lägger in det
-					//cb.CompetenceID = context.Competences.Where(hämta via namn);
-					// ........ .cvID
-					//context.CV_Competences.Add(competence)
 					context.SaveChanges();
 				}
 			}
-			catch (Exception ex)
+			catch (Exception ex) { }
+			try
 			{
+
 				if (view.CompetenceList.Any())
 				{
 					bool matchList = false;
@@ -70,8 +67,24 @@ namespace CV_Projektet.Controllers
 						{
 							matchList = true;
 						}
+						if (!matchList)
+						{
+							competence = context.Competences.Where(c => c.Name == name).Single();
+							competenceList.CompetenceID = competence.ID;
+							competenceList.CVID = cv.ID;
+							context.CV_Competences.Add(competenceList);
+							context.SaveChanges();
+						}
 					}
 				}
+			}
+			catch (Exception ex)
+			{
+				competence = context.Competences.Where(c => c.Name == name).Single();
+				competenceList.CompetenceID = competence.ID;
+				competenceList.CVID = cv.ID;
+				context.CV_Competences.Add(competenceList);
+				context.SaveChanges();
 			}
 			return RedirectToAction("Competence", "CVSettings", view);
 		}
