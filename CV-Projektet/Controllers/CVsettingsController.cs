@@ -56,7 +56,7 @@ namespace CV_Projektet.Controllers
 				bool matchDB = false;
 				foreach (var item in context.Competences)
 				{
-					if (item.Name.Equals(name))
+					if (item.Name.ToLower().Equals(name.ToLower()))
 					{
 						matchDB = true;
 					}
@@ -86,7 +86,7 @@ namespace CV_Projektet.Controllers
 					{
 						foreach (var item in view.CompetenceList)
 						{
-							if (item.Name.Equals(name))
+							if (item.Name.ToLower().Equals(name.ToLower()))
 							{
 								matchList = true;
 							}
@@ -113,6 +113,24 @@ namespace CV_Projektet.Controllers
 			}
 
 			return RedirectToAction("Competence", "CVSettings", view);
+		}
+		public IActionResult DeleteCompetence(CVDetails view, int ID)
+		{
+			var competence = context.Competences.Find(ID);
+			User user = context.Users.Find(userManager.GetUserId(User));
+			List<CV_Competences> competencesList = context.CV_Competences.ToList();
+			List<int> competencesIDList = new List<int>();
+			foreach (var item in competencesList)
+			{
+				if (item.CVID == cv.ID)
+				{
+					competencesIDList.Add(item.CompetenceID);
+				}
+			}
+			view.CompetenceList = context.Competences.Where(c => competencesIDList.Contains(c.ID));
+			var list = context.Competences.
+			context.Competences.Remove(competence);
+			return View(view);
 		}
 		public IActionResult EditExperience()
 		{
