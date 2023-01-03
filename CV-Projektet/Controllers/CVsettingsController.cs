@@ -147,7 +147,7 @@ namespace CV_Projektet.Controllers
 			context.SaveChanges();
 		}
 
-		public IActionResult Education(CVDetails view)
+		public IActionResult Experience(CVDetails view)
 		{
 			User? user = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
 			CV? cv = context.CVs.Where(c => c.UserID == user.Id).SingleOrDefault();
@@ -156,8 +156,8 @@ namespace CV_Projektet.Controllers
 			view.ExperienceList = context.Experiences.Where(e => e.CVID == cv.ID);
 			return View(view);
 		}
-		public IActionResult AddEducation(CVDetails view, string title, string type, DateTime startDate, DateTime endDate, string city, string place, string description)
-		{			
+		public IActionResult AddExperience(CVDetails view, string title, string type, DateTime startDate, DateTime endDate, string city, string place, string description)
+		{
 			CV? cv = context.CVs.Where(c => c.UserID == userManager.GetUserId(User)).SingleOrDefault();
 			view.ExperienceList = context.Experiences.Where(e => e.CVID == cv.ID);
 			Experience experience = new Experience();
@@ -167,7 +167,7 @@ namespace CV_Projektet.Controllers
 				bool matchDB = false;
 				foreach (var item in context.Experiences)
 				{
-					if (item.Title.ToLower().Equals(title.ToLower()) && item.Type.ToLower().Equals(type.ToLower()) && item.StartDate.Equals(startDate) && item.EndDate.Equals(endDate) && item.City.ToLower().Equals(city.ToLower()) && item.Description.ToLower().Equals(description.ToLower()))
+					if (item.Title.ToLower().Equals(title.ToLower()) && item.Type.ToLower().Equals(type.ToLower()) && item.StartDate.Equals(startDate) && item.EndDate.Equals(endDate) && item.City.ToLower().Equals(city.ToLower()) && item.Place.ToLower().Equals(place.ToLower()) && item.Description.ToLower().Equals(description.ToLower()))
 					{
 						matchDB = true;
 					}
@@ -179,85 +179,26 @@ namespace CV_Projektet.Controllers
 					experience.StartDate = startDate;
 					experience.EndDate = endDate;
 					experience.City = city;
+					experience.Place = place;
 					experience.Description = description;
+					experience.CVID = cv.ID;
 					context.Add(experience);
 					context.SaveChanges();
-					experience = context.Experiences.Where(e => e.Title == title && e.Type == type && e.City == city).Single();
+					experience = context.Experiences.Where(e => e.Title == title && e.Type == type).Single();
 					context.Experiences.Add(experience);
 					context.SaveChanges();
 				}
 				else
 				{
-					List<CV_Competences> competencesList = context.CV_Competences.ToList();
-					List<int> competencesIDList = new List<int>();
-					foreach (var item in competencesList)
-					{
-						if (item.CVID == cv.ID)
-						{
-							competencesIDList.Add(item.CompetenceID);
-						}
-					}
-					view.CompetenceList = context.Competences.Where(c => competencesIDList.Contains(c.ID));
-
-					bool matchList = false;
-					if (view.CompetenceList.Any())
-					{
-						foreach (var item in view.CompetenceList)
-						{
-							if (item.Name.ToLower().Equals(name.ToLower()))
-							{
-								matchList = true;
-							}
-						}
-						if (!matchList)
-						{
-							addToList(competence, cv, competenceList, name);
-						}
-						else
-						{
-							view.ErrorMessage = name + " finns redan i din lista!";
-						}
-
-					}
-					else
-					{
-						addToList(competence, cv, competenceList, name);
-					}
+					view.ErrorMessage = "Utbildningen finns redan i din lista!";
 				}
 			}
 			catch (Exception ex)
 			{
-				view.ErrorMessage = name + " finns redan i din lista";
+				view.ErrorMessage = "Vänligen fyll i alla fält!";
 			}
 
-			return RedirectToAction("Competence", "CVSettings", view);
-		}
-
-		public IActionResult Course()
-		{
-			return View();
-		}
-		public IActionResult AddCourse()
-		{
-			return View();
-		}
-
-		public IActionResult Misc()
-		{
-			return View();
-		}
-		public IActionResult AddMisc()
-		{
-			return View();
-		}
-
-		public IActionResult Work()
-		{
-			return View();
-		}
-		public IActionResult AddWork()
-		{
-			return View();
+			return RedirectToAction("Experience", "CVSettings", view);
 		}
 	}
 }

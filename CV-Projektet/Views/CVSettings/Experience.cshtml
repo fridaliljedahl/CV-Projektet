@@ -18,10 +18,46 @@
 			<p>@item.Description</p>
 		}
 	}
+	<br />
+	<br />
+	<h2 class="work">Arbetslivserfarenhet</h2>
+	@foreach (var item in Model.ExperienceList)
+	{
+		if (item.Type.Equals("Work"))
+		{
+			<h3>@item.Title</h3>
+			<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+			<p>@item.Place , @item.City</p>
+			<p>@item.Description</p>
+		}
+	}
+	<br />
+	<br />
+	<h2 class="coure">Kurser</h2>
+	@foreach (var item in Model.ExperienceList)
+	{
+		if (item.Type.Equals("Course"))
+		{
+			<h3>@item.Title</h3>
+			<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+			<p>@item.Place , @item.City</p>
+			<p>@item.Description</p>
+		}
+	}
+	<br />
+	<br />
+	@if (Model.ExperienceList.Where(e => e.Type.Equals("Misc")).Any())
+	{
+		<h2 class="misc">Övrigt</h2>
+		<p></p>
+	}
+	<a href="@Url.Action("Experience", "CVSettings", new { userID = UserManager.GetUserId(User)})"><button class="btn btn-dark">Lägg till fler erfarenheter</button></a>
 
+	<br />
+	<br />
 }
 catch (Exception ex) { }
-<form id="SettingsCV" method="post" asp-controller="CVSettings" asp-action="AddEducation">
+<form id="SettingsCV" method="post" asp-controller="CVSettings" asp-action="AddExperience">
 
 	<h3>Lägg till en ny erfarenhet:</h3>
 	<div class="col-sm-2">
@@ -34,7 +70,12 @@ catch (Exception ex) { }
 		<label>Erfarenhetstyp: </label>
 	</div>
 	<div class="col-sm-4">
-		<input class="SettingsCV" name="Type" />
+		<select class="SettingsCV" name="Type">
+			<option value="Education">Utbildning</option>
+			<option value="Work">Arbete</option>
+			<option value="Course">Kurs</option>
+			<option value="Misc">Övrigt</option>
+			<select />
 	</div>
 	<div class="col-sm-2">
 		<label>Startdatum: </label>
