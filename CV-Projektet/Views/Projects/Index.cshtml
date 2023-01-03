@@ -10,6 +10,8 @@
 		<h2 class="accentWord">@item.Name</h2>
 		<p>@item.Description</p>
 		<br>
+		@if(item.ProjectLeader.IsPublic || SignInManager.IsSignedIn(User))
+		{
 		<h3>Projektledare</h3>
 		<div class="participants">
 			<a href="@Url.Action("Index", "CV", new { userID = item.ProjectLeaderID})">
@@ -17,8 +19,13 @@
 			</a>
 		</div>
 		<br>
+
+		}
+
 		<h3>Medverkande</h3>
 		<div>
+			@if(SignInManager.IsSignedIn(User))
+			{
 			@foreach (var x in item.User_Project)
 			{
 			<div class="participants">
@@ -27,6 +34,19 @@
 				</a>
 			</div>
 			}
+			}
+			else
+			{
+				@foreach(var x in item.User_Project.Where(x=>x.User.IsPublic==true))
+				{
+				<div class="participants">
+				<a href="@Url.Action("Index", "CV", new { userID = x.UserID})">
+					@x.User.FirstName @x.User.LastName
+				</a>
+				</div>
+				}
+			}
+
 		</div>
 		@if (SignInManager.IsSignedIn(User))
 		{
