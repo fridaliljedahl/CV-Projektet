@@ -66,69 +66,119 @@
 		@try
 		{
 			<h2 class="competence">Kompetenser</h2>
+			@if (Model.CompetenceList.Any())
+			{
 
-			<ul>
-				@foreach (var item in Model.CompetenceList)
-				{
-					<li>@item.Name</li>
-				}
-			</ul>
+				<ul>
+					@foreach (var item in Model.CompetenceList)
+					{
+						<li>@item.Name</li>
+					}
+				</ul>
+			}
+			else
+			{
+				<p>Du har inga kompetenser tillagda. Lägg till fler nedan.</p>
+			}
 			<a href="@Url.Action("Competence", "CVSettings", new { userID = UserManager.GetUserId(User)})"><button class="btn btn-dark">Lägg till fler kompetenser</button></a>
 			<br />
 			<br />
 			<h2 class="education">Utbildningar</h2>
-			@foreach (var item in Model.ExperienceList)
+			@if (Model.ExperienceList.Where(e => e.Type.Equals("Education")).Any())
 			{
-				if (item.Type.Equals("Education"))
+				@foreach (var item in Model.ExperienceList)
 				{
-					<h3>@item.Title</h3>
-					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-					<p>@item.Place, @item.City</p>
-					<p>@item.Description</p>
+					if (item.Type.Equals("Education"))
+					{
+						<h3>@item.Title</h3>
+						<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+						<p>@item.Place, @item.City</p>
+						<p>@item.Description</p>
+					}
 				}
 			}
-			<br />
-			<h2 class="work">Arbetslivserfarenhet</h2>
-			@foreach (var item in Model.ExperienceList)
+			else
 			{
-				if (item.Type.Equals("Work"))
-				{
-					<h3>@item.Title</h3>
-					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-					<p>@item.Place , @item.City</p>
-					<p>@item.Description</p>
-				}
+				<p>Du har inga utbildningar tillagda. Lägg till fler nedan.</p>
 			}
 			<br />
-			<h2 class="coure">Kurser</h2>
-			@foreach (var item in Model.ExperienceList)
+			<h2 class="work">Arbetslivserfarenheter</h2>
+			@if (Model.ExperienceList.Where(e => e.Type.Equals("Work")).Any())
 			{
-				if (item.Type.Equals("Course"))
+				@foreach (var item in Model.ExperienceList)
 				{
-					<h3>@item.Title</h3>
-					<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-					<p>@item.Place , @item.City</p>
-					<p>@item.Description</p>
+					if (item.Type.Equals("Work"))
+					{
+						<h3>@item.Title</h3>
+						<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+						<p>@item.Place , @item.City</p>
+						<p>@item.Description</p>
+					}
 				}
 			}
+			else
+			{
+				<p>Du har inga arbeten tillagda. Lägg till fler nedan.</p>
+			}
 			<br />
+			<h2 class="course">Kurser</h2>
+			@if (Model.ExperienceList.Where(e => e.Type.Equals("Course")).Any())
+			{
+				@foreach (var item in Model.ExperienceList)
+				{
+					if (item.Type.Equals("Course"))
+					{
+						<h3>@item.Title</h3>
+						<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+						<p>@item.Place , @item.City</p>
+						<p>@item.Description</p>
+					}
+
+				}
+
+			}
+			else
+			{
+				<p>Du har inga kurser tillagda. Lägg till fler nedan.</p>
+			}
+			<br />
+			<h2 class="misc">Övrigt</h2>
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Misc")).Any())
 			{
-				<h2 class="misc">Övrigt</h2>
-				<p></p>
+				@foreach (var item in Model.ExperienceList)
+				{
+					@if (item.Type.Equals("Misc"))
+					{
+						<h3>@item.Title</h3>
+						<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+						<p>@item.Place , @item.City</p>
+						<p>@item.Description</p>
+					}
+
+				}
+			}
+			else
+			{
+				<p>Du har inga övriga erfarenheter tillagda. Lägg till fler nedan.</p>
 			}
 			<a href="@Url.Action("Experience", "CVSettings", new { userID = UserManager.GetUserId(User)})"><button class="btn btn-dark">Lägg till fler erfarenheter</button></a>
 
 			<br />
 			<br />
+			<h2 class="project">Projekt</h2>
 			@if (Model.ProjectList.Any())
 			{
-				<h2 class="project">Projekt</h2>
 				@foreach (var project in Model.ProjectList)
 				{
 					<h3>@project.Name</h3>
 					<p>@project.Description</p>
+					<a class="involved btn btn-dark" href="@Url.Action("LeaveProject", "User", new { projectId = project.ID, caller = "projects"})">&#x2717; Lämna projektet</a>
+					<br />
 				}
+			}
+			else
+			{
+				<p>Du har inte lagt till några projekt. Välj att gå med i ett projekt eller skapa ett nytt nedan. </p>
 			}
 			<a asp-area="" asp-controller="Projects" asp-action="Index">
 				<button class="btn btn-dark">

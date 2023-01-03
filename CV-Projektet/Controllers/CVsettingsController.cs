@@ -133,10 +133,7 @@ namespace CV_Projektet.Controllers
 			context.SaveChanges();
 			return RedirectToAction("Competence", "CVSettings", view);
 		}
-		public IActionResult EditExperience()
-		{
-			return View();
-		}
+		
 
 		public void addToListCompetence(Competence competence, CV cv, CV_Competences competenceList, string name)
 		{
@@ -184,9 +181,6 @@ namespace CV_Projektet.Controllers
 					experience.CVID = cv.ID;
 					context.Add(experience);
 					context.SaveChanges();
-					experience = context.Experiences.Where(e => e.Title == title && e.Type == type).Single();
-					context.Experiences.Add(experience);
-					context.SaveChanges();
 				}
 				else
 				{
@@ -198,6 +192,14 @@ namespace CV_Projektet.Controllers
 				view.ErrorMessage = "Vänligen fyll i alla fält!";
 			}
 
+			return RedirectToAction("Experience", "CVSettings", view);
+		}
+
+		public IActionResult DeleteExperience(CVDetails view, int ID)
+		{
+			var experience = context.Experiences.Find(ID);
+			context.Experiences.Remove(experience);
+			context.SaveChanges();
 			return RedirectToAction("Experience", "CVSettings", view);
 		}
 	}
