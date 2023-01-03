@@ -6,14 +6,14 @@
 		<div class="messageContainer">
 			<div class="sender">
 				//lägg in profilbild
-				<p>@item.UserSender.FirstName @item.UserSender.LastName</p>
+				<p>@item.SenderName</p>
 			</div>
 			<p class="message">@item.Text</p>
 			<div>
 				@if(item.Read){
-					<a href="@Url.Action("SetReadState", "Message", new { messageId = item.ID})">&#x2717; Markera som oläst</a>
+					<a href="@Url.Action("UpdateReadState", "Message", new { messageId = item.ID})">&#x2717; Markera som oläst</a>
 				}else{
-					<a href="@Url.Action("SetReadState", "Message", new { messageId = item.ID})">&#x2713; Markera som läst</a>
+					<a href="@Url.Action("UpdateReadState", "Message", new { messageId = item.ID})">&#x2713; Markera som läst</a>
 				}
 			</div>
 		</div>

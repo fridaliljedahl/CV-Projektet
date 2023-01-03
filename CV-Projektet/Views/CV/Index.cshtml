@@ -20,10 +20,10 @@
 		}
 		else
 		{
-			<a class="" href="@Url.Action("SendMessage","Message", new SendMessageViewModel { 
+			<a class="" href="@Url.Action("SendMessage","Message", new { 
 					ReceiverId = Model.User.Id, 
-					ReceiverName = $"{Model.User.FirstName} {Model.User.LastName}", 
-					MethodCaller = "Initial" })">
+					ReceiverName = $"{Model.User.FirstName} {Model.User.LastName}"@*, 
+					MethodCaller = "Initial" *@})">
 				<span class="material-symbols-outlined">
 					mail
 				</span>

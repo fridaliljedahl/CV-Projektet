@@ -23,7 +23,7 @@ namespace MessageWebAPI.Controllers
         }
 
         [HttpPut]
-        public void SetReadState(int messageId)
+        public void SetReadState([FromBody]int messageId)
         {
             Message msg = context.Messages.Find(messageId);
             msg.Read = !msg.Read;
@@ -34,14 +34,8 @@ namespace MessageWebAPI.Controllers
         [HttpPost]
         public void SendMessage(Message msg)
         {
-            if (ModelState.IsValid)
-            {
-                context.Messages.Add(msg);
-            }
-            //else
-            //{
-            //    return false;
-            //}
+            context.Messages.Add(msg);
+            context.SaveChanges();
         }
 
     }

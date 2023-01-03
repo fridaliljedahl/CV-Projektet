@@ -31,6 +31,8 @@ builder.Services.AddIdentity<User, IdentityRole>()
                 .AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+builder.Services.AddSession(); //adderat för meddelanden
+
 HttpClientHandler clientHandler = new HttpClientHandler();
 clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
 
@@ -51,6 +53,8 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseSession(); //adderat för meddelanden
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
