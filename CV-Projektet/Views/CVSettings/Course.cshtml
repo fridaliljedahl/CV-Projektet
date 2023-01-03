@@ -1,0 +1,31 @@
+﻿@model CVDetails
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<h2 class="competence">Kompetenser</h2>
+
+@try
+{
+		<ul>
+		@foreach (var item in Model.CompetenceList)
+		{
+					<div class="list">
+					<li class="competence">@item.Name</li>
+					<form asp-controller="CVSettings" asp-action="DeleteCompetence">
+						<input type="hidden" asp-for="@item.ID" name="id" />
+						<input type="submit" value="Radera" class="btn btn-dark" />
+					</form>
+					</div>
+		}
+		</ul>
+}
+catch (Exception ex) { }
+<form id="SettingsCV" method="post" asp-controller="CVSettings" asp-action="AddCompetence">
+	<p>Lägg till en ny kompetens:</p>
+	<input class="SettingsCV" name="Name" />
+	<br />
+	<br />
+	<input type="submit" value="Spara">
+</form>
+<p>@Model.ErrorMessage</p>

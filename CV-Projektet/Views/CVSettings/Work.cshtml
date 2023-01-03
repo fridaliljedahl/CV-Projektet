@@ -3,16 +3,7 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 <h2 class="education">Utbildningar</h2>
-@foreach (var item in Model.ExperienceList)
-{
-	if (item.Type.Equals("Education"))
-	{
-		<h3>@item.Title</h3>
-		<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
-		<p>@item.Place, @item.City</p>
-		<p>@item.Description</p>
-	}
-}
+
 <h2 class="work">Arbetslivserfarenhet</h2>
 @foreach (var item in Model.ExperienceList)
 {

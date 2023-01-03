@@ -32,8 +32,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZTZXR0aW5nc1xDb21wZXRlbmNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CVSettings/Experience.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZTZXR0aW5nc1xFeHBlcmllbmNlLmNzaHRtbA==
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CVSettings/Course.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZTZXR0aW5nc1xDb3Vyc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CVSettings/Education.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZTZXR0aW5nc1xFZHVjYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CVSettings/Misc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZTZXR0aW5nc1xNaXNjLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CVSettings/Work.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZTZXR0aW5nc1xXb3JrLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Lisa/Documents/Skola/Systemvetenskap/.NET/CV/CV-Projektet/CV-Projektet/Views/CV/Edit.cshtml]

@@ -1,0 +1,73 @@
+﻿@model CVDetails
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<h2>Utbildningar</h2>
+
+@try
+{
+
+	@foreach (var item in Model.ExperienceList)
+	{
+		if (item.Type.Equals("Education"))
+		{
+			<h3>@item.Title</h3>
+			<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+			<p>@item.Place, @item.City</p>
+			<p>@item.Description</p>
+		}
+	}
+
+}
+catch (Exception ex) { }
+<form id="SettingsCV" method="post" asp-controller="CVSettings" asp-action="AddEducation">
+
+	<h3>Lägg till en ny erfarenhet:</h3>
+	<div class="col-sm-2">
+		<label>Namn: </label>
+	</div>
+	<div class="col-sm-4">
+		<input class="SettingsCV" name="Title" />
+	</div>
+	<div class="col-sm-2">
+		<label>Erfarenhetstyp: </label>
+	</div>
+	<div class="col-sm-4">
+		<input class="SettingsCV" name="Type" />
+	</div>
+	<div class="col-sm-2">
+		<label>Startdatum: </label>
+	</div>
+	<div class="col-sm-4">
+		<input type="date" id="" name="StartDate">
+	</div>
+	<div class="col-sm-2">
+		<label>Slutddatum: </label>
+	</div>
+	<div class="col-sm-4">
+		<input type="date" id="" name="EndDate">
+	</div>
+	<div class="col-sm-2">
+		<label>Stad: </label>
+	</div>
+	<div class="col-sm-4">
+		<input class="SettingsCV" name="City" />
+	</div>
+	<div class="col-sm-2">
+		<label>Utbildningsplats: </label>
+	</div>
+	<div class="col-sm-4">
+		<input class="SettingsCV" name="Place" />
+	</div>
+	<div class="col-sm-2">
+		<label>Beskrivning: </label>
+	</div>
+	<div class="col-sm-4">
+		<input class="SettingsCV" name="Description" />
+	</div>
+	<br />
+	<br />
+	<input type="submit" value="Spara" class="btn btn-dark">
+</form>
+<p>@Model.ErrorMessage</p>
