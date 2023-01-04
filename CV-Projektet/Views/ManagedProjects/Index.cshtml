@@ -1,0 +1,25 @@
+﻿@model List<Project>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<h2 class="project">Projekt</h2>
+@try
+{
+	@foreach (var project in Model.Where(p => p.ProjectLeaderID == UserManager.GetUserId(User)))
+	{
+		<h3>@project.Name</h3>
+		<p>@project.Description</p>
+		<form asp-controller="ManagedProjects" asp-action="Edit">
+			<input type="hidden" asp-for="@project.ID" name="id" />
+			<input type="submit" value="Redigera projektet" class="btn btn-dark" />
+		</form>
+		<form asp-controller="ManagedProjects" asp-action="Delete">
+			<input type="hidden" asp-for="@project.ID" name="id" />
+			<input type="submit" value="Radera projektet" class="btn btn-danger" />
+		</form>
+		
+		<br />
+	}
+}
+catch (Exception ex) { }

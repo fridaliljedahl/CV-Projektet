@@ -1,0 +1,39 @@
+﻿@model Project
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<h2>Redigera dina projekt</h2>
+
+<form class="formRegister" method="post" asp-controller="Projects" asp-action="EditProject">
+	<div class="inputRow">
+		<label>Projektnamn:</label>
+		<input asp-for="Name" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div class="inputRow">
+		<label>Prejektbeskrivning:</label>
+		<input asp-for="Description" />
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+
+	<button type="submit" class="btnRegister">Spara</button>
+</form>
+
+<div>
+	<label>Hantera medlemmar i projektet:</label>
+	@try
+	{
+		@foreach (var item in Model.User_Project)
+			{
+			<p>@item.User.FirstName @item.User.LastName</p>
+			<form asp-controller="Projects" asp-action="DeleteFromProject">
+			<input type="hidden" asp-for="@item.ProjectID" name="id" />
+			<input type="submit" value="Radera" class="btn btn-dark" />
+			</form>
+			} 
+			//länk till att lägga till fler medlemmar 
+	}
+	catch (Exception ex) { }
+
+</div>

@@ -1,6 +1,7 @@
 ﻿using Castle.Core.Internal;
 using CV_Projektet.Data;
 using CV_Projektet.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +11,13 @@ namespace CV_Projektet.Controllers
 	public class ProjectsController : Controller
 	{
 		private ApplicationDbContext context;
-		public ProjectsController(ApplicationDbContext cntx)
+		private UserManager<User> userManager;
+		private SignInManager<User> signInManager;
+		public ProjectsController(ApplicationDbContext cntx, UserManager<User> userMngr, SignInManager<User> signInMngr)
 		{
 			context = cntx;
+			this.userManager = userMngr;
+			this.signInManager = signInMngr;
 		}
 		public IActionResult Index(LoginViewModel loginViewModel)
 		{
@@ -34,11 +39,8 @@ namespace CV_Projektet.Controllers
 			{
 				if (ModelState.IsValid)
 				{
-					User user = new User();
-					if (view.ProjectLeaderUserName != null)
-					{
-						user = context.Users.Where(u => u.UserName == view.ProjectLeaderUserName).Single();
-					}
+					User user = context.Users.Find(userManager.GetUserId(User));
+					
 
 					Project project = new Project();
 					if (!user.Id.IsNullOrEmpty())
@@ -67,7 +69,6 @@ namespace CV_Projektet.Controllers
 			return View(view);
 		}
 
-
 		public IActionResult AddProjectMembers(int id, AddProjectMembersViewModel view)
 		{
 			view.ErrorMessage = "";
@@ -82,18 +83,20 @@ namespace CV_Projektet.Controllers
 					User_Projects userproj = new User_Projects();
 					userproj.ProjectID = proj.ID;
 					userproj.UserID = user.Id;
-					context.User_Projects.Add(userproj);
+					context.Add(userproj);
 					context.SaveChanges();
 				}
 			}
 
 			catch (Exception ex)
 			{
+				//Här kommer felmeddelandet upp när mna laddar sidan direkt, behöver ha en annan metod för detta
 				view.ErrorMessage = "Användaren hittades inte";
 			}
 
 			return View(view);
 		}
+
 
 		//public IActionResult AddProjectMembers(AddProjectMembersViewModel view) //detta funkar inte
 		//{

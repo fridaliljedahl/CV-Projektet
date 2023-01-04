@@ -1,4 +1,11 @@
 ﻿@model CreateProjectViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+	User user = await UserManager.GetUserAsync(User);
+}
 
 <form method="post" class="formRegister">
 	<div class="inputRow">
@@ -13,15 +20,15 @@
 	</div>
 	<div class="inputRow">
 		<label>Projektledare:</label>
-		<input asp-for="ProjectLeaderUserName" />		
-			@try
+		<input type="hidden" value="@user.UserName" asp-for="ProjectLeaderUserName" />
+		@try
+		{
+			@if (Model.ErrorMessage != null)
 			{
-				@if (Model.ErrorMessage != null)
-				{
 				<span class="text-danger">@Model.ErrorMessage</span>
-				}
 			}
-			catch (Exception ex) { }		
+		}
+		catch (Exception ex) { }
 	</div>
 	<button type="submit" class="btnRegister">Skapa projekt</button>
 
