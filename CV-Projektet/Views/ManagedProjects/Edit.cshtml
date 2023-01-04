@@ -25,14 +25,26 @@
 	@try
 	{
 		@foreach (var item in Model.User_Project)
-			{
+		{
 			<p>@item.User.FirstName @item.User.LastName</p>
-			<form asp-controller="Projects" asp-action="DeleteFromProject">
-			<input type="hidden" asp-for="@item.ProjectID" name="id" />
-			<input type="submit" value="Radera" class="btn btn-dark" />
+			<form asp-controller="ManagedProjects" asp-action="DeleteFromProject">
+				<input type="hidden" asp-for="@item.User.Id" name="userid" />
+				<input type="hidden" asp-for="@Model.ID" name="projectId" />
+				<input type="submit" value="Radera" class="btn btn-dark" />
 			</form>
-			} 
-			//länk till att lägga till fler medlemmar 
+		}
+
+		<form method="post" asp-controller="ManagedProjects" asp-action="AddMembers">
+			<div class="inputRow">
+				<input type="hidden" asp-for="@Model.ID" name="projectId" />
+				<label>Användarnamn:</label>
+				<input name="UserName" />
+
+				<span class="text-danger">@ViewBag.ErrorMessage</span>
+
+			</div>
+			<button type="submit" class="btnRegister">Lägg till medlem</button>
+		</form>
 	}
 	catch (Exception ex) { }
 
