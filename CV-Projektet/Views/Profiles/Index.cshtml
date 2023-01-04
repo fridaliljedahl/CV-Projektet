@@ -9,23 +9,78 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-@*<form asp-controller="Profiles" asp-action="Index">
-	<input type="text" name="searchstring_lastname"/>
-	<input type="text" name="searchstring_firstname" />
-	<input type="text" name="searchstring_competence" />
-	<input type="submit" value="Sök" />
-</form>*@
-
 @using (Html.BeginForm("Index", "Profiles", FormMethod.Get))
 {
 	<lbl>Förnamn</lbl>
 	@Html.TextBox("fName")
 	<lbl>Efternamn</lbl>
 	@Html.TextBox("lName")
-	<lbl>Kompetens</lbl>
-	@Html.TextBox("comp")
+@*	<lbl>Kompetens</lbl>
+	@Html.TextBox("comp")*@
 	<input type="submit" value="Sök">
 }
+
+@*<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<h1>Profiler</h1>
+<div class="profileContainer">
+
+	@{
+		bool loggedIn = SignInManager.IsSignedIn(User);
+	}
+
+	@foreach (var user in Model)
+	{
+		if (!(user.IsPublic == false && loggedIn == false))
+		{
+			<a class="profileCard" href="@Url.Action("Index","CV", new { userID = user.Id})">
+				@try
+				{
+					if (user.ImageModel.Name.Any())
+					{
+						<img class="profilepicture" src="@("~/image/" + user.ImageModel.Name)" asp-append-version="true" />
+					}
+				}
+				catch (Exception ex)
+				{
+					<span class="material-symbols-outlined" style="font-size:250px; color: #FFFEF6; ">
+						account_circle
+					</span>
+				}
+				<h2>@user.FirstName @user.LastName</h2>
+				@try
+				{
+					if (user.CV.CV_Competences.Any())
+					{
+						<h3>Kompetenser</h3>
+						<ul>
+							@foreach (var item in user.CV.CV_Competences)
+							{
+								<li>@item.Competence.Name</li>
+							}
+						</ul>
+					}
+				}
+				catch (Exception ex) { }
+				@try
+				{
+					@if (user.CV.Experiences.Any())
+					{
+						<h3>Erfarenheter</h3>
+						@foreach (var item in user.CV.Experiences)
+						{
+							<p>@item.Title</p>
+						}
+					}
+				}
+				catch (Exception ex) { }
+			</a>
+		}
+
+	}
+</div>*@
+
+@*------------------------------------------*@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -86,3 +141,4 @@
 
 	}
 </div>
+
