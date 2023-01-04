@@ -267,7 +267,8 @@ body {
     text-align:center;
     border: 1px solid black;
     margin: 1em;
-    padding: 1em;
+{
+    }padding: 1em;
 }
 
 .SettingBoxes {
@@ -282,4 +283,14 @@ body {
     
 }
 
+/*Redigera CV*/
+.list {
+    display: flex;
+    justify-content: left;
+    align-content: left;
+    padding: 1em;
+}
+.competence {
+    margin-right: 2em;
+}
 
