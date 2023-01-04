@@ -53,7 +53,7 @@
 <br />
 <form class="formRegister" method="post" asp-controller="ProfileSettings" asp-action="Edit">
 	<div class="inputRow">
-		<label>Username:</label>
+		<label>Användarnamn:</label>
 		<input asp-for="UserName" />
 		@try
 		{
@@ -69,49 +69,49 @@
 		catch (Exception ex) { }
 	</div>
 	<div class="inputRow">
-		<label>First name:</label>
+		<label>Förnamn:</label>
 		<input asp-for="FirstName" />
 		<span asp-validation-for="FirstName" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
-		<label>Last name:</label>
+		<label>Efternamn:</label>
 		<input asp-for="LastName" />
 		<span asp-validation-for="LastName" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
-		<label>Describe yourself:</label>
+		<label>Beskrivning:</label>
 		<textarea asp-for="Description"></textarea>
 		<span asp-validation-for="Description" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
-		<label>Phone number:</label>
+		<label>Telefonnummer:</label>
 		<input asp-for="PhoneNumber" />
 		<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
-		<label>Email:</label>
+		<label>Epost:</label>
 		<input type="email" asp-for="Email" />
 		<span asp-validation-for="Email" class="text-danger"></span>
 	</div>
 
 	<div class="inputRow">
-		<label>Street name:</label>
+		<label>Gata:</label>
 		<input asp-for="Street" />
 		<span asp-validation-for="Street" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
-		<label>Postal code:</label>
+		<label>Postnummer:</label>
 		<input type="text" asp-for="PostalCode" />
 		<span asp-validation-for="PostalCode" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
-		<label>City:</label>
+		<label>Stad:</label>
 		<input asp-for="City" />
 		<span asp-validation-for="City" class="text-danger"></span>
 	</div>
 
 	<div class="inputRow">
-		<label>Public profile:</label>
+		<label>Publik profil:</label>
 		<input type="checkbox" class="checkbox" asp-for="IsPublic" />
 	</div>
 
@@ -119,5 +119,15 @@
 
 </form>
 
+<br />
+@*<p id="spanBtn">
+	
+</p>
+<a href="#" class="btn btn-primary btn-lg active" role="button">Primary link</a>
 
-<a asp-area="" asp-controller="ChangePassword" asp-action="Index">Ändra Lösenord</a>
+<button id="spanBtn" asp-controller="ChangePassword" asp-action="Index"> Ändra lösenord </button>
+*@
+@*<div id="btnSpan" > <a asp-area="" asp-controller="ChangePassword" asp-action="Index"> <button class="btn btn-dark"> Ändra lösenord</button> </a> </div>*@
+
+@*<a class="btn btn-dark" asp-area="" asp-controller="ChangePassword" asp-action="Index">Ändra Lösenord</a>*@
+<p><a class="btn-dark" href="@Url.Action("Index", "ChangePassword")">Ändra lösenord</a></p>
