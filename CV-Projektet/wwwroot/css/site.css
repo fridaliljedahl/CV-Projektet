@@ -81,7 +81,7 @@ header {
     justify-content: center;
 }
 
-.loginOptions a {
+    .loginOptions a {
         margin: 0em 1em;
         color: white;
     }
@@ -104,13 +104,7 @@ footer {
     color: orange;
     font-style: normal;
 }
-/*Startsida*/
-.contentHome {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
+/*Cards för project och profiler, gäller alla sidor*/
 .cardContainer { /*G�ller �ven p� projektsidan*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -118,18 +112,37 @@ footer {
 
 .card { /*G�ller �ven p� projektsidan*/
     color: #000000;
-    margin: 1em;
     padding: 1em;
+    margin: 2em;
     border-radius: 3em;
     border-color: orange;
     border-width: 0.25em;
     color: black;
 }
-.card h3{
-    background-color: orange;
-    margin: 0 0.5em;
-    padding: 0.2em 0.5em;
-    border-radius: 2em;
+
+    .card h3 {
+        background-color: orange;
+        margin: 0 0.5em;
+        padding: 0.2em 0.5em;
+        border-radius: 2em;
+    }
+    .card p{
+        margin: 0;
+    }
+
+.projectCard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.involved {
+    color: orange;
+}
+/*Startsida*/
+.contentHome {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .headingHome {
@@ -137,16 +150,8 @@ footer {
     text-align: center;
 }
 
-.personCard a {
-    color: black;
-}
-
 .contentHome li {
     text-align: start;
-}
-
-.involved {
-    color: orange;
 }
 
 /*Registrera sig*/
@@ -243,11 +248,7 @@ footer {
 }
 
 .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-}
-
-.material-symbols-outlined {
-    font-variation-settings: 'FILL' 1, 'wght' 100, 'GRAD' 0, 'opsz' 48
+    font-variation-settings: 'FILL' 1, 'wght' 100, 'GRAD' 0, 'opsz' 48;
 }
 
 .circle {
@@ -263,6 +264,7 @@ footer {
     height: 15em;
     width: 15em;
     border-radius: 50%;
+    align-self: center;
 }
 
 .fa:hover {
@@ -321,11 +323,6 @@ body {
     text-align: center;
     border: 1px solid black;
     margin: 1em;
-
-{
-}
-
-padding: 1em;
 }
 
 .SettingBoxes {

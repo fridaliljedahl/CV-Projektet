@@ -240,19 +240,55 @@ namespace CV_Projektet.Data
                 {
                     ID = 2,
                     TimesViewed = 3,
-                    UserID = "användare3id"
+                    UserID = "användare2id"
                 },
                 new CV
                 {
                     ID = 3,
                     TimesViewed = 12,
-                    UserID = "användare2id"
+                    UserID = "användare3id"
                 },
                 new CV
                 {
                     ID = 4,
                     TimesViewed = 55,
                     UserID = "användare4id"
+                },
+                new CV
+                {
+                    ID = 5,
+                    TimesViewed = 55,
+                    UserID = "användare5id"
+                },
+                new CV
+                {
+                    ID = 6,
+                    TimesViewed = 55,
+                    UserID = "användare6id"
+                },
+                new CV
+                {
+                    ID = 7,
+                    TimesViewed = 55,
+                    UserID = "användare7id"
+                },
+                new CV
+                {
+                    ID = 8,
+                    TimesViewed = 55,
+                    UserID = "användare8id"
+                },
+                new CV
+                {
+                    ID = 9,
+                    TimesViewed = 55,
+                    UserID = "användare9id"
+                },
+                new CV
+                {
+                    ID = 10,
+                    TimesViewed = 55,
+                    UserID = "användare10id"
                 });
                 
             modelBuilder.Entity<ImageModel>().HasData(

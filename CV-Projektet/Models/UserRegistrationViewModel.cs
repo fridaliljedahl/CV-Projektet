@@ -34,8 +34,8 @@ namespace CV_Projektet.Models
             ErrorMessage = "Last name can only contain letters")]
         public string LastName { get; set; }
 
-        [Column(TypeName = "nvarchar(100)")]
-        [MaxLength(ErrorMessage = "The description can contain max 100 characters")]
+        [Column(TypeName = "nvarchar(350)")]
+        [MaxLength(350, ErrorMessage = "The description can contain max 100 characters")]
         [Display(Name = "Description")]
         public string? Description { get; set; }
 
