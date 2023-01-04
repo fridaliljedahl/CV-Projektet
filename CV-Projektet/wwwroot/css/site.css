@@ -39,6 +39,36 @@ header {
     padding: 0em 1em;
 }
 
+.smallEmptyPicture {
+    margin: 1em;
+    height: 5em;
+    width: 5em;
+    border-radius: 50%
+}
+
+.profileInfo {
+    display: flex;
+    align-items: flex-end;
+    justify-self: right;
+}
+
+.LogOutButton {
+    right: 0px;
+}
+
+/*.profilepictureHeader {
+    margin: 1em;
+    height: 5em;
+    width: 5em;
+    border-radius: 50%;
+
+    align-content:center;
+    
+}*/
+
+#profileInfoHeader {
+}
+
 .btn {
     position: relative;
     color: #FFFEF6;
@@ -49,6 +79,11 @@ header {
     flex-direction: row;
     justify-content: center;
 }
+
+.loginOptions a {
+        margin: 0em 1em;
+        color: white;
+    }
 
 .logo {
     font-size: 40px;
@@ -143,19 +178,21 @@ footer {
 }
 
 /*Mina meddelanden*/
-.allMessages{
+.allMessages {
     display: flex;
     flex-direction: column;
 }
+
 .messageContainer {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
     width: 100%;
     margin: 1em 1em;
-    justify-items:center;
+    justify-items: center;
     align-items: center;
 }
-.message{
+
+.message {
     background: white;
     color: black;
     text-align: center;
@@ -163,9 +200,16 @@ footer {
     margin: 0.5em;
     width: 100%;
 }
-.messageContainer a{
-    text-align:center;
+
+.messageContainer a {
+    text-align: center;
     color: orange;
+}
+
+.sender {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 /*CV*/
@@ -264,23 +308,24 @@ body {
 
 /*Profilesettings*/
 #SettingsForm {
-    text-align:center;
+    text-align: center;
     border: 1px solid black;
     margin: 1em;
+
 {
-    }padding: 1em;
+}
+
+padding: 1em;
 }
 
 .SettingBoxes {
     margin: 0.5em;
     padding: 0em;
-    
 }
 
 #DescriptionBox {
     margin: 0.5em;
     padding: 0em;
-    
 }
 
 /*Redigera CV*/
@@ -290,7 +335,7 @@ body {
     align-content: left;
     padding: 1em;
 }
+
 .competence {
     margin-right: 2em;
 }
-

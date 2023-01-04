@@ -3,19 +3,34 @@
 <div class="allMessages">
 	@foreach (var item in Model)
 	{
-		<div class="messageContainer">
-			<div class="sender">
-				//lägg in profilbild
-				<p>@item.SenderName</p>
-			</div>
-			<p class="message">@item.Text</p>
-			<div>
-				@if(item.Read){
-					<a href="@Url.Action("UpdateReadState", "Message", new { messageId = item.ID})">&#x2717; Markera som oläst</a>
-				}else{
-					<a href="@Url.Action("UpdateReadState", "Message", new { messageId = item.ID})">&#x2713; Markera som läst</a>
+			<div class="messageContainer">
+				<div class="sender">
+				@try
+				{
+					if (item.UserSender.ImageModel.Name.Any())
+					{
+													<img src="@("~/image/" + item.UserSender.ImageModel.Name)" asp-append-version="true" style = "margin-left: 1.74em; height: 75px; width:75px; border-radius: 50%;"/>
+					}
 				}
+				catch (Exception ex)
+				{
+									<span class="material-symbols-outlined" style="font-size:85px; color: #FFFEF6; ">
+										account_circle
+									</span>
+				}
+					<p>@item.SenderName</p>
+				</div>
+				<p class="message">@item.Text</p>
+				<div>
+				@if (item.Read)
+				{
+							<a href="@Url.Action("UpdateReadState", "Message", new { messageId = item.ID})">&#x2717; Markera som oläst</a>
+				}
+				else
+				{
+							<a href="@Url.Action("UpdateReadState", "Message", new { messageId = item.ID})">&#x2713; Markera som läst</a>
+				}
+				</div>
 			</div>
-		</div>
 	}
 </div>
