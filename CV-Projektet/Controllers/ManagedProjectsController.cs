@@ -23,12 +23,31 @@ namespace CV_Projektet.Controllers
 			return View(projectList);
 		}
 
-
 		public IActionResult Edit(Project view, int id)
-			{
-			 view = context.Projects.Find(id);
-
+		{
+			view = context.Projects.Find(id);
 			return View(view);
+		}
+
+		public IActionResult EditProject(Project view, int projectId, string leader)
+		{
+			Project project = context.Projects.Find(projectId);
+			if (ModelState.IsValid) { 
+			if (view.Name != null && view.Description != null)
+			{
+				project.Name = view.Name;
+				project.Description = view.Description;
+				context.Projects.Update(project);
+				context.SaveChanges();
+			}
+			else 
+			{
+				ViewBag.Message = "Vänligen fyll i alla fält!";
+				view = context.Projects.Find(projectId);
+				return RedirectToAction("Edit", "ManagedProjects", view);
+			}
+			}
+			return RedirectToAction("Index", "ManagedProjects", view);
 		}
 
 		[HttpPost]
@@ -42,7 +61,7 @@ namespace CV_Projektet.Controllers
 				if (user != null)
 				{
 					User_Projects userproj = new User_Projects();
-					
+
 					userproj.ProjectID = view.ID;
 					userproj.UserID = user.Id;
 					context.Add(userproj);
@@ -84,9 +103,20 @@ namespace CV_Projektet.Controllers
 			return RedirectToAction("Edit", "ManagedProjects", view);
 		}
 
-		public IActionResult Delete()
+		public IActionResult Delete(Project view, int projectId)
 		{
-			return View();
+			var project = context.Projects.Find(projectId);
+			List<User_Projects> userProject = context.User_Projects.Where(p => p.ProjectID == projectId).ToList();
+			context.Projects.Remove(project);
+			if (userProject != null)
+			{
+				foreach (var item in userProject)
+				{
+					context.User_Projects.Remove(item);
+				}
+			}
+			context.SaveChanges();
+			return RedirectToAction("Index", "ManagedProjects", view);
 		}
 	}
 }

@@ -3,49 +3,61 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<h2>Redigera dina projekt</h2>
+<h2 style="text-align:center">Redigera ditt projekt</h2>
 
-<form class="formRegister" method="post" asp-controller="Projects" asp-action="EditProject">
+<form class="formRegister" method="post" asp-controller="ManagedProjects" asp-action="EditProject">
+	<input type="hidden" asp-for="@Model.ID" name="projectId" />
 	<div class="inputRow">
 		<label>Projektnamn:</label>
 		<input asp-for="Name" />
-		<span asp-validation-for="Name" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Prejektbeskrivning:</label>
 		<input asp-for="Description" />
-		<span asp-validation-for="Description" class="text-danger"></span>
 	</div>
-
-	<button type="submit" class="btnRegister">Spara</button>
+	<p>@ViewBag.Message</p>
+	<button type="submit" class="btnRegister btn-dark">Spara</button>
 </form>
-
-<div>
-	<label>Hantera medlemmar i projektet:</label>
-	@try
-	{
+<br />
+<br />
+<br />
+<h3 style="text-align:center">Hantera medlemmar i projektet:</h3>
+@try
+{
+	<div class="" inputRow>
 		@foreach (var item in Model.User_Project)
 		{
-			<p>@item.User.FirstName @item.User.LastName</p>
-			<form asp-controller="ManagedProjects" asp-action="DeleteFromProject">
+			<p style="text-align:center; margin-bottom: -1em;">@item.User.FirstName @item.User.LastName</p>
+			<form asp-controller="ManagedProjects" asp-action="DeleteFromProject" class="formRegister">
 				<input type="hidden" asp-for="@item.User.Id" name="userid" />
-				<input type="hidden" asp-for="@Model.ID" name="projectId" />
-				<input type="submit" value="Radera" class="btn btn-dark" />
-			</form>
+				<input type="hidden" asp-for="@Model.ID" name="projectId" />				
+				<button type="submit" class="btnRegister btn-dark">Radera</button>
+			</form>			
 		}
+	</div>
+	<br />
+	<br />
+	<br />	
+	<h3 style="text-align:center">Lägg till medlemmar i projektet:</h3>
+	<form method="post" asp-controller="ManagedProjects" asp-action="AddMembers" class="formRegister">
+		<div class="inputRow">
+			<input type="hidden" asp-for="@Model.ID" name="projectId" />
+		</div>
+		<div class="inputRow">
+			<label>Användarnamn:</label>
+			<input name="UserName" />
+			<span class="text-danger">@ViewBag.ErrorMessage</span>
+		</div>
+		<button type="submit" class="btnRegister btn-dark">Lägg till ny medlem</button>
+	</form>
+}
+catch (Exception ex) { }
 
-		<form method="post" asp-controller="ManagedProjects" asp-action="AddMembers">
-			<div class="inputRow">
-				<input type="hidden" asp-for="@Model.ID" name="projectId" />
-				<label>Användarnamn:</label>
-				<input name="UserName" />
 
-				<span class="text-danger">@ViewBag.ErrorMessage</span>
 
-			</div>
-			<button type="submit" class="btnRegister">Lägg till medlem</button>
-		</form>
-	}
-	catch (Exception ex) { }
-
-</div>
+<form asp-controller="ManagedProjects" asp-action="Delete" class="formRegister">
+	<div class="inputRow">
+		<input type="hidden" asp-for="@Model.ID" name="projectId" />
+	</div>
+	<button type="submit" class="btnRegister btn-danger">Radera projektet</button>
+</form>
