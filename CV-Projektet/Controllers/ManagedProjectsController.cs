@@ -29,25 +29,21 @@ namespace CV_Projektet.Controllers
 			return View(view);
 		}
 
-		public IActionResult EditProject(Project view, int projectId, string leader)
+		public IActionResult EditProject(Project view, int projectId)
 		{
 			Project project = context.Projects.Find(projectId);
-			if (ModelState.IsValid) { 
-			if (view.Name != null && view.Description != null)
+			if (ModelState.IsValid)
 			{
-				project.Name = view.Name;
-				project.Description = view.Description;
-				context.Projects.Update(project);
-				context.SaveChanges();
+				if (view.Name != null && view.Description != null)
+				{
+					project.Name = view.Name;
+					project.Description = view.Description;
+					context.Projects.Update(project);
+					context.SaveChanges();
+				}
 			}
-			else 
-			{
-				ViewBag.Message = "Vänligen fyll i alla fält!";
-				view = context.Projects.Find(projectId);
-				return RedirectToAction("Edit", "ManagedProjects", view);
-			}
-			}
-			return RedirectToAction("Index", "ManagedProjects", view);
+			view = context.Projects.Find(projectId);
+			return RedirectToAction("Edit", "ManagedProjects", view);
 		}
 
 		[HttpPost]
@@ -57,7 +53,7 @@ namespace CV_Projektet.Controllers
 			try
 			{
 				User user = context.Users.Where(u => u.UserName == Request.Form["UserName"].ToString()).SingleOrDefault();
-
+				if (ModelState.IsValid) { 
 				if (user != null)
 				{
 					User_Projects userproj = new User_Projects();
@@ -67,12 +63,11 @@ namespace CV_Projektet.Controllers
 					context.Add(userproj);
 					context.SaveChanges();
 				}
+				}
 			}
 
 			catch (Exception ex)
 			{
-				//Här kommer felmeddelandet upp när mna laddar sidan direkt, behöver ha en annan metod för detta
-				ViewBag.ErrorMessage = "Användaren hittades inte";
 			}
 			return RedirectToAction("Edit", "ManagedProjects", view);
 		}

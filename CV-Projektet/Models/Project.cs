@@ -14,7 +14,7 @@ namespace CV_Projektet.Models
         public string ProjectLeaderID { get; set; }
 
         [ForeignKey(nameof(ProjectLeaderID))]
-        public virtual User ProjectLeader { get; set; }
+        public virtual User? ProjectLeader { get; set; }
         public virtual IEnumerable<User_Projects> User_Project { get; set; } = new List<User_Projects>();
 
     }
