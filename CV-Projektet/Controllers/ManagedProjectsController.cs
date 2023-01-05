@@ -1,4 +1,5 @@
-﻿using CV_Projektet.Data;
+﻿using System.Xml.Linq;
+using CV_Projektet.Data;
 using CV_Projektet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,8 @@ namespace CV_Projektet.Controllers
 		}
 		public IActionResult Index()
 		{
+			TempData.Remove("Empty");
+			TempData.Remove("NoUser");
 			List<Project> projectList = context.Projects.OrderByDescending(p => p.CreatedDate).ToList();
 
 			return View(projectList);
@@ -26,6 +29,16 @@ namespace CV_Projektet.Controllers
 		public IActionResult Edit(Project view, int id)
 		{
 			view = context.Projects.Find(id);
+			if (TempData.ContainsKey("Empty"))
+			{
+				ViewBag.Message = "Vänligen fyll i ett användarnamn";
+			}
+			if (TempData.ContainsKey("NoUser"))
+			{
+				ViewBag.Message = "Användarnamnet finns inte";
+			}
+
+
 			return View(view);
 		}
 
@@ -50,19 +63,31 @@ namespace CV_Projektet.Controllers
 		public IActionResult AddMembers(Project view, int projectId)
 		{
 			view = context.Projects.Find(projectId);
+			TempData.Remove("Empty");
+			TempData.Remove("NoUser");
 			try
 			{
-				User user = context.Users.Where(u => u.UserName == Request.Form["UserName"].ToString()).SingleOrDefault();
-				if (ModelState.IsValid) { 
-				if (user != null)
+				if (Request.Form["UserName"].ToString() != "")
 				{
-					User_Projects userproj = new User_Projects();
+					User user = context.Users.Where(u => u.UserName == Request.Form["UserName"].ToString()).SingleOrDefault();
+					if (user != null)
+					{
+						User_Projects userproj = new User_Projects();
 
-					userproj.ProjectID = view.ID;
-					userproj.UserID = user.Id;
-					context.Add(userproj);
-					context.SaveChanges();
+						userproj.ProjectID = view.ID;
+						userproj.UserID = user.Id;
+						context.Add(userproj);
+						context.SaveChanges();
+						TempData["NoMessage"] = "";
+					}
+					else
+					{
+						TempData["NoUser"] = "Användarnamnet finns inte!";
+					}
 				}
+				else
+				{
+					TempData["Empty"] = "Vänligen fyll i ett användarnamn!";
 				}
 			}
 
@@ -71,7 +96,6 @@ namespace CV_Projektet.Controllers
 			}
 			return RedirectToAction("Edit", "ManagedProjects", view);
 		}
-
 		public IActionResult DeleteFromProject(Project view, string userId, int projectId)
 		{
 			view = context.Projects.Find(projectId);
