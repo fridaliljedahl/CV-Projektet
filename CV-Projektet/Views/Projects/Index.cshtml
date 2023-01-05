@@ -22,10 +22,11 @@
 
 		}
 
+		@try{
+		@if(SignInManager.IsSignedIn(User) && item.User_Project.Any())
+		{
 		<h4>Medverkande</h4>
 		<div>
-			@if(SignInManager.IsSignedIn(User))
-			{
 			@foreach (var x in item.User_Project){
 			<div class="participants">
 				<a href="@Url.Action("Index", "CV", new { userID = x.UserID})">
@@ -33,9 +34,12 @@
 				</a>
 			</div>
 			}
-			}
-			else
-			{
+		</div>
+		}
+		else if(!SignInManager.IsSignedIn(User) && item.User_Project.Where(x=>x.User.IsPublic==true).Any())
+		{
+		<h4>Medverkande</h4>
+		<div>
 			@foreach(var x in item.User_Project.Where(x=>x.User.IsPublic==true))
 			{
 			<div class="participants">
@@ -44,9 +48,11 @@
 				</a>
 			</div>
 			}
-			}
-
 		</div>
+		}
+		}catch(Exception ex){}
+
+
 		@if (SignInManager.IsSignedIn(User))
 		{
 		bool involved = false;
@@ -69,4 +75,5 @@
 		}
 	</div>
 	}
+	<div class="orangeSquare"></div>
 </div>

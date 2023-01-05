@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <div class="gridCV">
 	<div class="CVleft">
-		<div class="leftText"></div>
+		<br />
 		@if (Model.User.Id.Equals(UserManager.GetUserId(User)))
 		{
 <a class="edit" href="@Url.Action("Edit","CV", new { userID = UserManager.GetUserId(User)})">
@@ -24,8 +24,7 @@
 		{
 			<a class="" href="@Url.Action("SendMessage","Message", new {
 					ReceiverId = Model.User.Id,
-					ReceiverName = $"{Model.User.FirstName} {Model.User.LastName}"@*,
-					MethodCaller = "Initial" *@})">
+					ReceiverName = $"{Model.User.FirstName} {Model.User.LastName}"})">
 				<span class="material-symbols-outlined">
 					mail
 				</span>
@@ -40,12 +39,13 @@
 		}
 		catch (Exception ex)
 		{
-			<span class="material-symbols-outlined" style="font-size:250px; color: #FFFEF6; ">
+			<span class="material-symbols-outlined" style="font-size:220px; color: #FFFEF6; ">
 				account_circle
 			</span>
 		}
 
-		<h1>@Model.User.FirstName @Model.User.LastName</h1>
+		<h1 style="color: white;">@Model.User.FirstName @Model.User.LastName</h1>
+		<br />
 		<div class="leftText">
 			<p>@Model.User.PhoneNumber</p>
 			<p>@Model.User.Email</p>
@@ -57,10 +57,9 @@
 				<p>@Model.User.Address.PostalCode, @Model.User.Address.City</p>
 			}
 		</div>
-
-
+		<br />
 		<p>@Model.User.Description</p>
-
+		<br />
 		<div class="cvSocialLinks">
 			<a href="#" class="fa fa-twitter"></a>
 			<a href="#" class="fa fa-linkedin"></a>
@@ -68,33 +67,26 @@
 		</div>
 	</div>
 	<div class="CVright">
-		<div>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-		</div>
+		<br />
 		@try
-		{@if (Model.CompetenceList.Any())
+		{
+			@if (Model.CompetenceList.Any())
 			{
-				<h2 class="competence">Kompetenser</h2>
-				<ul>
+				<h2 class="accentWord">Kompetenser</h2>
+				<hr class="CVLine"/>
+				<br />
 					@foreach (var item in Model.CompetenceList)
 					{
-						<li>@item.Name</li>
+						<p>@item.Name</p>
 					}
-				</ul>
+				<br />
 			}
 
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Education")).Any())
 			{
-				<h2 class="education">Utbildningar</h2>
+				<h2 class="accentWord">Utbildningar</h2>
+				<hr class="CVLine" />
+				<br />
 				@foreach (var item in Model.ExperienceList)
 				{
 					if (item.Type.Equals("Education"))
@@ -105,11 +97,14 @@
 						<p>@item.Description</p>
 					}
 				}
+				<br />
 			}
 
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Work")).Any())
 			{
-				<h2 class="work">Arbetslivserfarenhet</h2>
+				<h2 class="accentWord">Arbetslivserfarenhet</h2>
+				<hr class="CVLine" />
+				<br />
 				@foreach (var item in Model.ExperienceList)
 				{
 					if (item.Type.Equals("Work"))
@@ -120,11 +115,14 @@
 						<p>@item.Description</p>
 					}
 				}
+				<br />
 			}
 
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Course")).Any())
 			{
-				<h2 class="coure">Kurser</h2>
+				<h2 class="accentWord">Kurser</h2>
+				<hr class="CVLine" />
+				<br />
 				@foreach (var item in Model.ExperienceList)
 				{
 					if (item.Type.Equals("Course"))
@@ -135,23 +133,38 @@
 						<p>@item.Description</p>
 					}
 				}
+				<br />
 			}
 
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Misc")).Any())
 			{
-				<h2 class="misc">Övrigt</h2>
-				<p></p>
+				<h2 class="accentWord">Övrigt</h2>
+				<hr class="CVLine" />
+				<br />
+				@foreach(var item in Model.ExperienceList){
+					if(item.Type.Equals("Misc")){
+						<h3>@item.Title</h3>
+						<p>@item.StartDate.ToString().Substring(0, 10) - @item.EndDate.ToString().Substring(0, 10)</p>
+						<p>@item.Place , @item.City</p>
+						<p>@item.Description</p>
+					}
+				}
+				<br />
 			}
 
 			@if (Model.ProjectList.Any())
 			{
-				<h2 class="project">Projekt</h2>
+				<h2 class="accentWord">Projekt</h2>
+				<hr class="CVLine" />
+				<br />
 				@foreach (var project in Model.ProjectList)
 				{
 					<h3>@project.Name</h3>
 					<p>@project.Description</p>
 				}
-			}}
+				<br />
+			}
+			}
 		catch (Exception ex) { }
 
 

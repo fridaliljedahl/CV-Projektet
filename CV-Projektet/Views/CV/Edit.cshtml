@@ -65,16 +65,13 @@
 
 		@try
 		{
-			<h2 class="competence">Kompetenser</h2>
+			<h2 class="">Kompetenser</h2>
 			@if (Model.CompetenceList.Any())
 			{
-
-				<ul>
 					@foreach (var item in Model.CompetenceList)
 					{
-						<li>@item.Name</li>
+						<p>@item.Name</p>
 					}
-				</ul>
 			}
 			else
 			{

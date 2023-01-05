@@ -42,10 +42,11 @@
 							if (item.CV.CV_Competences.Any())
 							{
 								<h4>Kompetenser:</h4>
-									@foreach (var comp in item.CV.CV_Competences)
-									{
-										<p>@comp.Competence.Name</p>
-									}
+								@foreach (var comp in item.CV.CV_Competences)
+								{
+									<p>@comp.Competence.Name</p>
+								}
+								<br />
 							}
 							else
 							{
@@ -84,11 +85,11 @@
 							if (item.CV.CV_Competences.Any())
 							{
 								<h4>Kompetenser:</h4>
-									@foreach (var comp in item.CV.CV_Competences)
-									{
-										<p>@comp.Competence.Name</p>
-									}
-
+								@foreach (var comp in item.CV.CV_Competences)
+								{
+									<p>@comp.Competence.Name</p>
+								}
+								<br />
 							}
 							else
 							{
@@ -179,4 +180,5 @@
 		catch (Exception ex)
 		{ }
 	</div>
+	<div class="orangeSquare"></div>
 </div>

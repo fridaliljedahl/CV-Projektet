@@ -1,25 +1,28 @@
 ﻿@model ChangePasswordViewModel
 
-<h2>Change Password</h2>
+<h2 class="accentWord">Change Password</h2>
+<br />
 <hr />
+<br />
 <div class="row">
     <div class="col-md-12">
         <form method="post" asp-controller="ChangePassword" asp-action="Index">
-            <div class="form-group">
-                <label asp-for="CurrentPassword"></label>
-                <input asp-for="CurrentPassword" class="form-control inputBox" />
+            <div class="">
+                <label asp-for="CurrentPassword"></label><br />
+                <input asp-for="CurrentPassword" class="userInput" />
                 <span asp-validation-for="CurrentPassword" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="NewPassword"></label>
-                <input asp-for="NewPassword" class="form-control inputBox" />
+            <div class="">
+                <label asp-for="NewPassword"></label><br />
+                <input asp-for="NewPassword" class="userInput" />
                 <span asp-validation-for="NewPassword" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ConfirmPassword"></label>
-                <input asp-for="ConfirmPassword" class="form-control inputBox" />
+            <div class="">
+                <label asp-for="ConfirmPassword"></label><br />
+                <input asp-for="ConfirmPassword" class="userInput" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
+            <br />
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
