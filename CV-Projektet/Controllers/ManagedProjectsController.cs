@@ -115,7 +115,6 @@ namespace CV_Projektet.Controllers
 
 			catch (Exception ex)
 			{
-				//Här kommer felmeddelandet upp när mna laddar sidan direkt, behöver ha en annan metod för detta
 				ViewBag.ErrorMessage = "Användaren hittades inte";
 			}
 

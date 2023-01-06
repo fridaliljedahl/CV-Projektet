@@ -14,12 +14,6 @@ namespace CV_Projektet.Controllers
             this.context = context;
         }
 
-        //      public IActionResult Index()
-        //{
-        //	IEnumerable<User> users = context.Users.ToList();
-        //	return View(users);
-        //}
-        //      [HttpPost]
         public IActionResult Index(string fName, string lName, string comp)
         {
             IEnumerable<User> users = context.Users.ToList();

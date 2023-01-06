@@ -10,15 +10,26 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <div class="gridCV">
 	<div class="CVleft">
-		<div class="leftText"></div>
-		<a class="edit" href="@Url.Action("Index","CV", new { userID = UserManager.GetUserId(User)})">
-			<span class="material-symbols-outlined">
-				settings
-			</span>
-			<br />
-			<p>Tillbaka</p>
-		</a>
-
+		<div class="leftText">
+			<div>
+				<a class="edit" href="@Url.Action("Index","CV", new { userID = UserManager.GetUserId(User)})">
+					<span class="material-symbols-outlined" style="color: orange; font-size: 50px">
+						settings
+					</span>
+					<br />
+					<p>Tillbaka</p>
+				</a>
+			</div>
+			<div>
+				<a class="edit" href="@Url.Action("Index","Image", new { userID = User.Identity})">
+					<span class="material-symbols-outlined" style="color: orange; font-size: 50px">
+						photo_camera
+					</span>
+					<br />
+					<p>Hantera profilbild</p>
+				</a>
+			</div>
+		</div>
 		@try
 		{
 			if (@Model.User.ImageModel.Name.Any())
@@ -32,23 +43,16 @@
 				account_circle
 			</span>
 		}
-		<a class="edit" href="@Url.Action("Index","Image", new { userID = User.Identity})">
-			<span class="material-symbols-outlined">
-				edit
-			</span>
-			<br />
-			<p>Hantera profilbild</p>
-		</a>
 
 		@try
 		{
-			<h1>@Model.User.FirstName @Model.User.LastName</h1>
+			<h1 class="accentWord">@Model.User.FirstName @Model.User.LastName</h1>
 			<br />
-			<div class="leftText">
+			<div class="">
 				<p>@Model.User.PhoneNumber</p>
 				<p>@Model.User.Email</p>
 			</div>
-			<div class="leftText">
+			<div class="">
 				<p>@Model.User.Address.Street</p>
 				<p>@Model.User.Address.PostalCode, @Model.User.Address.City</p>
 			</div>
@@ -70,10 +74,10 @@
 			<hr class="CVLine" />
 			@if (Model.CompetenceList.Any())
 			{
-					@foreach (var item in Model.CompetenceList)
-					{
-						<p>@item.Name</p>
-					}
+				@foreach (var item in Model.CompetenceList)
+				{
+					<p>@item.Name</p>
+				}
 			}
 			else
 			{
@@ -180,7 +184,9 @@
 				{
 					<h3>@project.Name</h3>
 					<p>@project.Description</p>
-					<a class="involved btn btn-dark" href="@Url.Action("LeaveProject", "User", new { projectId = project.ID, caller = "projects"})">&#x2717; Lämna projektet</a>
+					<a class="involved" href="@Url.Action("LeaveProject", "User", new { projectId = project.ID, caller = "projects"})">&#x2717; Lämna projektet</a>
+					<br />
+					<br />
 					<br />
 				}
 			}
@@ -193,15 +199,15 @@
 			<a asp-area="" class="btn btn-dark" asp-controller="Projects" asp-action="CreateProject">Skapa projekt</a>
 			<br />
 			<br />
-				<h2 class="accentWord">Mina projekt</h2>
+			<h2 class="accentWord">Mina projekt</h2>
 			<hr class="CVLine" />
 			@if (!Model.ProjectLeaderList.Any())
-			{	
+			{
 				<br />
 				<hr class="CVLine" />
 				<p>Du har inte skapat några projekt. Välj att gå med i ett projekt eller skapa ett nytt ovan. </p>
 			}
-				<a asp-area="" asp-controller="ManagedProjects" asp-action="Index" class="btn btn-dark">Hantera mina projekt</a>
+			<a asp-area="" asp-controller="ManagedProjects" asp-action="Index" class="btn btn-dark">Hantera mina projekt</a>
 		}
 		catch (Exception ex) { }
 	</div>

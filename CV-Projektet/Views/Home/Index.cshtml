@@ -123,7 +123,6 @@
 					{
 						<h4>Projektledare</h4>
 						<div class="personCard">
-							@*<img src="@("~/image/" + item.ProjectLeader.ImageModel.Name)">*@
 							<a class="" href="@Url.Action("Index", "CV", new { userID = item.ProjectLeader.Id})">@item.ProjectLeader.FirstName @item.ProjectLeader.LastName</a>
 						</div>
 						<br>

@@ -43,7 +43,6 @@ namespace CV_Projektet.Controllers
 		public IActionResult AddCompetence(CVDetails view, string name)
 		{
 			List<CV_Competences> competences = context.CV_Competences.ToList();
-			//List<int> competencesIDList = new List<int>();
 			Competence competence = new Competence();
 			CV? cv = context.CVs.Where(c => c.UserID == userManager.GetUserId(User)).SingleOrDefault();
 			CV_Competences competenceList = new CV_Competences();

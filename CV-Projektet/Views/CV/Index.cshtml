@@ -13,7 +13,7 @@
 		@if (Model.User.Id.Equals(UserManager.GetUserId(User)))
 		{
 <a class="edit" href="@Url.Action("Edit","CV", new { userID = UserManager.GetUserId(User)})">
-	<span class="material-symbols-outlined">
+				<span class="material-symbols-outlined" style="color: orange; font-size: 50px">
 		settings
 	</span>
 	<br/>
@@ -25,7 +25,7 @@
 			<a class="" href="@Url.Action("SendMessage","Message", new {
 					ReceiverId = Model.User.Id,
 					ReceiverName = $"{Model.User.FirstName} {Model.User.LastName}"})">
-				<span class="material-symbols-outlined">
+				<span class="material-symbols-outlined" style="color: orange; font-size: 50px">
 					mail
 				</span>
 			</a>
@@ -44,13 +44,13 @@
 			</span>
 		}
 
-		<h1 style="color: white;">@Model.User.FirstName @Model.User.LastName</h1>
+		<h1 class="accentWord">@Model.User.FirstName @Model.User.LastName</h1>
 		<br />
-		<div class="leftText">
+		<div class="">
 			<p>@Model.User.PhoneNumber</p>
 			<p>@Model.User.Email</p>
 		</div>
-		<div class="leftText">
+		<div class="">
 			@if (Model.User.Address != null)
 			{
 				<p>@Model.User.Address.Street</p>

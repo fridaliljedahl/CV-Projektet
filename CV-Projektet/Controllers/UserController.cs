@@ -33,7 +33,6 @@ namespace CV_Projektet.Controllers
             {
                 return RedirectToAction("Index", "Projects");
             }
-
         }
         public ActionResult LeaveProject(int projectId, string caller)
         {

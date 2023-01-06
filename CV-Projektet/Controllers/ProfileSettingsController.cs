@@ -45,20 +45,10 @@ namespace CV_Projektet.Controllers
             return View(viewModel);
 		}
 
-		//public IActionResult Submit()
-		//{
-
-
-		//	return RedirectToAction("Index", "Home");
-  //      }
 
         [HttpPost]
         public IActionResult Edit(UserRegistrationViewModel userModel)
 		{
-            //var userToUpdate = context.Users.Where(u => u.Id == userManager.GetUserId(User)).SingleOrDefault();
-
-            //context.Entry(userToUpdate).CurrentValues.SetValues(user);
-
             UserRegistrationViewModel viewModel = new UserRegistrationViewModel();
 
             try
@@ -84,10 +74,7 @@ namespace CV_Projektet.Controllers
                 context.SaveChanges();
 
             }
-            catch (Exception ex)
-            {
-
-            }
+            catch (Exception ex){}
             return RedirectToAction("Index", "ProfileSettings");
 
         }

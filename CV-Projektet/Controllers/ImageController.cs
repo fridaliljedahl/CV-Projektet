@@ -21,11 +21,6 @@ namespace CV_Projektet.Controllers
 			this.signInManager = signInMngr;
 		}
 
-		//public async Task<IActionResult> Index()
-		//{
-		//	return View(await context.Images.ToListAsync());
-		//}
-
 		public IActionResult Index(string userID)
 		{
 			ImageModel? imageModel = context.Images.Where(i => i.UserID == userManager.GetUserId(User)).SingleOrDefault();
@@ -75,10 +70,8 @@ namespace CV_Projektet.Controllers
 			}
 			catch (Exception ex)
 			{
-
 				ViewBag.ErrorMessage = "Vänligen fyll i ett namn på bilden";
-				return View(imageModel);
-				
+				return View(imageModel);				
 			}
 
 		}
@@ -94,10 +87,7 @@ namespace CV_Projektet.Controllers
 				context.Update(imageModel);
 				await context.SaveChangesAsync();
 			}
-			catch (DbUpdateConcurrencyException)
-			{
-
-			}
+			catch (DbUpdateConcurrencyException){}
 			return RedirectToAction(nameof(Index));
 		}
 
