@@ -1,21 +1,20 @@
 ﻿@model AddProjectMembersViewModel
 
 
-<h2>Projektet @Model.Project.Name är skapat</h2>
-
-<h2>Lägg till personer som medverkar i projektet:</h2>
-
+<h2>Projektet <em class="accentWord">@Model.Project.Name</em> är skapat!</h2>
+<br />
+<br />
+<h4>Lägg till personer som medverkar i projektet:</h4>
+<br />
 @try
 {
     if (Model.Project.User_Project.Any())
     {
-        <ul>
             @foreach (var item in Model.Project.User_Project)
             {
-                <li>@item.User.FirstName @item.User.LastName</li>
-
+                <p>@item.User.FirstName @item.User.LastName</p>
             }
-        </ul>
+    <br />
     }
 }
 
@@ -39,5 +38,5 @@ catch (Exception ex)
     <button type="submit" class="btnRegister">Lägg till medlem</button>
 
 </form>
-
-<a href="@Url.Action("Index", "Projects")"> Klar </a>
+<br />
+<a href="@Url.Action("Index", "Projects")"> Klar!</a>

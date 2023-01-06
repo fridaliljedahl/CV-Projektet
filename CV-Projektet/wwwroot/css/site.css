@@ -3,6 +3,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    text-align: center;
 }
 
 html {
@@ -17,17 +18,24 @@ a {
 }
 
 body {
-    background-color: #727D66;
     color: #FFFEF6;
+    background-color: #727D66;
+}
+body, html, main, .content {
+    height: 100%;
 }
 
 .content {
-    padding-top: 7em;
+    padding-top: 10em;
+}
+body {
+    background-color: transparent;
 }
 
 h1 {
     text-align: center;
 }
+
 /*Header*/
 header {
     z-index: 1;
@@ -37,6 +45,37 @@ header {
     color: #FFFEF6;
     box-shadow: 0px 2px #494f41;
     padding: 0em 1em;
+    height: 7.5em;
+}
+
+.smallEmptyPicture {
+    margin: 1em;
+    height: 5em;
+    width: 5em;
+    border-radius: 50%
+}
+
+.profileInfo {
+    display: flex;
+    align-items: flex-end;
+    justify-self: right;
+}
+
+.LogOutButton {
+    right: 0px;
+}
+
+/*.profilepictureHeader {
+    margin: 1em;
+    height: 5em;
+    width: 5em;
+    border-radius: 50%;
+
+    align-content:center;
+    
+}*/
+
+#profileInfoHeader {
 }
 
 .btn {
@@ -49,6 +88,11 @@ header {
     flex-direction: row;
     justify-content: center;
 }
+
+    .loginOptions a {
+        margin: 0em 1em;
+        color: white;
+    }
 
 .logo {
     font-size: 40px;
@@ -68,6 +112,42 @@ footer {
     color: orange;
     font-style: normal;
 }
+/*Cards för project och profiler, gäller alla sidor*/
+.cardContainer { /*G�ller �ven p� projektsidan*/
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: none;
+}
+
+.card { /*G�ller �ven p� projektsidan*/
+    color: #000000;
+    background-color: #f2f0dc;
+    padding: 1em;
+    margin: 2em;
+    border-radius: 3em;
+    border-color: orange;
+    border-width: 0.25em;
+    color: black;
+}
+
+    .card h3 {
+        background-color: orange;
+        margin: 0 0.5em;
+        padding: 0.2em 0.5em;
+        border-radius: 2em;
+    }
+    .card p{
+        margin: 0;
+    }
+
+.projectCard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.involved {
+    color: orange;
+}
 /*Startsida*/
 .contentHome {
     display: flex;
@@ -75,33 +155,13 @@ footer {
     text-align: center;
 }
 
-.cardContainer { /*G�ller �ven p� projektsidan*/
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.card { /*G�ller �ven p� projektsidan*/
-    color: #000000;
-    margin: 1em;
-    padding: 1em;
-    border-radius: 3em;
-}
-
 .headingHome {
-    color: orange;
+    color: white;
     text-align: center;
-}
-
-.personCard a {
-    color: black;
 }
 
 .contentHome li {
     text-align: start;
-}
-
-.involved {
-    color: orange;
 }
 
 /*Registrera sig*/
@@ -143,19 +203,24 @@ footer {
 }
 
 /*Mina meddelanden*/
-.allMessages{
+.allMessages {
     display: flex;
     flex-direction: column;
 }
+.message{
+    border-radius: 1.5em;
+}
+
 .messageContainer {
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     width: 100%;
     margin: 1em 1em;
-    justify-items:center;
+    justify-items: center;
     align-items: center;
 }
-.message{
+
+.message {
     background: white;
     color: black;
     text-align: center;
@@ -163,18 +228,24 @@ footer {
     margin: 0.5em;
     width: 100%;
 }
-.messageContainer a{
-    text-align:center;
+
+.messageContainer a {
+    text-align: center;
     color: orange;
 }
 
+.sender {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
 /*CV*/
 .CVright {
     color: #000000;
-    padding: 0em 2em;
     background-color: #FFFEF6;
     margin-left: 18em;
     padding-top: 3em;
+    height: 100%;
 }
 
 .CVleft {
@@ -185,15 +256,16 @@ footer {
     overflow-x: hidden;
     padding: 1em;
     background-color: #ACB7A0;
-    padding-top: 4em;
+    height: 100%;
+    color:black;
+}
+.gridCV {
+    height: 105%;
+    transform: translateY(-34px);
 }
 
 .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-}
-
-.material-symbols-outlined {
-    font-variation-settings: 'FILL' 1, 'wght' 100, 'GRAD' 0, 'opsz' 48
+    font-variation-settings: 'FILL' 1, 'wght' 100, 'GRAD' 0, 'opsz' 48;
 }
 
 .circle {
@@ -209,6 +281,7 @@ footer {
     height: 15em;
     width: 15em;
     border-radius: 50%;
+    align-self: center;
 }
 
 .fa:hover {
@@ -235,7 +308,9 @@ footer {
     background: #125688;
     color: white;
 }
-
+.CVLine{
+    color: orange;
+}
 /*Profiles*/
 .profileContainer {
     display: grid;
@@ -264,23 +339,19 @@ body {
 
 /*Profilesettings*/
 #SettingsForm {
-    text-align:center;
+    text-align: center;
     border: 1px solid black;
     margin: 1em;
-{
-    }padding: 1em;
 }
 
 .SettingBoxes {
     margin: 0.5em;
     padding: 0em;
-    
 }
 
 #DescriptionBox {
     margin: 0.5em;
     padding: 0em;
-    
 }
 
 /*Redigera CV*/
@@ -290,7 +361,38 @@ body {
     align-content: left;
     padding: 1em;
 }
+
 .competence {
     margin-right: 2em;
 }
+/*SendMessage*/
+.textAreaSendMessage{
+    width: 50em;
+    height: 10em;
+}
+.senderSendMessage{
+    width: 25em;
+}
+.userInput{
+    border-radius: 1em;
+    border-style: none;
+    height: 2.5em;
+    padding: 1em;
+}
 
+/*Inställningar*/
+.myDescriptionInput{
+    height: 10em;
+}
+
+/*Orange fyrkant*/
+.orangeSquare {
+    height: 35em;
+    width: 100%;
+    background-color: #dd8100;
+    transform: rotate(-12deg);
+    z-index: -1;
+    position: fixed;/*
+    margin-top: 10em;*/
+    top: 35%;
+}

@@ -2,7 +2,7 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <nav class="navbar">
 	<a class="logo" asp-area="" asp-controller="Home" asp-action="Index">CVGROTTAN</a>
 	<div class="navLinks">
@@ -15,7 +15,6 @@
 			int count = user.ReceivedMessages.Where(m => m.Read == false).Count();
 
 			<a asp-area="" asp-controller="Message" asp-action="MyMessages">Mina meddelanden(@count)</a>
-			<a href="@Url.Action("Index", "CV", new { userID = UserManager.GetUserId(User)})">Min profil</a>
 
 			<a asp-area="" asp-controller="ProfileSettings" asp-action="Index"> Inställningar <i class="fa fa-gear"></i></a>
 			<a asp-area="" asp-controller="Projects" asp-action="CreateProject">Skapa projekt</a>
@@ -23,22 +22,43 @@
 		}
 	</div>
 
-	@if (SignInManager.IsSignedIn(User))
-	{
-		<form method="post" asp-controller="Account" asp-action="LogOut">
-			<AuthorizeView>
-				<Authorized>
-					<p>Du är inloggad som <em class="accentWord">@User.Identity.Name</em></p>
-					<input type="submit" value="Logga ut" />
-				</Authorized>
-			</AuthorizeView>
-		</form>
-	}
-	else
-	{
-		<div class="loginOptions">
-			<a asp-area="" asp-controller="Account" asp-action="LogIn">Logga in</a>
-			<a asp-area="" asp-controller="Account" asp-action="Register">Registrera</a>
+
+		@if (SignInManager.IsSignedIn(User))
+		{
+		<div class="profileInfo">
+			@{User user = await UserManager.GetUserAsync(User);}
+			<form id="profileInfoHeader" method="post" asp-controller="Account" asp-action="LogOut">
+				<AuthorizeView>
+					<Authorized>
+						<p>Du är inloggad som <a class="accentWord" href="@Url.Action("Index", "CV", new { userID = user.Id})">@user.UserName</a></p>
+						<input class="LogOutButton" type="submit" value="Logga ut" />
+					</Authorized>
+				</AuthorizeView>
+			</form>
+
+			@try
+			{
+				if (user.ImageModel.Name.Any())
+				{
+					<a href="@Url.Action("Index", "CV", new { userID = user.Id})"><img class="profilepictureHeader" src="@("~/image/" + user.ImageModel.Name)" asp-append-version="true" style="margin-left:1em; height: 75px; width:75px; border-radius: 50%;" /></a>
+				}
+			}
+			catch (Exception ex)
+			{
+				<a class="accentWord" href="@Url.Action("Index", "CV", new { userID = user.Id})">
+					<span class="material-symbols-outlined" style="font-size:85px; color: #FFFEF6; ">
+						account_circle
+					</span>
+				</a>
+			}
 		</div>
-	}
+		}
+		else
+		{
+			<div class="loginOptions">
+				<a asp-area="" asp-controller="Account" asp-action="LogIn">Logga in</a>
+				<a asp-area="" asp-controller="Account" asp-action="Register">Registrera</a>
+			</div>
+		}
+
 </nav>

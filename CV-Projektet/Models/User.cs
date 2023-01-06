@@ -11,7 +11,7 @@ namespace CV_Projektet.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(350)")]
         public string? Description { get; set; }
         public bool IsPublic { get; set; }
         public bool IsActive { get; set; }

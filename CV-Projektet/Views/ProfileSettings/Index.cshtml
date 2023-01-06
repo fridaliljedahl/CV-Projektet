@@ -3,58 +3,16 @@
 @inject UserManager<User> UserManager
 @model UserRegistrationViewModel
 
-
-@*<h1>Inställningar</h1>*@
-
 @{
 	var user = UserManager.GetUserAsync(User);
 }
 
-@*<form id = "SettingsForm" method="post" asp-controller="ProfileSettings" asp-action="Edit">
-	<div>
-		 Förnamn:
-		<input class = "SettingBoxes" name ="FirstName" value = "@Model.FirstName"/>
-		<br /> Efternamn:
-		<input class = "SettingBoxes" name ="LastName" value = "@Model.LastName"/>
-		<br /> Användarnamn:
-		<input class = "SettingBoxes" name ="UserName" value = "@Model.UserName"/>
-		<br /> E-mail:
-		<input class = "SettingBoxes" name ="Email" value = "@Model.Email"/>
-		<br /> Telefonnummer:
-		<input class = "SettingBoxes" name ="PhoneNumber" value = "@Model.PhoneNumber"/>
-		<br /> Beskrivning:
-		<textarea asp-for="Description"></textarea>
-		<br />
-		<br /> Nytt Lösenord:
-		<input class = "SettingBoxes" <input type="password" name ="Password"/>
-		<br /> Bekräfta lösenord:
-		<input class = "SettingBoxes" <input type="password" name ="PasswordConfirmed"/>
-		<br />
-@*		Synlig profil:
-		<input type = "checkbox" name ="IsPublic" value = "@Model.IsPublic"/>*@
-
-@*			<div class="inputRow">
-		<label>Public profile:</label>
-		<input type="checkbox" class="checkbox" asp-for="IsPublic" value = "@Model.IsPublic" />
-		</div>
-
-		<br />
-		<br />
-		<input type="submit" value="Spara">
-	</div>
-
-</form>
-
-
-
-
-@*<div asp-validation-summary="All" class="text-danger"></div>*@
-<h1><em class="accentWord">Inställningar</em></h1>
+<h2 class="accentWord">Inställningar</h2>
 <br />
 <form class="formRegister" method="post" asp-controller="ProfileSettings" asp-action="Edit">
 	<div class="inputRow">
 		<label>Username:</label>
-		<input asp-for="UserName" />
+		<input asp-for="UserName" class="userInput" />
 		@try
 		{
 			@if (string.IsNullOrWhiteSpace(Model.returnedErrorMessage))
@@ -70,43 +28,43 @@
 	</div>
 	<div class="inputRow">
 		<label>First name:</label>
-		<input asp-for="FirstName" />
+		<input asp-for="FirstName" class="userInput"/>
 		<span asp-validation-for="FirstName" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Last name:</label>
-		<input asp-for="LastName" />
+		<input asp-for="LastName" class="userInput" />
 		<span asp-validation-for="LastName" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Describe yourself:</label>
-		<textarea asp-for="Description"></textarea>
+		<textarea class="myDescriptionInput userInput" asp-for="Description"></textarea>
 		<span asp-validation-for="Description" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Phone number:</label>
-		<input asp-for="PhoneNumber" />
+		<input asp-for="PhoneNumber" class="userInput" />
 		<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Email:</label>
-		<input type="email" asp-for="Email" />
+		<input type="email" asp-for="Email" class="userInput" />
 		<span asp-validation-for="Email" class="text-danger"></span>
 	</div>
 
 	<div class="inputRow">
 		<label>Street name:</label>
-		<input asp-for="Street" />
+		<input asp-for="Street" class="userInput" />
 		<span asp-validation-for="Street" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Postal code:</label>
-		<input type="text" asp-for="PostalCode" />
+		<input type="text" asp-for="PostalCode" class="userInput" />
 		<span asp-validation-for="PostalCode" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>City:</label>
-		<input asp-for="City" />
+		<input asp-for="City" class="userInput" />
 		<span asp-validation-for="City" class="text-danger"></span>
 	</div>
 
@@ -115,9 +73,10 @@
 		<input type="checkbox" class="checkbox" asp-for="IsPublic" />
 	</div>
 
-	<button type="submit" class="btnRegister">Spara</button>
+	<button type="submit" class="btn-primary btn btnRegister">Spara</button>
 
 </form>
 
-
-<a asp-area="" asp-controller="ChangePassword" asp-action="Index">Ändra Lösenord</a>
+<br />
+<br />
+<a asp-area="" asp-controller="ChangePassword" asp-action="Index">Ändra lösenord</a>

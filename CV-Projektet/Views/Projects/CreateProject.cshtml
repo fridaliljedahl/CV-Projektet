@@ -7,29 +7,29 @@
 	User user = await UserManager.GetUserAsync(User);
 }
 
+<h2 class="accentWord">Skapa projekt</h2>
+<br />
 <form method="post" class="formRegister">
 	<div class="inputRow">
 		<label>Projektnamn:</label>
-		<input asp-for="Name" />
+		<input asp-for="Name" class="userInput"/>
 		<span asp-validation-for="Name" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Projektbeskrivning:</label>
-		<input asp-for="Description" />
+		<input asp-for="Description" class="userInput" />
 		<span asp-validation-for="Description" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Projektledare:</label>
-		<input type="hidden" value="@user.UserName" asp-for="ProjectLeaderUserName" />
+		<input asp-for="ProjectLeaderUserName" class="userInput" />
 		@try
-		{
-			@if (Model.ErrorMessage != null)
 			{
 				<span class="text-danger">@Model.ErrorMessage</span>
 			}
 		}
 		catch (Exception ex) { }
 	</div>
-	<button type="submit" class="btnRegister">Skapa projekt</button>
+	<button type="submit" class="btnRegister btn btn-primary">Skapa projekt</button>
 
 </form>
