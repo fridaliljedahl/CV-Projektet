@@ -10,15 +10,15 @@
 	<input type="hidden" asp-for="ProjectLeaderID" value="@Model.ProjectLeaderID" />
 	<div class="inputRow">
 		<label>Projektnamn:</label>
-		<input asp-for="Name" />
+		<input asp-for="Name" class="userInput"/>
 		<span asp-validation-for="Name" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
 		<label>Prejektbeskrivning:</label>
-		<input asp-for="Description" />
+		<input asp-for="Description" class="userInput" />
 		<span asp-validation-for="Description" class="text-danger"></span>
 	</div>
-	<button type="submit" class="btnRegister btn-dark">Spara</button>
+	<button type="submit" class="btnRegister btn btn-dark">Spara</button>
 </form>
 <br />
 <br />
@@ -31,9 +31,9 @@
 		{
 			<p style="text-align:center; margin-bottom: -1em;">@item.User.FirstName @item.User.LastName</p>
 			<form asp-controller="ManagedProjects" asp-action="DeleteFromProject" class="formRegister">
-				<input type="hidden" asp-for="@item.User.Id" name="userid" />
-				<input type="hidden" asp-for="@Model.ID" name="projectId" />				
-				<button type="submit" class="btnRegister btn-dark">Radera</button>
+				<input type="hidden" asp-for="@item.User.Id" name="userid" class="userInput" />
+				<input type="hidden" asp-for="@Model.ID" name="projectId" class="userInput" />
+				<button type="submit" class="btnRegister btn btn-dark">Radera</button>
 			</form>			
 		}
 	</div>
@@ -46,20 +46,21 @@
 catch (Exception ex) { }
 <form method="post" asp-controller="ManagedProjects" asp-action="AddMembers" class="formRegister">
 	<div class="inputRow">
-		<input type="hidden" asp-for="@Model.ID" name="projectId" />
+		<input type="hidden" asp-for="@Model.ID" name="projectId" class="userInput" />
 	</div>
 	<div class="inputRow">
-		<label>Användarnamn:</label>
-		<input name="UserName" />
-		<p>@ViewBag.Message</p>
+		<label style="color: #FFFEF6;">Användarnamn:</label>
+		<input name="UserName" class="userInput" />
+		<p class="text-danger">@ViewBag.Message</p>
 	</div>
-	<button type="submit" class="btnRegister btn-dark">Lägg till ny medlem</button>
+	<button type="submit" class="btnRegister btn btn-dark">Lägg till medlem</button>
 </form>
 
 
 <form asp-controller="ManagedProjects" asp-action="Delete" class="formRegister">
 	<div class="inputRow">
-		<input type="hidden" asp-for="@Model.ID" name="projectId" />
+		<input type="hidden" asp-for="@Model.ID" name="projectId" class="userInput" />
 	</div>
-	<button type="submit" class="btnRegister btn-danger">Radera projektet</button>
+	<button type="submit" class="btnRegister btn btn-danger">Radera projektet</button>
 </form>
+<div class="orangeSquare"></div>

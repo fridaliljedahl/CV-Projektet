@@ -101,23 +101,7 @@ namespace CV_Projektet.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-		public async Task<IActionResult> Delete(int? id)
-		{
-			if (id == null)
-			{
-				return NotFound();
-			}
-			var imageModel = await context.Images.FirstOrDefaultAsync(m => m.ID == id);
-			if (imageModel == null)
-			{
-				return NotFound();
-			}
-			return View(imageModel);
-
-		}
-		[HttpPost, ActionName("Delete")]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> DeleteConfirmed(int id)
+		public async Task<IActionResult> Delete(int id)
 		{
 			var imageModel = await context.Images.FindAsync(id);
 

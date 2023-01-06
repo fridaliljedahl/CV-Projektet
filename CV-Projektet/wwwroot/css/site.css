@@ -65,16 +65,6 @@ header {
     right: 0px;
 }
 
-/*.profilepictureHeader {
-    margin: 1em;
-    height: 5em;
-    width: 5em;
-    border-radius: 50%;
-
-    align-content:center;
-    
-}*/
-
 #profileInfoHeader {
 }
 
@@ -113,13 +103,13 @@ footer {
     font-style: normal;
 }
 /*Cards för project och profiler, gäller alla sidor*/
-.cardContainer { /*G�ller �ven p� projektsidan*/
+.cardContainer { /*G�ller på fler sidor*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: none;
 }
 
-.card { /*G�ller �ven p� projektsidan*/
+.card { /*G�ller på fler ställen*/
     color: #000000;
     background-color: #f2f0dc;
     padding: 1em;
@@ -246,6 +236,7 @@ footer {
     margin-left: 18em;
     padding-top: 3em;
     height: 100%;
+    padding-bottom: 3em;
 }
 
 .CVleft {
@@ -257,10 +248,10 @@ footer {
     padding: 1em;
     background-color: #ACB7A0;
     height: 100%;
-    color:black;
+    color: black;
 }
 .gridCV {
-    height: 105%;
+    height: max-content;
     transform: translateY(-34px);
 }
 
@@ -323,11 +314,6 @@ footer {
     margin: 1em;
     padding: 1em;
 }
-/*@media (min-width: 768px) {
-    html {
-    font-size: 16px;
-  }
-}*/
 html {
     position: relative;
     min-height: 100%;
@@ -336,7 +322,9 @@ html {
 body {
     margin-bottom: 60px;
 }
-
+.lblSearch{
+    margin: 0 1em;
+}
 /*Profilesettings*/
 #SettingsForm {
     text-align: center;
@@ -392,7 +380,19 @@ body {
     background-color: #dd8100;
     transform: rotate(-12deg);
     z-index: -1;
-    position: fixed;/*
-    margin-top: 10em;*/
+    position: fixed;
     top: 35%;
+}
+
+/*Image*/
+.imgCard img{
+    border-radius: 50%;
+    align-self: center;
+}
+.imgCard{
+    margin: 0 20em;
+}
+
+.textAreaSendMessage{
+    border-radius: 2em;
 }

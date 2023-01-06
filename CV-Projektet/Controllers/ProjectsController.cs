@@ -90,92 +90,10 @@ namespace CV_Projektet.Controllers
 
 			catch (Exception ex)
 			{
-				//Här kommer felmeddelandet upp när mna laddar sidan direkt, behöver ha en annan metod för detta
 				view.ErrorMessage = "Användaren hittades inte";
 			}
 
 			return View(view);
 		}
-
-
-		//public IActionResult AddProjectMembers(AddProjectMembersViewModel view) //detta funkar inte
-		//{
-		//    return View(view);
-		//}
-
-		//public async Task<IActionResult> AddProjectMembers(AddProjectMembersViewModel view)
-		//{
-		//    return View(view);
-		//}
-
-
-		//public IActionResult CreateProject(CreateProjectViewModel view)
-		//{
-
-
-		//    return View(view);
-		//}
-
-		//public IActionResult CreateProject(CreateProjectViewModel viewModel)
-		//{
-		//    return View(viewModel);
-		//}
-
-
-		//[HttpPost]
-		//public IActionResult AddCollaborator(CreateProjectViewModel viewModel)
-		//{
-		//    try
-		//    {
-		//        User user = context.Users.Where(u => u.UserName == viewModel.EnteredUserName).Single();
-
-		//        List<string> addedUsers = new List<string>();
-		//        addedUsers.Add(viewModel.EnteredUserName);
-		//        addedUsers.Add("hej");
-		//        foreach(var item in viewModel.Collaborators)
-		//        {
-		//            addedUsers.Add(item.ToString());
-		//        }
-		//        viewModel.Collaborators = addedUsers;
-		//    }
-		//    catch (Exception ex)
-		//    {
-		//        viewModel.ErrorMessage = "Användare med detta användarnamn hittades inte, försök igen.";
-		//    }
-		//    return View("CreateProject");
-		//}
-
-		//public IActionResult CreateProject(CreateProjectViewModel viewModel)
-		//{
-		//    try
-		//    {
-		//        if (viewModel.Sender == null)
-		//        {
-
-		//        }
-		//        else if (viewModel.Sender.Equals("Add"))
-		//        {
-		//            viewModel.Collaborators.Add(context.Users.Where(u => u.UserName == viewModel.CollaboratorUserName).Single());
-		//        }
-		//        else
-		//        {
-		//            if (ModelState.IsValid)
-		//            {
-		//                return RedirectToAction("Index");
-		//            }
-		//        }
-
-
-		//    }
-		//    catch (Exception ex)
-		//    {
-		//        viewModel.ErrorMessage = "Användaren hittades inte.";
-		//    }
-		//    return View(viewModel);
-
-
-		//}
-
-
 	}
 }

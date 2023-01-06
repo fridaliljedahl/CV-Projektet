@@ -5,19 +5,16 @@
 @{
 	ViewData["Title"] = "Profiler";
 }
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
 
 <h2 class="accentWord">Profiler</h2>
 <br />
 @using (Html.BeginForm("Index", "Profiles", FormMethod.Get))
 {
-	<lbl>Förnamn</lbl>
+	<lbl class="lblSearch">Förnamn</lbl>
 	@Html.TextBox("fName", null, new { @class = "userInput"})
-	<lbl>Efternamn</lbl>
+	<lbl class="lblSearch">Efternamn</lbl>
 	@Html.TextBox("lName", null, new { @class = "userInput"})
-	<input type="submit" value="Sök" class="btn btn-primary">
+	<input type="submit" value="Sök" class="btn btn-dark">
 }
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />

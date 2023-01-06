@@ -3,26 +3,24 @@
 @{
 }
 
-<h1>Lägg till profilbild</h1>
-
-<h4>Bild</h4>
-<hr />
-
-<div class="row">
-	<div class="col-md-4">
+<h2 class="accentWord">Lägg till profilbild</h2>
+<br />
+<div class="">
+	<div class="">
 		<form asp-action="Add" enctype="multipart/form-data">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group">
-				<label asp-for="Title" class="control-label"></label>
-				<input asp-for="Title" class="text-danger" /> <p>@ViewBag.ErrorMessage</p>
+			<div class="">
+				<label asp-for="Title" class="control-label"></label><br />
+				<input asp-for="Title" class="text-danger userInput" /> <p>@ViewBag.ErrorMessage</p>
 			</div>
-			<div class="form-group">
+			<div class="">
 				<label asp-for="ImageFile" class="control-label"></label>
 				<input asp-for="ImageFile" accept="image/*" />
 				<span asp-validation-for="ImageFile" class="text-danger"></span>
 			</div>
-			<div class="form-group">
-				<input type="submit" value="Create" class="btn btn-primary" />
+			<br />
+			<div class="">
+				<input type="submit" value="Create" class="btn btn-dark" />
 			</div>
 		</form>
 	</div>

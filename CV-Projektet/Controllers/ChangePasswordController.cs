@@ -39,37 +39,24 @@ namespace CV_Projektet.Controllers
                     return RedirectToAction("Login");
                 }
 
-                // ChangePasswordAsync changes the user password
                 var result = await userManager.ChangePasswordAsync(user,
                     changePasswordViewModel.CurrentPassword, changePasswordViewModel.NewPassword);
 
-                // The new password did not meet the complexity rules or
-                // the current password is incorrect. Add these errors to
-                // the ModelState and rerender ChangePassword view
                 if (!result.Succeeded)
                 {
                     foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-
-
                 }
                 else
                 {
-                    // Upon successfully changing the password refresh sign-in cookie
                     await signInManager.RefreshSignInAsync(user);
 
                     changePasswordViewModel.ErrorMessage = "Ditt läsenord har nu ändrats!";
-
                 }
-
-
             }
-
             return View(changePasswordViewModel);
         }
-
-
     }
 }

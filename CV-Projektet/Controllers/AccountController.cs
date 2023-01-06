@@ -125,12 +125,6 @@ namespace CV_Projektet.Controllers
             return View(loginViewModel);
         }
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> LogOut()
         {

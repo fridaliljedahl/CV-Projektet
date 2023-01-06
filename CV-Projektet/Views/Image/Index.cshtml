@@ -5,40 +5,23 @@
 @{
 }
 
-<hr />
 @try
 {
 	if (Model.UserID.Any())
 	{
-		<table class="table-bordered">
-			<thead>
-				<tr>
-					<td>Titel</td>
-					<td>Filnamn</td>
-					<td>Bild</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>@Model.Title</td>
-					<td>@Model.Name</td>
-					<td>
-						<img src="@("~/image/"+Model.Name)" asp-append-version="true" width="250px" height="250" />
-					</td>
-					@*<td>
-						<a asp-action="Edit" asp-route-id="@Model.ID">Uppdatera</a>
-					</td>*@
-					<td>
-						<a asp-action="Delete" asp-route-id="@Model.ID">Radera</a>
-					</td>
+		<h2 class="accentWord">Din profilbild</h2>
+		<br>
+		<div class="imgCard card">
 
-				</tr>
-			</tbody>
-		</table>
+
+			<img src="@("~/image/"+Model.Name)" asp-append-version="true" width="250px" height="250" />
+			<a asp-action="Delete" class="btn btn-danger btnRegister" asp-route-id="@Model.ID">Radera</a>
+
+		</div>
 	}
 
 }
 catch (Exception ex)
 {
-	<a class="edit" href="@Url.Action("Add","Image", new { userID = User.Identity})">Lägg till profilbild</a>
+	<a class="accentWord" href="@Url.Action("Add","Image", new { userID = User.Identity})">Lägg till profilbild</a>
 }

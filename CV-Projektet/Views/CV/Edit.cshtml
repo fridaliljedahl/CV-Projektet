@@ -28,7 +28,7 @@
 		}
 		catch (Exception ex)
 		{
-			<span class="material-symbols-outlined" style="font-size:250px; color: #FFFEF6; ">
+			<span class="material-symbols-outlined" style="font-size:220px; color: #FFFEF6; ">
 				account_circle
 			</span>
 		}
@@ -43,6 +43,7 @@
 		@try
 		{
 			<h1>@Model.User.FirstName @Model.User.LastName</h1>
+			<br />
 			<div class="leftText">
 				<p>@Model.User.PhoneNumber</p>
 				<p>@Model.User.Email</p>
@@ -51,7 +52,7 @@
 				<p>@Model.User.Address.Street</p>
 				<p>@Model.User.Address.PostalCode, @Model.User.Address.City</p>
 			</div>
-
+			<br />
 			<p>@Model.User.Description</p>
 		}
 		catch (Exception ex) { }
@@ -65,7 +66,8 @@
 
 		@try
 		{
-			<h2 class="">Kompetenser</h2>
+			<h2 class="accentWord">Kompetenser</h2>
+			<hr class="CVLine" />
 			@if (Model.CompetenceList.Any())
 			{
 					@foreach (var item in Model.CompetenceList)
@@ -80,9 +82,11 @@
 			<a href="@Url.Action("Competence", "CVSettings", new { userID = UserManager.GetUserId(User)})"><button class="btn btn-dark">Lägg till fler kompetenser</button></a>
 			<br />
 			<br />
-			<h2 class="education">Utbildningar</h2>
+			<h2 class="accentWord">Utbildningar</h2>
+			<hr class="CVLine" />
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Education")).Any())
 			{
+				<br />
 				@foreach (var item in Model.ExperienceList)
 				{
 					if (item.Type.Equals("Education"))
@@ -99,9 +103,11 @@
 				<p>Du har inga utbildningar tillagda. Lägg till fler nedan.</p>
 			}
 			<br />
-			<h2 class="work">Arbetslivserfarenheter</h2>
+			<h2 class="accentWord">Arbetslivserfarenheter</h2>
+			<hr class="CVLine" />
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Work")).Any())
 			{
+				<br />
 				@foreach (var item in Model.ExperienceList)
 				{
 					if (item.Type.Equals("Work"))
@@ -118,9 +124,11 @@
 				<p>Du har inga arbeten tillagda. Lägg till fler nedan.</p>
 			}
 			<br />
-			<h2 class="course">Kurser</h2>
+			<h2 class="accentWord">Kurser</h2>
+			<hr class="CVLine" />
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Course")).Any())
 			{
+				<br />
 				@foreach (var item in Model.ExperienceList)
 				{
 					if (item.Type.Equals("Course"))
@@ -138,9 +146,11 @@
 				<p>Du har inga kurser tillagda. Lägg till fler nedan.</p>
 			}
 			<br />
-			<h2 class="misc">Övrigt</h2>
+			<h2 class="accentWord">Övrigt</h2>
+			<hr class="CVLine" />
 			@if (Model.ExperienceList.Where(e => e.Type.Equals("Misc")).Any())
 			{
+				<br />
 				@foreach (var item in Model.ExperienceList)
 				{
 					@if (item.Type.Equals("Misc"))
@@ -161,9 +171,11 @@
 
 			<br />
 			<br />
-			<h2 class="project">Projekt</h2>
+			<h2 class="accentWord">Projekt</h2>
+			<hr class="CVLine" />
 			@if (Model.ProjectList.Any())
 			{
+				<br />
 				@foreach (var project in Model.ProjectList)
 				{
 					<h3>@project.Name</h3>
@@ -177,27 +189,19 @@
 				<p>Du har inte lagt till några projekt. Välj att gå med i ett projekt eller skapa ett nytt nedan. </p>
 			}
 			<br />
-			<a asp-area="" asp-controller="Projects" asp-action="Index">
-				<button class="btn btn-dark">
-					Gå med i projekt
-				</button>
-			</a>
-			<a asp-area="" asp-controller="Projects" asp-action="CreateProject">
-				<button class="btn btn-dark">
-					Skapa projekt
-				</button>
-			</a>
+			<a asp-area="" class="btn btn-dark" asp-controller="Projects" asp-action="Index">Gå med i projekt</a>
+			<a asp-area="" class="btn btn-dark" asp-controller="Projects" asp-action="CreateProject">Skapa projekt</a>
 			<br />
 			<br />
 				<h2 class="accentWord">Mina projekt</h2>
+			<hr class="CVLine" />
 			@if (!Model.ProjectLeaderList.Any())
-			{				
+			{	
+				<br />
 				<hr class="CVLine" />
 				<p>Du har inte skapat några projekt. Välj att gå med i ett projekt eller skapa ett nytt ovan. </p>
 			}
-				<a asp-area="" asp-controller="ManagedProjects" asp-action="Index" class="btn btn-dark">
-						Hantera mina projekt
-				</a>
+				<a asp-area="" asp-controller="ManagedProjects" asp-action="Index" class="btn btn-dark">Hantera mina projekt</a>
 		}
 		catch (Exception ex) { }
 	</div>

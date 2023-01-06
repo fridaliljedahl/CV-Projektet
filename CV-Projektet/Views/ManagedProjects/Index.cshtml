@@ -3,14 +3,16 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<h2 class="project" style="text-align: center">Projekt</h2>
+<h2 class="accentWord">Projekt</h2>
 <br />
 @try
 {
+	<div class="cardContainer">
 	@foreach (var project in Model.Where(p => p.ProjectLeaderID == UserManager.GetUserId(User)))
 	{
-		<h3 style="text-align: center">@project.Name</h3>
-		<p style="text-align: center">@project.Description</p>
+		<div class="card">
+		<h3>@project.Name</h3>
+		<p>@project.Description</p>
 		<br />
 		<h4 class="project" style="text-align: center">Projektmedlemmar</h4>
 		@foreach (var x in project.User_Project)
@@ -19,17 +21,19 @@
 		}
 		<form class="formRegister" asp-controller="ManagedProjects" asp-action="Edit">
 			<input type="hidden" asp-for="@project.ID" name="projectId" />
-			<input type="submit" value="Redigera projektet" class="btnRegister btn-dark" />
+			<input type="submit" value="Redigera projektet" class="btnRegister btn-dark btn" />
 		</form>
 		<form class="formRegister" asp-controller="ManagedProjects" asp-action="Delete">
 			
 			<input type="hidden" asp-for="@project.ID" name="projectId" />
 			
-			<input type="submit" value="Radera projektet" class="btnRegister btn-danger" />
+					<input type="submit" value="Radera projektet" class="btnRegister btn-danger btn" />
 		</form>
+		</div>
 		<br />
 		<br />
 		<br />
 	}
+	</div>
 }
 catch (Exception ex) { }
