@@ -30,7 +30,7 @@ namespace CV_Projektet.Models
 
         [Required]
         [Display(Name = "Last name")]
-        [RegularExpression("^[a-öA-Ö]+$",
+        [RegularExpression("^[a-öA-Ö ]+$",
             ErrorMessage = "Last name can only contain letters")]
         public string LastName { get; set; }
 
@@ -53,7 +53,7 @@ namespace CV_Projektet.Models
         [Display(Name = "Street namn")]
         public string Street { get; set; }
 
-        [RegularExpression("^[0-9]{5}$", ErrorMessage = "Postal code must consist of 5 digits")]
+        [RegularExpression("^[0-9]{5}$", ErrorMessage = "Postal code must consist of 5 digits with no space between")]
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
 
