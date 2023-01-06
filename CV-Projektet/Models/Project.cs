@@ -8,8 +8,10 @@ namespace CV_Projektet.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+		[Required(ErrorMessage = "Vänligen ange ett projektnamn.")]
         public string Name { get; set; }
-        public string Description { get; set; }
+		[Required(ErrorMessage = "Vänligen ange en beskrivning.")]
+		public string Description { get; set; }
         public DateTime CreatedDate { get; set; }
         public string ProjectLeaderID { get; set; }
 

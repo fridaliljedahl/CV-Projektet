@@ -26,9 +26,10 @@ namespace CV_Projektet.Controllers
 			return View(projectList);
 		}
 
-		public IActionResult Edit(Project view, int id)
+		[HttpGet]
+		public IActionResult Edit(Project view)
 		{
-			view = context.Projects.Find(id);
+			view = context.Projects.Find(view.ID);
 			if (TempData.ContainsKey("Empty"))
 			{
 				ViewBag.Message = "Vänligen fyll i ett användarnamn";
@@ -37,12 +38,11 @@ namespace CV_Projektet.Controllers
 			{
 				ViewBag.Message = "Användarnamnet finns inte";
 			}
-
-
 			return View(view);
 		}
 
-		public IActionResult EditProject(Project view, int projectId)
+		[HttpPost]
+		public IActionResult Edit(Project view, int projectId)
 		{
 			Project project = context.Projects.Find(projectId);
 			if (ModelState.IsValid)
@@ -56,7 +56,7 @@ namespace CV_Projektet.Controllers
 				}
 			}
 			view = context.Projects.Find(projectId);
-			return RedirectToAction("Edit", "ManagedProjects", view);
+			return View(view);
 		}
 
 		[HttpPost]

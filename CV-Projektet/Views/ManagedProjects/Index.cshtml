@@ -18,7 +18,7 @@
 			<p style ="text-align: center">@x.User.FirstName @x.User.LastName</p>
 		}
 		<form class="formRegister" asp-controller="ManagedProjects" asp-action="Edit">
-			<input type="hidden" asp-for="@project.ID" name="id" />			
+			<input type="hidden" asp-for="@project.ID" name="projectId" />
 			<input type="submit" value="Redigera projektet" class="btnRegister btn-dark" />
 		</form>
 		<form class="formRegister" asp-controller="ManagedProjects" asp-action="Delete">

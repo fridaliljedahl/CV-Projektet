@@ -5,8 +5,8 @@
 
 <h2 style="text-align:center">Redigera ditt projekt</h2>
 
-<form class="formRegister" method="post" asp-controller="ManagedProjects" asp-action="EditProject">
-	<input type="hidden" asp-for="@Model.ID" name="projectId" />
+<form class="formRegister" method="post" asp-controller="ManagedProjects" asp-action="Edit">
+	<input type="hidden" asp-for="ID" name="projectId" />
 	<input type="hidden" asp-for="ProjectLeaderID" value="@Model.ProjectLeaderID" />
 	<div class="inputRow">
 		<label>Projektnamn:</label>
