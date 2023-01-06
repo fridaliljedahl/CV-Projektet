@@ -12,7 +12,7 @@
 <form method="post" class="formRegister">
 	<div class="inputRow">
 		<label>Projektnamn:</label>
-		<input asp-for="Name" class="userInput"/>
+		<input asp-for="Name" class="userInput" />
 		<span asp-validation-for="Name" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
@@ -21,14 +21,7 @@
 		<span asp-validation-for="Description" class="text-danger"></span>
 	</div>
 	<div class="inputRow">
-		<label>Projektledare:</label>
-		<input asp-for="ProjectLeaderUserName" class="userInput" />
-		@try
-			{
-				<span class="text-danger">@Model.ErrorMessage</span>
-			}
-		}
-		catch (Exception ex) { }
+		<input type="hidden" asp-for="ProjectLeaderUserName" class="userInput" value="@user.UserName" />
 	</div>
 	<button type="submit" class="btnRegister btn btn-primary">Skapa projekt</button>
 

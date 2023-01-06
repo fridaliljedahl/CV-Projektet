@@ -35,8 +35,9 @@ namespace CV_Projektet.Controllers
                     }
                 }
                 view.ProjectList = context.Projects.Where(p => projectIDList.Contains(p.ID));
+                view.ProjectLeaderList = context.Projects.Where(p => p.ProjectLeaderID == user.Id).ToList();
 
-                if (cv != null)
+				if (cv != null)
                 {
                     view.CV = cv;
 
@@ -88,6 +89,7 @@ namespace CV_Projektet.Controllers
 						}
 					}
 					view.ProjectList = context.Projects.Where(p => projectIDList.Contains(p.ID));
+					view.ProjectLeaderList = context.Projects.Where(p => p.ProjectLeaderID == user.Id).ToList();
 
 					List<CV_Competences> competencesList = context.CV_Competences.ToList();
 					List<int> competencesIDList = new List<int>();

@@ -164,6 +164,18 @@
 				}
 				<br />
 			}
+			@if (Model.ProjectLeaderList.Any())
+			{
+				<h2 class="accentWord">Projekt</h2>
+				<hr class="CVLine" />
+				<br />
+				@foreach (var project in Model.ProjectLeaderList)
+				{
+					<h3>@project.Name</h3>
+					<p>@project.Description</p>
+				}
+				<br />
+			}
 			}
 		catch (Exception ex) { }
 

@@ -11,5 +11,6 @@ namespace CV_Projektet.Models
 		public IEnumerable<Competence> CompetenceList { get; set; }
 		public IEnumerable<Experience> ExperienceList { get; set; }
 		public IEnumerable<Project> ProjectList { get; set; } = new List<Project>();
+		public IEnumerable<Project>	ProjectLeaderList { get; set; }
 	}
 }
