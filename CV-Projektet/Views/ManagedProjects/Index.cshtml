@@ -8,32 +8,29 @@
 @try
 {
 	<div class="cardContainer">
-	@foreach (var project in Model.Where(p => p.ProjectLeaderID == UserManager.GetUserId(User)))
-	{
-		<div class="card">
-		<h3>@project.Name</h3>
-		<p>@project.Description</p>
-		<br />
-		<h4 class="project" style="text-align: center">Projektmedlemmar</h4>
-		@foreach (var x in project.User_Project)
+		@foreach (var project in Model.Where(p => p.ProjectLeaderID == UserManager.GetUserId(User)))
 		{
-			<p style ="text-align: center">@x.User.FirstName @x.User.LastName</p>
-		}
-		<form class="formRegister" asp-controller="ManagedProjects" asp-action="Edit">
-			<input type="hidden" asp-for="@project.ID" name="projectId" />
-			<input type="submit" value="Redigera projektet" class="btnRegister btn-dark btn" />
-		</form>
-		<form class="formRegister" asp-controller="ManagedProjects" asp-action="Delete">
-			
-			<input type="hidden" asp-for="@project.ID" name="projectId" />
-			
+			<div class="card projectCard">
+				<h3>@project.Name</h3>
+				<p>@project.Description</p>
+				<br />
+				<h4 class="project" style="text-align: center">Projektmedlemmar</h4>
+				@foreach (var x in project.User_Project)
+				{
+					<p style="text-align: center">@x.User.FirstName @x.User.LastName</p>
+				}
+				<form class="formRegister" asp-controller="ManagedProjects" asp-action="Edit">
+					<input type="hidden" asp-for="@project.ID" name="projectId" />
+					<input type="submit" value="Redigera projektet" class="btnRegister btn-dark btn" />
+				</form>
+				<form class="formRegister" asp-controller="ManagedProjects" asp-action="Delete">
+
+					<input type="hidden" asp-for="@project.ID" name="projectId" />
+
 					<input type="submit" value="Radera projektet" class="btnRegister btn-danger btn" />
-		</form>
-		</div>
-		<br />
-		<br />
-		<br />
-	}
+				</form>
+			</div>
+		}
 	</div>
 }
 catch (Exception ex) { }

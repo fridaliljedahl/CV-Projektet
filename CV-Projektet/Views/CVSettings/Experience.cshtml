@@ -5,7 +5,9 @@
 
 @try
 {
-	<h2 class="education">Utbildningar</h2>
+	<h1 class="accentWord">Dina erfarenheter</h1>
+	<br />
+	<h2 class="accentWord">Utbildningar</h2>
 	@if (Model.ExperienceList.Where(e => e.Type.Equals("Education")).Any())
 	{
 		@foreach (var item in Model.ExperienceList)
@@ -28,7 +30,7 @@
 	{
 		<p>Du har inga utbildningar tillagda. Lägg till fler nedan.</p>
 	}
-	<h2 class="work">Arbetslivserfarenheter</h2>
+	<h2 class="accentWord">Arbetslivserfarenheter</h2>
 	@if (Model.ExperienceList.Where(e => e.Type.Equals("Work")).Any())
 	{
 		@foreach (var item in Model.ExperienceList)
@@ -51,7 +53,7 @@
 	{
 		<p>Du har inga arbeten tillagda. Lägg till fler nedan.</p>
 	}
-	<h2 class="course">Kurser</h2>
+	<h2 class="accentWord">Kurser</h2>
 	@if (Model.ExperienceList.Where(e => e.Type.Equals("Course")).Any())
 	{
 		@foreach (var item in Model.ExperienceList)
@@ -75,7 +77,7 @@
 	{
 		<p>Du har inga kurser tillagda. Lägg till fler nedan.</p>
 	}
-	<h2 class="misc">Övrigt</h2>
+	<h2 class="accentWord">Övrigt</h2>
 	@if (Model.ExperienceList.Where(e => e.Type.Equals("Misc")).Any())
 	{
 		@foreach (var item in Model.ExperienceList)
@@ -101,58 +103,46 @@
 	}
 }
 catch (Exception ex) { }
-<form id="SettingsCV" method="post" asp-controller="CVSettings" asp-action="AddExperience">
+<br />
+<br />
+<form class="formRegister" method="post" asp-controller="CVSettings" asp-action="AddExperience">
 
-	<h3>Lägg till en ny erfarenhet:</h3>
-	<div class="col-sm-2">
+	<h2 class="accentWord">Lägg till en ny erfarenhet:</h2>
+	<div class="inputRow">
 		<label>Namn: </label>
+		<input name="Title" class="userInput" />
 	</div>
-	<div class="col-sm-4">
-		<input class="SettingsCV" name="Title" />
-	</div>
-	<div class="col-sm-2">
+	<div class="inputRow">
 		<label>Erfarenhetstyp: </label>
-	</div>
-	<div class="col-sm-4">
-		<select class="SettingsCV" name="Type">
+		<select name="Type" style="border-radius: 1em; padding: 0.5em;">
 			<option value="Education">Utbildning</option>
 			<option value="Work">Arbete</option>
 			<option value="Course">Kurs</option>
 			<option value="Misc">Övrigt</option>
 			<select />
 	</div>
-	<div class="col-sm-2">
+	<div class="inputRow">
 		<label>Startdatum: </label>
+		<input type="date" id="" name="StartDate" class="userInput">
 	</div>
-	<div class="col-sm-4">
-		<input type="date" id="" name="StartDate">
-	</div>
-	<div class="col-sm-2">
+	<div class="inputRow">
 		<label>Slutddatum: </label>
+		<input type="date" id="" name="EndDate" class="userInput">
 	</div>
-	<div class="col-sm-4">
-		<input type="date" id="" name="EndDate">
-	</div>
-	<div class="col-sm-2">
+	<div class="inputRow">
 		<label>Stad: </label>
+		<input class="userInput" name="City" />
 	</div>
-	<div class="col-sm-4">
-		<input class="SettingsCV" name="City" />
-	</div>
-	<div class="col-sm-2">
+	<div class="inputRow">
 		<label>Plats: </label>
+		<input class="userInput" name="Place" />
 	</div>
-	<div class="col-sm-4">
-		<input class="SettingsCV" name="Place" />
-	</div>
-	<div class="col-sm-2">
+	<div class="inputRow">
 		<label>Beskrivning: </label>
+		<input class="userInput" name="Description" />
 	</div>
-	<div class="col-sm-4">
-		<input class="SettingsCV" name="Description" />
-	</div>
+	<input type="submit" value="Spara" class="btn btn-dark btnRegister">
 	<br />
+	<p>@Model.ErrorMessage</p>
 	<br />
-	<input type="submit" value="Spara" class="btn btn-dark">
 </form>
-<p>@Model.ErrorMessage</p>

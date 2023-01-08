@@ -104,7 +104,7 @@ namespace CV_Projektet.Controllers
 			}
 			catch (Exception ex)
 			{
-				view.ErrorMessage = name + " finns redan i din lista";
+				view.ErrorMessage = "Vänligen fyll i alla fält!";
 			}
 
 			return RedirectToAction("Competence", "CVSettings", view);

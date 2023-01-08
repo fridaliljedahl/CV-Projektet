@@ -3,30 +3,32 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<h2 class="competence">Kompetenser</h2>
+<h1 class="accentWord">Dina kompetenser</h1>
 
 @try
 {
-	<ul>
 		@foreach (var item in Model.CompetenceList)
 		{
-			<div class="list">
-			<li class="competence">@item.Name</li>
+			<br />
+			<p style= "text-align: center;">@item.Name</p>
 			<form asp-controller="CVSettings" asp-action="DeleteCompetence">
 				<input type="hidden" asp-for="@item.ID" name="id" />
 				<input type="submit" value="Radera" class="btn btn-dark" />
 			</form>
-			</div>
+		<br />
+			
 		}
-	</ul>
+
 }
 catch (Exception ex) { }
+<br />
+<br />
 <form id="SettingsCV" method="post" asp-controller="CVSettings" asp-action="AddCompetence">
-	<p>Lägg till en ny kompetens:</p>
-	<input class="SettingsCV" name="Name" />
+	<h3 class="accentWord">Lägg till kompetens:</h3>
+	<input class="SettingsCV userInput" name="Name" />
 	<br />
 	<br />
-	<input type="submit" value="Spara">
+	<input type="submit" value="Spara" class="btn btn-dark">
 </form>
 <p>@Model.ErrorMessage</p>
 
