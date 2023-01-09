@@ -14,7 +14,7 @@ namespace CV_Projektet.Controllers
             this.context = context;
         }
 
-        public IActionResult Index(string fName, string lName, string comp)
+        public IActionResult Index(string fName, string lName)
         {
             IEnumerable<User> users = context.Users.ToList();
 
@@ -32,11 +32,6 @@ namespace CV_Projektet.Controllers
                 {
                     users = context.Users.Where(u => u.LastName.StartsWith(lName));
                 }
-            }
-
-            if (!string.IsNullOrWhiteSpace(comp))
-            {
-                //VG-krav
             }
 
             return View(users.ToList());
